@@ -2,6 +2,7 @@
 
 namespace MyMusic.Controllers {
 
+    [Route("[controller]")]
     public class PlaylistController: Controller {
 
         [HttpGet]
