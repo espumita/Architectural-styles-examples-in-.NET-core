@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Api", "MyMusic.Api\MyMusic.Api.csproj", "{5F90A9ED-9BB4-43F6-9FCD-D56C1A562FD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Application.Services", "MyMusic.Application.Services\MyMusic.Application.Services.csproj", "{54CEADCD-8794-4E6D-83BB-3C57BB2C0E12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Model", "MyMusic.Model\MyMusic.Model.csproj", "{885864DA-3DDF-49AE-9CC9-123A6760F04C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Application.Services.Tests", "MyMusic.Application.Services.Tests\MyMusic.Application.Services.Tests.csproj", "{3200673C-EB2B-4994-AC82-B3E02C3A7B15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Infrastructure", "MyMusic.Infrastructure\MyMusic.Infrastructure.csproj", "{0654459D-00DE-469B-9571-3E239AAEE620}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Infrastructure.Tests", "MyMusic.Infrastructure.Tests\MyMusic.Infrastructure.Tests.csproj", "{61239E1B-7397-4C59-A1AE-50C2E4F91F9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{A66E4A8C-631B-4327-87AB-A1ECEECDAA28}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{80DE51DC-88C0-403E-842B-DDE4B1EEC95A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{A2F47B98-CE0B-4E30-81D7-3617D4938EF8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F90A9ED-9BB4-43F6-9FCD-D56C1A562FD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F90A9ED-9BB4-43F6-9FCD-D56C1A562FD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F90A9ED-9BB4-43F6-9FCD-D56C1A562FD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F90A9ED-9BB4-43F6-9FCD-D56C1A562FD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54CEADCD-8794-4E6D-83BB-3C57BB2C0E12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54CEADCD-8794-4E6D-83BB-3C57BB2C0E12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54CEADCD-8794-4E6D-83BB-3C57BB2C0E12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54CEADCD-8794-4E6D-83BB-3C57BB2C0E12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{885864DA-3DDF-49AE-9CC9-123A6760F04C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{885864DA-3DDF-49AE-9CC9-123A6760F04C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{885864DA-3DDF-49AE-9CC9-123A6760F04C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{885864DA-3DDF-49AE-9CC9-123A6760F04C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3200673C-EB2B-4994-AC82-B3E02C3A7B15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3200673C-EB2B-4994-AC82-B3E02C3A7B15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3200673C-EB2B-4994-AC82-B3E02C3A7B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3200673C-EB2B-4994-AC82-B3E02C3A7B15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0654459D-00DE-469B-9571-3E239AAEE620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0654459D-00DE-469B-9571-3E239AAEE620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0654459D-00DE-469B-9571-3E239AAEE620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0654459D-00DE-469B-9571-3E239AAEE620}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61239E1B-7397-4C59-A1AE-50C2E4F91F9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61239E1B-7397-4C59-A1AE-50C2E4F91F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61239E1B-7397-4C59-A1AE-50C2E4F91F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61239E1B-7397-4C59-A1AE-50C2E4F91F9E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0654459D-00DE-469B-9571-3E239AAEE620} = {A66E4A8C-631B-4327-87AB-A1ECEECDAA28}
+		{61239E1B-7397-4C59-A1AE-50C2E4F91F9E} = {A66E4A8C-631B-4327-87AB-A1ECEECDAA28}
+		{54CEADCD-8794-4E6D-83BB-3C57BB2C0E12} = {80DE51DC-88C0-403E-842B-DDE4B1EEC95A}
+		{3200673C-EB2B-4994-AC82-B3E02C3A7B15} = {80DE51DC-88C0-403E-842B-DDE4B1EEC95A}
+		{885864DA-3DDF-49AE-9CC9-123A6760F04C} = {A2F47B98-CE0B-4E30-81D7-3617D4938EF8}
+	EndGlobalSection
+EndGlobal

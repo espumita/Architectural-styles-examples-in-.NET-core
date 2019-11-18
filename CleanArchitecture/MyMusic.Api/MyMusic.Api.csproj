@@ -9,4 +9,10 @@
       <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc4" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\MyMusic.Application.Services\MyMusic.Application.Services.csproj" />
+      <ProjectReference Include="..\MyMusic.Infrastructure\MyMusic.Infrastructure.csproj" />
+    </ItemGroup>
+    
+
 </Project>
