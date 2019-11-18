@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MyMusic.Application.CommandHandlers\MyMusic.Application.CommandHandlers.csproj" />
+      <ProjectReference Include="..\MyMusic.Application.Queries\MyMusic.Application.Queries.csproj" />
+      <ProjectReference Include="..\MyMusic.Application.Read.EventHandlers\MyMusic.Application.Read.EventHandlers.csproj" />
+      <ProjectReference Include="..\MyMusic.Application.Write.EventHandlers\MyMusic.Application.Write.EventHandlers.csproj" />
+      <ProjectReference Include="..\MyMusic.Model.Commands\MyMusic.Model.Commands.csproj" />
+    </ItemGroup>
+
+</Project>
