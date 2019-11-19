@@ -5,7 +5,7 @@ namespace MyMusic.Infrastructure.Persistence {
     public class PLayListDatabaseAdapter : PlayListPersistencePort {
         public PlayList GetPlayList(string playlistId) {
             //This should be read from persistence
-            return new PlayList(playlistId);
+            return new PlayList(playlistId, "aNameFromPersistence");
         }
 
         public void CreatePlayListFrom(string playListName) {
