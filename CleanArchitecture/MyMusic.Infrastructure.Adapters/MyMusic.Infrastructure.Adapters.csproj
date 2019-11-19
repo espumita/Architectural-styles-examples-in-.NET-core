@@ -2,12 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.0</TargetFramework>
+        <RootNamespace>MyMusic.Infrastructure</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\MyMusic.Model.Ports\MyMusic.Model.Ports.csproj" />
-      <ProjectReference Include="..\MyMusic.Model\MyMusic.Model.csproj" />
     </ItemGroup>
-    
 
 </Project>

@@ -1,4 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyMusic.Application.Services;
+using MyMusic.Infrastructure.Persistence;
+using MyMusic.Model;
+using MyMusic.Requests;
 
 namespace MyMusic.Controllers {
 
@@ -6,23 +10,31 @@ namespace MyMusic.Controllers {
     public class PlaylistsController: Controller {
 
         [HttpGet("{playlistId}")]
-        public void Get(string playlistId) {
-            //Get the playlist
+        public PlayList Get(string playlistId) {
+            var playListDatabaseAdapter = new PLayListDatabaseAdapter();
+            var playListService = new PlayListService(playListDatabaseAdapter);
+            return playListService.Get(playlistId);
         }
         
         [HttpPost]
-        public void Create() {
-            //Create the playlist
+        public void Create([FromBody]CreatePlayListRequest createPlayListRequest) {
+            var playListDatabaseAdapter = new PLayListDatabaseAdapter();
+            var playListService = new PlayListService(playListDatabaseAdapter);
+            playListService.Create(createPlayListRequest.PlayListName);
         }
         
         [HttpPut("{playlistId}")]
-        public void Update(string playlistId) {
-            //ChangeName
+        public void Update(string playlistId,[FromBody]ChangePlayListNameRequest changePlayListNameRequest ) {
+            var playListDatabaseAdapter = new PLayListDatabaseAdapter();
+            var playListService = new PlayListService(playListDatabaseAdapter);
+            playListService.ChangeName(playlistId, changePlayListNameRequest.NewPlayListName);
         }
         
         [HttpDelete("{playlistId}")]
         public void Delete(string playlistId) {
-            //Delete the playlist                        
+            var playListDatabaseAdapter = new PLayListDatabaseAdapter();
+            var playListService = new PlayListService(playListDatabaseAdapter);
+            playListService.Delete(playlistId);                     
         }
     }
 }
