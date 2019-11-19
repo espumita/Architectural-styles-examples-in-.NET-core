@@ -13,8 +13,10 @@ namespace MyMusic.Infrastructure.Persistence {
             return new PlayList(playlistId, "Example PlayList", trackList, "https://imageUrl.com");
         }
 
-        public void CreatePlayListFrom(string playListName) {
+        public string CreatePlayListFrom(string playListName) {
             //This should save in persistence
+            var newPlayListId = "B7875AD5-FDC3-4067-9902-0072226552DD";
+            return newPlayListId;
         }
 
         public void ChangePlayListName(string playListId, string newPlayListName) {
