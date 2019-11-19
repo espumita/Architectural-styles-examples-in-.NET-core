@@ -12,7 +12,8 @@ namespace MyMusic.Infrastructure.Persistence {
         }
 
         public Track GetTrack(string trackId) {
-            return new Track(trackId);
+            //This should be read from persistence
+            return new Track(trackId, "Mis Colegas", "Ska-P", 246600);
         }
     }
 }

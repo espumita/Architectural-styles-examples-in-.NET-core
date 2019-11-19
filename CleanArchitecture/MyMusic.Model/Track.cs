@@ -1,9 +1,15 @@
 namespace MyMusic.Model {
     public class Track {
-        public string trackId { get; }
+        public string Id { get; }
+        public string Name { get; }
+        public string Artist { get; }
+        public int DurationInMs { get; }
 
-        public Track(string trackId) {
-            this.trackId = trackId;
+        public Track(string id, string name, string artist, int durationInMs) {
+            this.Id = id;
+            Name = name;
+            Artist = artist;
+            DurationInMs = durationInMs;
         }
     }
 }
