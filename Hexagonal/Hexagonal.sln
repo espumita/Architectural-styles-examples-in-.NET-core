@@ -12,9 +12,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Infrastructure.Adap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Infrastructure.Adapters.Tests", "MyMusic.Infrastructure.Adapters.Tests\MyMusic.Infrastructure.Adapters.Tests.csproj", "{61239E1B-7397-4C59-A1AE-50C2E4F91F9E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{A66E4A8C-631B-4327-87AB-A1ECEECDAA28}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adapters", "Adapters", "{A66E4A8C-631B-4327-87AB-A1ECEECDAA28}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{80DE51DC-88C0-403E-842B-DDE4B1EEC95A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application.Core", "Application.Core", "{80DE51DC-88C0-403E-842B-DDE4B1EEC95A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{A2F47B98-CE0B-4E30-81D7-3617D4938EF8}"
 EndProject
