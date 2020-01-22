@@ -4,6 +4,7 @@ using MyMusic.Model.PortsContracts.Http;
 
 namespace MyMusic.Application.Services {
     public class GetTracksService {
+        
         private readonly TracksPersistencePort persistencePort;
         private readonly MusicHttpPort httpPort;
 
