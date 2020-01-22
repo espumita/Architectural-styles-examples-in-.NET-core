@@ -1,20 +1,20 @@
-using MyMusic.Model.PortsContracts.Http;
+using MyMusic.Model.PortsContracts.Notifications;
 using MyMusic.Model.PortsContracts.Persistence;
 
 namespace MyMusic.Application.Services {
     public class CreatePlayListService {
         
-        private readonly PlayListPersistencePort persistencePort;
-        private readonly MusicHttpPort httpPort;
+        private readonly PlayListPersistencePort playListPersistence;
+        private readonly PlayListNotifierPort playListNotifier;
 
-        public CreatePlayListService(PlayListPersistencePort persistencePort, MusicHttpPort httpPort) {
-            this.persistencePort = persistencePort;
-            this.httpPort = httpPort;
+        public CreatePlayListService(PlayListPersistencePort playListPersistence, PlayListNotifierPort playListNotifier) {
+            this.playListPersistence = playListPersistence;
+            this.playListNotifier = playListNotifier;
         }
 
         public void Create(string playListName) {
-            var playListId = persistencePort.CreatePlayListFrom(playListName);
-            httpPort.NotifyPlayListHasBeenCreated(playListId, playListName);
+            var playListId = playListPersistence.CreatePlayListFrom(playListName);
+            playListNotifier.NotifyPlayListHasBeenCreated(playListId, playListName);
         }
         
     }

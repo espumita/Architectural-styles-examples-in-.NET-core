@@ -1,21 +1,21 @@
-using MyMusic.Model.PortsContracts.Http;
+using MyMusic.Model.PortsContracts.Notifications;
 using MyMusic.Model.PortsContracts.Persistence;
 
 namespace MyMusic.Application.Services {
     
     public class DeletePlayListService {
         
-        private readonly PlayListPersistencePort persistencePort;
-        private readonly MusicHttpPort httpPort;
+        private readonly PlayListPersistencePort playListPersistence;
+        private readonly PlayListNotifierPort playListNotifier;
 
-        public DeletePlayListService(PlayListPersistencePort persistencePort, MusicHttpPort httpPort) {
-            this.persistencePort = persistencePort;
-            this.httpPort = httpPort;
+        public DeletePlayListService(PlayListPersistencePort playListPersistence, PlayListNotifierPort playListNotifier) {
+            this.playListPersistence = playListPersistence;
+            this.playListNotifier = playListNotifier;
         }
 
         public void Delete(string playListId) {
-            persistencePort.DeletePlayList(playListId);
-            httpPort.NotifyPlayListHasBeenDeleted(playListId);
+            playListPersistence.DeletePlayList(playListId);
+            playListNotifier.NotifyPlayListHasBeenDeleted(playListId);
         }
     }
 }

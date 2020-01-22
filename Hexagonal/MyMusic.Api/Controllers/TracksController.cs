@@ -1,7 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using MyMusic.Application.Services;
-using MyMusic.Infrastructure.Http;
-using MyMusic.Infrastructure.Persistence;
 using MyMusic.Responses;
 using MyMusic.ServiceCreators;
 

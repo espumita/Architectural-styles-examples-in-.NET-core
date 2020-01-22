@@ -1,8 +1,9 @@
 using MyMusic.Model;
 using MyMusic.Model.PortsContracts;
+using MyMusic.Model.PortsContracts.Persistence;
 
 namespace MyMusic.Infrastructure.Persistence {
-    public class TracksDatabaseAdapter : TracksPersistencePort {
+    public class TracksPostgreSQLAdapter : TracksPersistencePort {
         public void AddTrackToPlayList(string trackId, string playlistId) {
             //This should update persistence
         }

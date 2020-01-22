@@ -1,21 +1,22 @@
 using MyMusic.Model.PortsContracts;
-using MyMusic.Model.PortsContracts.Http;
+using MyMusic.Model.PortsContracts.Notifications;
+using MyMusic.Model.PortsContracts.Persistence;
 
 namespace MyMusic.Application.Services {
     
     public class AddTrackToPlayListService {
         
-        private readonly TracksPersistencePort persistencePort;
-        private readonly MusicHttpPort httpPort;
+        private readonly TracksPersistencePort tracksPersistence;
+        private readonly TracksNotifierPort tracksNotifier;
 
-        public AddTrackToPlayListService(TracksPersistencePort persistencePort, MusicHttpPort httpPort) {
-            this.persistencePort = persistencePort;
-            this.httpPort = httpPort;
+        public AddTrackToPlayListService(TracksPersistencePort tracksPersistence, TracksNotifierPort tracksNotifier) {
+            this.tracksPersistence = tracksPersistence;
+            this.tracksNotifier = tracksNotifier;
         }
 
         public void AddToPlayList(string trackId, string playlistId) {
-            persistencePort.AddTrackToPlayList(trackId, playlistId);
-            httpPort.NotifyTrackHasBeenAddedToPlayList(trackId, playlistId);
+            tracksPersistence.AddTrackToPlayList(trackId, playlistId);
+            tracksNotifier.NotifyTrackHasBeenAddedToPlayList(trackId, playlistId);
         }
         
     }

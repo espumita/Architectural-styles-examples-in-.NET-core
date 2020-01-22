@@ -4,14 +4,14 @@ using MyMusic.Model.PortsContracts.Persistence;
 namespace MyMusic.Application.Services {
     public class GetPlayListService {
         
-        private readonly PlayListPersistencePort persistencePort;
+        private readonly PlayListPersistencePort playListPersistence;
         
-        public GetPlayListService(PlayListPersistencePort persistencePort) {
-            this.persistencePort = persistencePort;
+        public GetPlayListService(PlayListPersistencePort playListPersistence) {
+            this.playListPersistence = playListPersistence;
         }
 
         public PlayList Get(string playlistId) {
-            return persistencePort.GetPlayList(playlistId);
+            return playListPersistence.GetPlayList(playlistId);
         }
     }
 }

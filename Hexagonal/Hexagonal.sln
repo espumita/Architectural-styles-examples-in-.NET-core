@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application.Core", "Applica
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{A2F47B98-CE0B-4E30-81D7-3617D4938EF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Model.Ports", "MyMusic.Model.Ports\MyMusic.Model.Ports.csproj", "{279F31F0-A475-45EB-96E5-98D12CEB1D4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Ports", "MyMusic.Ports\MyMusic.Ports.csproj", "{279F31F0-A475-45EB-96E5-98D12CEB1D4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

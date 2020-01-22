@@ -1,19 +1,17 @@
 using MyMusic.Model;
-using MyMusic.Model.PortsContracts;
-using MyMusic.Model.PortsContracts.Http;
+using MyMusic.Model.PortsContracts.Persistence;
 
 namespace MyMusic.Application.Services {
     public class GetTracksService {
         
-        private readonly TracksPersistencePort persistencePort;
-        private readonly MusicHttpPort httpPort;
+        private readonly TracksPersistencePort tracksPersistence;
 
-        public GetTracksService(TracksPersistencePort persistencePort) {
-            this.persistencePort = persistencePort;
+        public GetTracksService(TracksPersistencePort tracksPersistence) {
+            this.tracksPersistence = tracksPersistence;
         }
 
         public Track Get(string trackId) {
-            return persistencePort.GetTrack(trackId);
+            return tracksPersistence.GetTrack(trackId);
         }
     }
 }
