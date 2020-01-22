@@ -18,6 +18,7 @@ namespace MyMusic {
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers();
             services.AddSingleton(new PlayListServiceCreator());
+            services.AddSingleton(new TracksServiceCreator());
             services.AddSwaggerGen(options => {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });

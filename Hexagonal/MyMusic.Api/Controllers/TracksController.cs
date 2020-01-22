@@ -1,19 +1,37 @@
 using Microsoft.AspNetCore.Mvc;
 using MyMusic.Application.Services;
+using MyMusic.Infrastructure.Http;
 using MyMusic.Infrastructure.Persistence;
 using MyMusic.Responses;
+using MyMusic.ServiceCreators;
 
 namespace MyMusic.Controllers {
-
-    [Microsoft.AspNetCore.Components.Route("tracks")]
+    
     public class TracksController : Controller {
         
-        [HttpGet("{trackId}")]
+        private readonly TracksServiceCreator tracksServiceCreator;
+
+        public TracksController(TracksServiceCreator tracksServiceCreator) {
+            this.tracksServiceCreator = tracksServiceCreator;
+        }
+
+        [HttpGet("tracks/{trackId}")]
         public TrackResponse GetTrack(string trackId) {
-            var tracksDatabaseAdapter = new TracksDatabaseAdapter();
-            var tracksService = new TracksService(tracksDatabaseAdapter);
+            var tracksService = tracksServiceCreator.CreateGetTrackService();
             var track = tracksService.Get(trackId);
             return TrackResponse.From(track);
+        }
+        
+        [HttpPost("playlists/{playlistId}/tracks/{trackId}")]
+        public void AddTrack(string playlistId, string trackId) {
+            var tracksService = tracksServiceCreator.CreateAddTrackToPlayListService();
+            tracksService.AddToPlayList(trackId, playlistId);
+        }
+
+        [HttpDelete("playlists/{playlistId}/tracks/{trackId}")]
+        public void DeleteTrack(string playlistId, string trackId) {
+            var tracksService = tracksServiceCreator.CreateDeleteTrackFromPLayListService();
+            tracksService.DeleteFromPlayList(trackId, playlistId);        
         }
 
     }
