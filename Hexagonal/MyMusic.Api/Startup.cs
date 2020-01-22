@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using MyMusic.ServiceCreators;
 
 namespace MyMusic {
     public class Startup {
@@ -16,6 +17,7 @@ namespace MyMusic {
 
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers();
+            services.AddSingleton(new PlayListServiceCreator());
             services.AddSwaggerGen(options => {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });

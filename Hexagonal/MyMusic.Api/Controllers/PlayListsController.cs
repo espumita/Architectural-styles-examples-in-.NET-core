@@ -4,30 +4,35 @@ using MyMusic.Infrastructure.Http;
 using MyMusic.Infrastructure.Persistence;
 using MyMusic.Requests;
 using MyMusic.Responses;
+using MyMusic.ServiceCreators;
 
 namespace MyMusic.Controllers {
 
-    [Route("[controller]")]
+    [Route("playlists")]
     public class PlaylistsController: Controller {
+        private readonly PlayListServiceCreator playListServiceCreator;
+
+        public PlaylistsController(PlayListServiceCreator playListServiceCreator) {
+            this.playListServiceCreator = playListServiceCreator;
+        }
 
         [HttpGet("{playlistId}")]
-        public PlayListResponse Get(string playlistId) {
-            var playListDatabaseAdapter = new PLayListDatabaseAdapter();
-            var playListService = new PlayListService(playListDatabaseAdapter);
+        public PlayListResponse GetPlaylist(string playlistId) {
+            var playListService = playListServiceCreator.CreatePlayListService();
             var playList = playListService.Get(playlistId);
             return PlayListResponse.From(playList);
         }
         
         [HttpPost]
-        public void Create([FromBody]CreatePlayListRequest createPlayListRequest) {
+        public void CreatePlayList([FromBody]CreatePlayListRequest createPlayListRequest) {
             var playListDatabaseAdapter = new PLayListDatabaseAdapter();
             var playListCloudHttpAdapter = new MusicCloudApiHttpAdapter();
             var playListService = new PlayListService(playListDatabaseAdapter, playListCloudHttpAdapter);
             playListService.Create(createPlayListRequest.PlayListName);
         }
-        
+                
         [HttpPut("{playlistId}")]
-        public void Update(string playlistId,[FromBody]ChangePlayListNameRequest changePlayListNameRequest ) {
+        public void ChangePlaylistName(string playlistId, [FromBody] ChangePlayListNameRequest changePlayListNameRequest) {
             var playListDatabaseAdapter = new PLayListDatabaseAdapter();
             var musicCloudApiHttpAdapter = new MusicCloudApiHttpAdapter();
             var playListService = new PlayListService(playListDatabaseAdapter, musicCloudApiHttpAdapter);
@@ -42,7 +47,7 @@ namespace MyMusic.Controllers {
             playListService.Delete(playlistId);                     
         }
         
-        [HttpPost("{playlistId}/Tracks/{trackId}")]
+        [HttpPost("{playlistId}/tracks/{trackId}")]
         public void AddTrack(string playlistId, string trackId) {
             var tracksDatabaseAdapter = new TracksDatabaseAdapter();
             var musicCloudApiHttpAdapter = new MusicCloudApiHttpAdapter();
@@ -50,7 +55,7 @@ namespace MyMusic.Controllers {
             tracksService.AddToPlayList(trackId, playlistId);
         }
 
-        [HttpDelete("{playlistId}/Tracks/{trackId}")]
+        [HttpDelete("{playlistId}/tracks/{trackId}")]
         public void DeleteTrack(string playlistId, string trackId) {
             var tracksDatabaseAdapter = new TracksDatabaseAdapter();
             var tracksService = new TracksService(tracksDatabaseAdapter);
