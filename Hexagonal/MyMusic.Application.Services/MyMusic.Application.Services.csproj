@@ -5,8 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MyMusic.Model\MyMusic.Model.csproj" />
-      <ProjectReference Include="..\MyMusic.Ports\MyMusic.Ports.csproj" />
+      <ProjectReference Include="..\MyMusic.Application.Ports\MyMusic.Application.Ports.csproj" />
+      <ProjectReference Include="..\MyMusic.Domain\MyMusic.Domain.csproj" />
     </ItemGroup>
     
 

@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Api", "MyMusic.Api\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Application.Services", "MyMusic.Application.Services\MyMusic.Application.Services.csproj", "{54CEADCD-8794-4E6D-83BB-3C57BB2C0E12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Model", "MyMusic.Model\MyMusic.Model.csproj", "{885864DA-3DDF-49AE-9CC9-123A6760F04C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Domain", "MyMusic.Domain\MyMusic.Domain.csproj", "{885864DA-3DDF-49AE-9CC9-123A6760F04C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Application.Services.Tests", "MyMusic.Application.Services.Tests\MyMusic.Application.Services.Tests.csproj", "{3200673C-EB2B-4994-AC82-B3E02C3A7B15}"
 EndProject
@@ -16,9 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adapters", "Adapters", "{A6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application.Core", "Application.Core", "{80DE51DC-88C0-403E-842B-DDE4B1EEC95A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{A2F47B98-CE0B-4E30-81D7-3617D4938EF8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{A2F47B98-CE0B-4E30-81D7-3617D4938EF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Ports", "MyMusic.Ports\MyMusic.Ports.csproj", "{279F31F0-A475-45EB-96E5-98D12CEB1D4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Application.Ports", "MyMusic.Application.Ports\MyMusic.Application.Ports.csproj", "{279F31F0-A475-45EB-96E5-98D12CEB1D4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +61,6 @@ Global
 		{54CEADCD-8794-4E6D-83BB-3C57BB2C0E12} = {80DE51DC-88C0-403E-842B-DDE4B1EEC95A}
 		{3200673C-EB2B-4994-AC82-B3E02C3A7B15} = {80DE51DC-88C0-403E-842B-DDE4B1EEC95A}
 		{885864DA-3DDF-49AE-9CC9-123A6760F04C} = {A2F47B98-CE0B-4E30-81D7-3617D4938EF8}
-		{279F31F0-A475-45EB-96E5-98D12CEB1D4D} = {A2F47B98-CE0B-4E30-81D7-3617D4938EF8}
+		{279F31F0-A475-45EB-96E5-98D12CEB1D4D} = {80DE51DC-88C0-403E-842B-DDE4B1EEC95A}
 	EndGlobalSection
 EndGlobal

@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MyMusic.Ports\MyMusic.Ports.csproj" />
+      <ProjectReference Include="..\MyMusic.Application.Ports\MyMusic.Application.Ports.csproj" />
     </ItemGroup>
 
 </Project>
