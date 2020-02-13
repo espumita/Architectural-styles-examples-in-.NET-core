@@ -1,5 +1,5 @@
-using MyMusic.Model.PortsContracts.Notifications;
-using MyMusic.Model.PortsContracts.Persistence;
+using MyMusic.Application.Ports.Notifications;
+using MyMusic.Application.Ports.Persistence;
 
 namespace MyMusic.Application.Services {
     public class CreatePlayListService {

@@ -1,5 +1,5 @@
-using MyMusic.Model;
-using MyMusic.Model.PortsContracts.Persistence;
+using MyMusic.Application.Ports.Persistence;
+using MyMusic.Domain;
 
 namespace MyMusic.Application.Services {
     public class GetTracksService {

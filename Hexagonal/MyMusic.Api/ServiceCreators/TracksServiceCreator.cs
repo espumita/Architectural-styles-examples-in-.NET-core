@@ -1,6 +1,6 @@
 using MyMusic.Application.Services;
-using MyMusic.Infrastructure.Http;
-using MyMusic.Infrastructure.Persistence;
+using MyMusic.Infrastructure.Adapters.Http;
+using MyMusic.Infrastructure.Adapters.Persistence;
 
 namespace MyMusic.ServiceCreators {
 
@@ -11,9 +11,9 @@ namespace MyMusic.ServiceCreators {
         }
         
         public AddTrackToPlayListService CreateAddTrackToPlayListService() {
-            var tracksDatabaseAdapter = new TracksPostgreSQLAdapter();
+            var pLayListPostgreSqlAdapter = new PLayListPostgreSQLAdapter();
             var tracksNotifierAdapter = new TraksSpotifyApiAdapter();
-            return new AddTrackToPlayListService(tracksDatabaseAdapter, tracksNotifierAdapter);
+            return new AddTrackToPlayListService(pLayListPostgreSqlAdapter, tracksNotifierAdapter);
         }
         
         public DeleteTrackFromPLayListService CreateDeleteTrackFromPLayListService() {

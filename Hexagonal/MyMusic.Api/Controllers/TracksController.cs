@@ -22,7 +22,7 @@ namespace MyMusic.Controllers {
         [HttpPost("playlists/{playlistId}/tracks/{trackId}")]
         public void AddTrack(string playlistId, string trackId) {
             var tracksService = tracksServiceCreator.CreateAddTrackToPlayListService();
-            tracksService.AddToPlayList(trackId, playlistId);
+            tracksService.Execute(trackId, playlistId);
         }
 
         [HttpDelete("playlists/{playlistId}/tracks/{trackId}")]

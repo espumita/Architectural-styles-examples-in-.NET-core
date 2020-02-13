@@ -1,4 +1,4 @@
-namespace MyMusic.Model.PortsContracts.Notifications {
+namespace MyMusic.Application.Ports.Notifications {
 
     public interface TracksNotifierPort {
         void NotifyTrackHasBeenAddedToPlayList(string trackId, string playlistId);

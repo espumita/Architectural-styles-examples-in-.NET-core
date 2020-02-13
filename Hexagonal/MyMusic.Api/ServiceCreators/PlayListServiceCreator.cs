@@ -1,6 +1,6 @@
 using MyMusic.Application.Services;
-using MyMusic.Infrastructure.Http;
-using MyMusic.Infrastructure.Persistence;
+using MyMusic.Infrastructure.Adapters.Http;
+using MyMusic.Infrastructure.Adapters.Persistence;
 
 namespace MyMusic.ServiceCreators {
 

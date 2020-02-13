@@ -1,21 +1,21 @@
-using MyMusic.Model.PortsContracts;
-using MyMusic.Model.PortsContracts.Notifications;
-using MyMusic.Model.PortsContracts.Persistence;
+using MyMusic.Application.Ports.Notifications;
+using MyMusic.Application.Ports.Persistence;
+using MyMusic.Domain;
 
 namespace MyMusic.Application.Services {
     
     public class AddTrackToPlayListService {
-        
-        private readonly TracksPersistencePort tracksPersistence;
+        private readonly PlayListPersistencePort playListPersistencePort;
         private readonly TracksNotifierPort tracksNotifier;
 
-        public AddTrackToPlayListService(TracksPersistencePort tracksPersistence, TracksNotifierPort tracksNotifier) {
-            this.tracksPersistence = tracksPersistence;
+        public AddTrackToPlayListService(PlayListPersistencePort playListPersistencePort, TracksNotifierPort tracksNotifier) {
+            this.playListPersistencePort = playListPersistencePort;
             this.tracksNotifier = tracksNotifier;
         }
 
-        public void AddToPlayList(string trackId, string playlistId) {
-            tracksPersistence.AddTrackToPlayList(trackId, playlistId);
+        public void Execute(string trackId, string playlistId) {
+            var playList = playListPersistencePort.GetPlayList(playlistId);
+            playList.Add(new Track(trackId, "", "", 1));
             tracksNotifier.NotifyTrackHasBeenAddedToPlayList(trackId, playlistId);
         }
         

@@ -1,6 +1,6 @@
-using MyMusic.Model.PortsContracts.Notifications;
+using MyMusic.Application.Ports.Notifications;
 
-namespace MyMusic.Infrastructure.Http {
+namespace MyMusic.Infrastructure.Adapters.Http {
 
     public class TraksSpotifyApiAdapter : TracksNotifierPort {
         public void NotifyTrackHasBeenAddedToPlayList(string trackId, string playlistId) {

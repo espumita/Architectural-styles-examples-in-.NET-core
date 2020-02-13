@@ -1,4 +1,6 @@
-namespace MyMusic.Model.PortsContracts.Persistence {
+using MyMusic.Domain;
+
+namespace MyMusic.Application.Ports.Persistence {
     public interface TracksPersistencePort {
         void AddTrackToPlayList(string trackId, string playlistId);
         void DeleteTrackFromPlayList(string trackId, string playlistId);

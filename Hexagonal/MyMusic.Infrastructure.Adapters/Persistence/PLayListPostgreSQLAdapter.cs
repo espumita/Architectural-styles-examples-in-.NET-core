@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using MyMusic.Model;
-using MyMusic.Model.PortsContracts.Persistence;
+using MyMusic.Application.Ports.Persistence;
+using MyMusic.Domain;
 
-namespace MyMusic.Infrastructure.Persistence {
+namespace MyMusic.Infrastructure.Adapters.Persistence {
     public class PLayListPostgreSQLAdapter : PlayListPersistencePort {
         public PlayList GetPlayList(string playlistId) {
             //This should be read from PostgreSQL DB
@@ -25,6 +25,10 @@ namespace MyMusic.Infrastructure.Persistence {
 
         public void DeletePlayList(object playListId) {
             //This should delete in PostgreSQL DB
+        }
+
+        public void Persist(PlayList playList) {
+            throw new System.NotImplementedException();
         }
     }
 }

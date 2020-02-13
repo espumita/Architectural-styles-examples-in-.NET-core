@@ -1,4 +1,4 @@
-using MyMusic.Model;
+using MyMusic.Domain;
 
 namespace MyMusic.Responses {
     public class TrackResponse {

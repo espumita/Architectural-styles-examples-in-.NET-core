@@ -1,6 +1,6 @@
-using MyMusic.Model.PortsContracts.Notifications;
+using MyMusic.Application.Ports.Notifications;
 
-namespace MyMusic.Infrastructure.Http {
+namespace MyMusic.Infrastructure.Adapters.Http {
 
     public class PlayListSpotifyApiAdapter : PlayListNotifierPort {
         public void NotifyPlayListHasBeenCreated(string playListId, string playListName) {
