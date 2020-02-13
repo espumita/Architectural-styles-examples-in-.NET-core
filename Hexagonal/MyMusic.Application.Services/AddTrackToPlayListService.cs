@@ -16,6 +16,7 @@ namespace MyMusic.Application.Services {
         public void Execute(string trackId, string playlistId) {
             var playList = playListPersistencePort.GetPlayList(playlistId);
             playList.Add(new Track(trackId, "", "", 1));
+            playListPersistencePort.Persist(playList);
             tracksNotifier.NotifyTrackHasBeenAddedToPlayList(trackId, playlistId);
         }
         
