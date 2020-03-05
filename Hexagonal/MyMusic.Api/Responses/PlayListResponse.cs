@@ -3,7 +3,7 @@ using System.Linq;
 using MyMusic.Domain;
 
 namespace MyMusic.Responses {
-    public class PlayListResponse : ResponseMapper {
+    public class PlayListResponse : ResponseMapper<PlayListResponse, PlayList> {
         public string Id { get; }
         public string Name { get; }
         public List<TrackResponse> TrackList { get; }
@@ -18,11 +18,9 @@ namespace MyMusic.Responses {
             ImageUrl = imageUrl;
         }
 
-        object ResponseMapper.From(object modelObject) {
-            var playList = (PlayList) modelObject;
-            var trackList = playList.TrackList.Select(TrackResponse.From).ToList();
+        public PlayListResponse From(PlayList playList) {
+            var trackList = playList.TrackList.Select(track => new TrackResponse().From(track)).ToList();
             return new PlayListResponse(playList.Id, playList.Name, trackList, playList.ImageUrl);
         }
-
     }
 }

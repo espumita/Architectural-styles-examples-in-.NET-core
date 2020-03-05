@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MyMusic.Domain;
 using MyMusic.Responses;
 using MyMusic.ServiceCreators;
 
@@ -13,10 +14,10 @@ namespace MyMusic.Controllers {
         }
 
         [HttpGet("tracks/{trackId}")]
-        public TrackResponse GetTrack(string trackId) {
+        public ActionResult GetTrack(string trackId) {
             var tracksService = tracksServiceCreator.CreateGetTrackService();
-            var track = tracksService.Get(trackId);
-            return TrackResponse.From(track);
+            var result = tracksService.Get(trackId);
+            return this.BuildResponseOfType<TrackResponse, Track>(result);
         }
         
         [HttpPost("playlists/{playlistId}/tracks/{trackId}")]

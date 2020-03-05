@@ -1,5 +1,5 @@
 namespace MyMusic.Responses {
-    public interface ResponseMapper {
-        object From(object modelObject);
+    public interface ResponseMapper <T, K>{
+        T From(K modelObject);
     }
 }

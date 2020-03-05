@@ -17,7 +17,7 @@ namespace MyMusic.Controllers {
         }
         
         
-        public static ActionResult BuildResponseOfType<T, K>(this Controller controller, Either<PlayListError, K> result) where T : ResponseMapper, new () {
+        public static ActionResult BuildResponseOfType<T, K>(this Controller controller, Either<PlayListError, K> result) where T : ResponseMapper<T, K>, new () {
             ActionResult response = null;
             result.Match(
                 Left: playListError => response = controller.BadRequest(playListError),
