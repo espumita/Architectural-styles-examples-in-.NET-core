@@ -1,6 +1,8 @@
 using FluentAssertions;
+using LanguageExt;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
+using MyMusic.Application.Services.Errors;
 using MyMusic.Domain;
 using NSubstitute;
 using NUnit.Framework;
@@ -54,8 +56,15 @@ namespace MyMusic.Application.Services.Tests {
             var result = deleteTrackFromPLayListService.Execute(aTrackId, aPlaylistId);
 
             result.IsLeft.Should().BeTrue();
+            VerifyErrorIs(PlayListError.TrackIsNotInThePlayList, result);
             playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
             tracksNotifier.DidNotReceive().NotifyTrackHasRemovedFromPlayList(Arg.Any<string>(), Arg.Any<string>());
+        }
+        
+        private static void VerifyErrorIs(PlayListError playListError, Either<PlayListError, string> result) {
+            result.Match(
+                Left: x => x.Should().Be(playListError),
+                Right: null);
         }
     }
 }
