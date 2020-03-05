@@ -35,6 +35,7 @@ namespace MyMusic.Application.Services.Tests {
             playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist => 
                 playlist.Id.Equals(aPlaylistId)
                 && playlist.Name.Equals(aPlaylistName)
+                && playlist.Status.Equals(PlayListStatus.Active)
             ));
             playListNotifierPort.Received().NotifyPlayListHasBeenCreated(aPlaylistId, aPlaylistName);
         }
