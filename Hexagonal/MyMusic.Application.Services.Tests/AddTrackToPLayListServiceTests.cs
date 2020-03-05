@@ -37,6 +37,7 @@ namespace MyMusic.Application.Services.Tests {
                 playlist.Id.Equals(aPlaylistId)
                 && playlist.TrackList.Single().Id.Equals(aTrackId)
             ));
+            tracksNotifier.Received().NotifyTrackHasBeenAddedToPlayList(aTrackId, aPlaylistId);
         }
 
         [Test]
@@ -54,7 +55,8 @@ namespace MyMusic.Application.Services.Tests {
             var result = addTrackToPlayListService.Execute(aTrackId, aPlaylistId);
 
             result.IsLeft.Should().BeTrue();
-
+            playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
+            tracksNotifier.DidNotReceive().NotifyTrackHasBeenAddedToPlayList(Arg.Any<string>(), Arg.Any<string>());
         }
         
     }
