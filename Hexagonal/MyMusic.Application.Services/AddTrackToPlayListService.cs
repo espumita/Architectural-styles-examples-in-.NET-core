@@ -3,6 +3,7 @@ using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Domain;
 using System.Linq;
+using MyMusic.Application.Services.Errors;
 
 namespace MyMusic.Application.Services {
     

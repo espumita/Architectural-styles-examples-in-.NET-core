@@ -2,6 +2,7 @@ using System.Linq;
 using LanguageExt;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
+using MyMusic.Application.Services.Errors;
 using MyMusic.Domain;
 
 namespace MyMusic.Application.Services {
