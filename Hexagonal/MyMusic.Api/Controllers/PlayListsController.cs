@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LanguageExt;
+using Microsoft.AspNetCore.Mvc;
+using MyMusic.Application.Services.Errors;
+using MyMusic.Domain;
 using MyMusic.Requests;
 using MyMusic.Responses;
 using MyMusic.ServiceCreators;
@@ -14,12 +17,12 @@ namespace MyMusic.Controllers {
         }
 
         [HttpGet("{playlistId}")]
-        public PlayListResponse GetPlaylist(string playlistId) {
+        public ActionResult GetPlaylist(string playlistId) {
             var playListService = playListServiceCreator.CreateGetPlayListService();
-            var playList = playListService.Get(playlistId);
-            return PlayListResponse.From(playList);
+            var result = playListService.Get(playlistId);
+            return this.BuildResponseOfType<PlayListResponse, PlayList>(result);
         }
-        
+
         [HttpPost]
         public ActionResult CreatePlayList([FromBody]CreatePlayListRequest createPlayListRequest) {
             var playListService = playListServiceCreator.CreateCreatePlayListService();
