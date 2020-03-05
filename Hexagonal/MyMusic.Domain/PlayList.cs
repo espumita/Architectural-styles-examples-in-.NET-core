@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +7,7 @@ namespace MyMusic.Domain {
         public string Name { get; private set; }
         public PlayListStatus Status { get; private set; }
         public List<Track> TrackList { get; }
-        public string ImageUrl { get; }
+        public string ImageUrl { get; private set; }
 
         public PlayList(string id, string name, PlayListStatus status, List<Track> trackList, string imageUrl) {
             Id = id;
@@ -37,6 +36,10 @@ namespace MyMusic.Domain {
 
         public void Archive() {
             Status = PlayListStatus.Archived;
+        }
+
+        public void AddImageUrl(string aNewImageUrL) {
+            ImageUrl = aNewImageUrL;
         }
     }
 }

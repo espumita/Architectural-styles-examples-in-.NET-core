@@ -6,7 +6,7 @@ namespace MyMusic.Domain {
         public int DurationInMs { get; }
 
         public Track(string id, string name, string artist, int durationInMs) {
-            this.Id = id;
+            Id = id;
             Name = name;
             Artist = artist;
             DurationInMs = durationInMs;

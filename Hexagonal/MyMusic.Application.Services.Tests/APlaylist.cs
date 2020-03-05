@@ -6,5 +6,6 @@ namespace MyMusic.Application.Services.Tests {
         public static string Name = new Faker().Random.String2(64);
         public static string AnotherName = new Faker().Random.String2(64);
         public static string ImageUrl = new Faker().Random.String2(64);
+        public static string AnotherImageUrl = new Faker().Random.String2(64);
     }
 }
