@@ -1,4 +1,5 @@
 using FluentAssertions;
+using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Domain;
@@ -7,38 +8,36 @@ using NUnit.Framework;
 
 namespace MyMusic.Application.Services.Tests {
 
-    public class ChangePlayListServiceTests {
-        
-        private ChangePlayListService changePlayListService;
+    public class CreatePlayListServiceTests {
+     
+        private CreatePlayListService createPlayListService;
         private PlayListPersistencePort playListPersistence;
         private PlayListNotifierPort playListNotifierPort;
+        private UniqueIdentifiersPort uniqueIdentifiersPort;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             playListNotifierPort = Substitute.For<PlayListNotifierPort>();
-            changePlayListService = new ChangePlayListService(playListPersistence, playListNotifierPort);
+            uniqueIdentifiersPort = Substitute.For<UniqueIdentifiersPort>();
+            createPlayListService = new CreatePlayListService(uniqueIdentifiersPort, playListPersistence, playListNotifierPort);
         }
-
+        
         [Test]
-        public void change_play_list_name() {
+        public void create_a_play_list() {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;
-            var aPlayList = new PlayListBuilder()
-                .WithId(aPlaylistId)
-                .WithName(aPlaylistName)
-                .Build();
-            playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
-            var anotherPlaylistName = APlaylist.AnotherName;
+            uniqueIdentifiersPort.GetNewGuid().Returns(aPlaylistId);
             
-            var result = changePlayListService.Execute(aPlaylistId, anotherPlaylistName);
+            var result = createPlayListService.Execute(aPlaylistName);
             
             result.IsRight.Should().BeTrue();
             playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist => 
                 playlist.Id.Equals(aPlaylistId)
-                && playlist.Name.Equals(anotherPlaylistName)
+                && playlist.Name.Equals(aPlaylistName)
             ));
-            playListNotifierPort.Received().NotifyPlayListNameHasChanged(aPlaylistId, anotherPlaylistName);
+            playListNotifierPort.Received().NotifyPlayListHasBeenCreated(aPlaylistId, aPlaylistName);
         }
+
     }
 }

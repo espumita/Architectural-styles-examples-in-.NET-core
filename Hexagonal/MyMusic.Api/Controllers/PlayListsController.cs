@@ -23,7 +23,7 @@ namespace MyMusic.Controllers {
         [HttpPost]
         public void CreatePlayList([FromBody]CreatePlayListRequest createPlayListRequest) {
             var playListService = playListServiceCreator.CreateCreatePlayListService();
-            playListService.Create(createPlayListRequest.PlayListName);
+            playListService.Execute(createPlayListRequest.PlayListName);
         }
                 
         [HttpPut("{playlistId}")]

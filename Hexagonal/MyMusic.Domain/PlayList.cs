@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,6 +9,7 @@ namespace MyMusic.Domain {
         public List<Track> TrackList { get; }
         public string ImageUrl { get; }
 
+        
         public PlayList(string id, string name, List<Track> trackList, string imageUrl) {
             Id = id;
             Name = name;
@@ -15,6 +17,10 @@ namespace MyMusic.Domain {
             ImageUrl = imageUrl;
         }
 
+        public static PlayList Create(string id, string name) {
+            return new PlayList(id, name, new List<Track>(), null);
+        }
+        
         public void Add(Track track) {
             TrackList.Add(track);
         }
