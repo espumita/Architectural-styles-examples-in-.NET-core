@@ -4,7 +4,7 @@ using System.Linq;
 namespace MyMusic.Domain {
     public class PlayList {
         public string Id { get; }
-        public string Name { get; }
+        public string Name { get; private set; }
         public List<Track> TrackList { get; }
         public string ImageUrl { get; }
 
@@ -22,6 +22,10 @@ namespace MyMusic.Domain {
         public void Remove(string trackId) {
             var trackToRemove = TrackList.First(track => track.Id.Equals(trackId));
             TrackList.Remove(trackToRemove);
+        }
+
+        public void Rename(string newPlayListName) {
+            Name = newPlayListName;
         }
     }
 }
