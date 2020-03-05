@@ -32,6 +32,12 @@ namespace MyMusic.Controllers {
             playListService.Execute(playlistId, RenamePlayListNameRequest.NewPlayListName);
         }
         
+        [HttpPut("{playlistId}/imageUrl")]
+        public void RenamePlaylist(string playlistId, [FromBody] AddImageUrlToPlayListRequest RenamePlayListNameRequest) {
+            var playListService = playListServiceCreator.CreateAddImageUrlPlayListService();
+            playListService.Execute(playlistId, RenamePlayListNameRequest.NewImageUrl);
+        }
+        
         [HttpDelete("{playlistId}")]
         public void Delete(string playlistId) {
             var playListService = playListServiceCreator.CreateArchivePlayListService();

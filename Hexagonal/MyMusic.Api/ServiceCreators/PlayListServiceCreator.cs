@@ -29,5 +29,11 @@ namespace MyMusic.ServiceCreators {
             var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
             return new ArchivePlayListService(pLayListDatabaseAdapter, musicCloudApiHttpAdapter);
         }
+
+        public AddImageUrlToPlayListService CreateAddImageUrlPlayListService() {
+            var pLayListDatabaseAdapter = new PLayListPostgreSQLAdapter();
+            var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
+            return new AddImageUrlToPlayListService(pLayListDatabaseAdapter, musicCloudApiHttpAdapter);
+        }
     }
 }
