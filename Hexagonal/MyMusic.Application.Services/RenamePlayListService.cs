@@ -4,13 +4,13 @@ using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Errors;
 
 namespace MyMusic.Application.Services {
-    public class ChangePlayListService {
+    public class RenamePlayListService {
         
         private readonly PlayListPersistencePort playListPersistence;
         private readonly PlayListNotifierPort playListNotifier;
         private const string OperationSuccess = "OperationSuccess";
         
-        public ChangePlayListService(PlayListPersistencePort playListPersistence, PlayListNotifierPort playListNotifier) {
+        public RenamePlayListService(PlayListPersistencePort playListPersistence, PlayListNotifierPort playListNotifier) {
             this.playListPersistence = playListPersistence;
             this.playListNotifier = playListNotifier;
         }

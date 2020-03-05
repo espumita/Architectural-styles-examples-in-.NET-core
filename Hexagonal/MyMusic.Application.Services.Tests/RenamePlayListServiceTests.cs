@@ -7,9 +7,9 @@ using NUnit.Framework;
 
 namespace MyMusic.Application.Services.Tests {
 
-    public class ChangePlayListServiceTests {
+    public class RenamePlayListServiceTests {
         
-        private ChangePlayListService changePlayListService;
+        private RenamePlayListService renamePlayListService;
         private PlayListPersistencePort playListPersistence;
         private PlayListNotifierPort playListNotifierPort;
 
@@ -17,7 +17,7 @@ namespace MyMusic.Application.Services.Tests {
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             playListNotifierPort = Substitute.For<PlayListNotifierPort>();
-            changePlayListService = new ChangePlayListService(playListPersistence, playListNotifierPort);
+            renamePlayListService = new RenamePlayListService(playListPersistence, playListNotifierPort);
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace MyMusic.Application.Services.Tests {
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
             var anotherPlaylistName = APlaylist.AnotherName;
             
-            var result = changePlayListService.Execute(aPlaylistId, anotherPlaylistName);
+            var result = renamePlayListService.Execute(aPlaylistId, anotherPlaylistName);
             
             result.IsRight.Should().BeTrue();
             playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist => 
