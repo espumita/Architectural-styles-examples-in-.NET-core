@@ -17,14 +17,16 @@ namespace MyMusic.Application.Services {
 
         public Either<PlayListError, int> Execute(string trackId, string playlistId) {
             var playList = playListPersistencePort.GetPlayList(playlistId);
-            var focusTrack = playList.TrackList.FirstOrDefault(x => x.Id.Equals(trackId));
-            if (focusTrack != null) return PlayListError.CannotAddSameTrackTwice; 
+            if (TrackIsAlreadyIn(playList, trackId)) return PlayListError.CannotAddSameTrackTwice; 
             playList.Add(new Track(trackId, "", "", 1));
             playListPersistencePort.Persist(playList);
             tracksNotifier.NotifyTrackHasBeenAddedToPlayList(trackId, playlistId);
             return 0;
         }
-        
+
+        private bool TrackIsAlreadyIn(PlayList playList, string trackId) {
+            return playList.TrackList.FirstOrDefault(x => x.Id.Equals(trackId)) != null;
+        }
     }
 
 }
