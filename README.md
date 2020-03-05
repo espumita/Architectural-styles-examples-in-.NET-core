@@ -1,3 +1,3 @@
-Api architectures examples based on Micro-desing architectural patterns.
+This repository contains some examples about architectural styles in C#.
 
-* Clean Architecture / Hexagonal / Onion
+You can see some related posts about this project [here](https://espumita.org/archives/)
