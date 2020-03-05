@@ -34,8 +34,8 @@ namespace MyMusic.Controllers {
         
         [HttpDelete("{playlistId}")]
         public void Delete(string playlistId) {
-            var playListService = playListServiceCreator.CreateDeletePlayListService();
-            playListService.Delete(playlistId);                     
+            var playListService = playListServiceCreator.CreateArchivePlayListService();
+            playListService.Execute(playlistId);                     
         }
 
     }

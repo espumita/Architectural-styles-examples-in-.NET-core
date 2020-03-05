@@ -7,6 +7,7 @@ namespace MyMusic.Application.Services.Tests {
 
         private string id;
         private string name;
+        private PlayListStatus? status;
         private List<Track> trackList = new List<Track>();
         private string imageUrl;
 
@@ -17,6 +18,11 @@ namespace MyMusic.Application.Services.Tests {
 
         public PlayListBuilder WithName(string name) {
             this.name = name;
+            return this;
+        }
+        
+        public PlayListBuilder WithStatus(PlayListStatus status) {
+            this.status = status;
             return this;
         }
 
@@ -35,6 +41,7 @@ namespace MyMusic.Application.Services.Tests {
             return new PlayList(
                 id: id ?? APlaylist.Id,
                 name: name ?? APlaylist.Name,
+                status: status ?? PlayListStatus.Active,
                 trackList: trackList,
                 imageUrl: imageUrl ?? APlaylist.ImageUrl
             );

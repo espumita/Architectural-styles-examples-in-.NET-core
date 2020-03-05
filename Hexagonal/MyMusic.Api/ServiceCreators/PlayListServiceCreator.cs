@@ -24,10 +24,10 @@ namespace MyMusic.ServiceCreators {
             return new ChangePlayListService(pLayListDatabaseAdapter, musicCloudApiHttpAdapter);
         }
 
-        public DeletePlayListService CreateDeletePlayListService() {
+        public ArchivePlayListService CreateArchivePlayListService() {
             var pLayListDatabaseAdapter = new PLayListPostgreSQLAdapter();
             var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
-            return new DeletePlayListService(pLayListDatabaseAdapter, musicCloudApiHttpAdapter);
+            return new ArchivePlayListService(pLayListDatabaseAdapter, musicCloudApiHttpAdapter);
         }
     }
 }

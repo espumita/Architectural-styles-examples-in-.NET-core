@@ -6,19 +6,20 @@ namespace MyMusic.Domain {
     public class PlayList {
         public string Id { get; }
         public string Name { get; private set; }
+        public PlayListStatus Status { get; private set; }
         public List<Track> TrackList { get; }
         public string ImageUrl { get; }
 
-        
-        public PlayList(string id, string name, List<Track> trackList, string imageUrl) {
+        public PlayList(string id, string name, PlayListStatus status, List<Track> trackList, string imageUrl) {
             Id = id;
             Name = name;
+            Status = status;
             TrackList = trackList;
             ImageUrl = imageUrl;
         }
 
         public static PlayList Create(string id, string name) {
-            return new PlayList(id, name, new List<Track>(), null);
+            return new PlayList(id, name, PlayListStatus.Active, new List<Track>(), null);
         }
         
         public void Add(Track track) {
@@ -32,6 +33,10 @@ namespace MyMusic.Domain {
 
         public void Rename(string newPlayListName) {
             Name = newPlayListName;
+        }
+
+        public void Archive() {
+            Status = PlayListStatus.Archived;
         }
     }
 }
