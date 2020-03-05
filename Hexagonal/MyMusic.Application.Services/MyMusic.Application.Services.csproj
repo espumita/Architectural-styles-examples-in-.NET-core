@@ -8,6 +8,10 @@
       <ProjectReference Include="..\MyMusic.Application.Ports\MyMusic.Application.Ports.csproj" />
       <ProjectReference Include="..\MyMusic.Domain\MyMusic.Domain.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="LanguageExt.Core" Version="3.4.10" />
+    </ItemGroup>
     
 
 </Project>
