@@ -1,6 +1,8 @@
+using System.Linq;
 using LanguageExt;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
+using MyMusic.Domain;
 
 namespace MyMusic.Application.Services {
     
@@ -17,10 +19,15 @@ namespace MyMusic.Application.Services {
 
         public Either<PlayListError, string> Execute(string trackId, string playlistId) {
             var playList = playListPersistencePort.GetPlayList(playlistId);
+            if (TrackIsNotAlreadyIn(playList, trackId)) return PlayListError.TrackIsNotInThePlayList;
             playList.Remove(trackId);
             playListPersistencePort.Persist(playList);
             tracksNotifier.NotifyTrackHasRemovedFromPlayList(trackId, playlistId);
             return OperationSuccess;
+        }
+        
+        private bool TrackIsNotAlreadyIn(PlayList playList, string trackId) {
+            return playList.TrackList.FirstOrDefault(x => x.Id.Equals(trackId)) == null;
         }
         
     }

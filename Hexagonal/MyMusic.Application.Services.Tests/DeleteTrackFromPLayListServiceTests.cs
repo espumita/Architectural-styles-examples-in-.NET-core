@@ -41,5 +41,21 @@ namespace MyMusic.Application.Services.Tests {
             ));
             tracksNotifier.Received().NotifyTrackHasRemovedFromPlayList(aTrackId, aPlaylistId);
         }
+        
+        [Test]
+        public void do_not_remove_a_track_when_it_is_not_already_in_the_play_list() {
+            var aTrackId = ATrack.Id;
+            var aPlaylistId = APlaylist.Id;
+            var aPlayList = new PlayListBuilder()
+                .WithId(aPlaylistId)
+                .Build();
+            playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
+
+            var result = deleteTrackFromPLayListService.Execute(aTrackId, aPlaylistId);
+
+            result.IsLeft.Should().BeTrue();
+            playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
+            tracksNotifier.DidNotReceive().NotifyTrackHasRemovedFromPlayList(Arg.Any<string>(), Arg.Any<string>());
+        }
     }
 }
