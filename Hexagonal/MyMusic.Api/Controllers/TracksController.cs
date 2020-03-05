@@ -20,16 +20,18 @@ namespace MyMusic.Controllers {
         }
         
         [HttpPost("playlists/{playlistId}/tracks/{trackId}")]
-        public void AddTrack(string playlistId, string trackId) {
+        public ActionResult AddTrack(string playlistId, string trackId) {
             var tracksService = tracksServiceCreator.CreateAddTrackToPlayListService();
-            tracksService.Execute(trackId, playlistId);
+            var result = tracksService.Execute(trackId, playlistId);
+            return this.BuildResponseFrom(result);
         }
 
         [HttpDelete("playlists/{playlistId}/tracks/{trackId}")]
-        public void DeleteTrack(string playlistId, string trackId) {
+        public ActionResult DeleteTrack(string playlistId, string trackId) {
             var tracksService = tracksServiceCreator.CreateDeleteTrackFromPLayListService();
-            tracksService.Execute(trackId, playlistId);        
+            var result = tracksService.Execute(trackId, playlistId);
+            return this.BuildResponseFrom(result);
         }
-
+        
     }
 }
