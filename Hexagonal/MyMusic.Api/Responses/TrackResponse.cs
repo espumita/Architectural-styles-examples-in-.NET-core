@@ -1,23 +1,20 @@
 using MyMusic.Domain;
 
 namespace MyMusic.Responses {
-    public class TrackResponse : ResponseMapper<TrackResponse, Track> {
-        public string Id { get; }
-        public string Name { get; }
-        public string Artist { get; }
-        public int DurationInMs { get; }
+    public class TrackResponse : ResponseBuilder<TrackResponse, Track> {
+        public string Id { get; private set; }
+        public string Name { get; private set; }
+        public string Artist { get; private set; }
+        public int DurationInMs { get; private set; }
 
         public TrackResponse() { }
 
-        private TrackResponse(string id, string name, string artist, in int durationInMs) {
-            Id = id;
-            Name = name;
-            Artist = artist;
-            DurationInMs = durationInMs;
-        }
-
-        public TrackResponse From(Track track) {
-            return new TrackResponse(track.Id, track.Name, track.Artist, track.DurationInMs);
+        public TrackResponse BuildFrom(Track track) {
+            Id = track.Id;
+            Name = track.Name;
+            Artist = track.Artist;
+            DurationInMs = track.DurationInMs;
+            return this;
         }
     }
 }
