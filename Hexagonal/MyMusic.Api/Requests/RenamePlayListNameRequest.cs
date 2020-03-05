@@ -1,5 +1,5 @@
 namespace MyMusic.Requests {
-    public class ChangePlayListNameRequest {
+    public class RenamePlayListNameRequest {
         public string NewPlayListName { get; set; }
     }
 }

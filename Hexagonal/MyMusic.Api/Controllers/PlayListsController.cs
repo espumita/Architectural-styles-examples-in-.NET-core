@@ -26,10 +26,10 @@ namespace MyMusic.Controllers {
             playListService.Execute(createPlayListRequest.PlayListName);
         }
                 
-        [HttpPut("{playlistId}")]
-        public void ChangePlaylistName(string playlistId, [FromBody] ChangePlayListNameRequest changePlayListNameRequest) {
-            var playListService = playListServiceCreator.CreateChangePlayListService();
-            playListService.Execute(playlistId, changePlayListNameRequest.NewPlayListName);
+        [HttpPut("{playlistId}/name")]
+        public void RenamePlaylist(string playlistId, [FromBody] RenamePlayListNameRequest RenamePlayListNameRequest) {
+            var playListService = playListServiceCreator.CreateRenamePlayListService();
+            playListService.Execute(playlistId, RenamePlayListNameRequest.NewPlayListName);
         }
         
         [HttpDelete("{playlistId}")]
