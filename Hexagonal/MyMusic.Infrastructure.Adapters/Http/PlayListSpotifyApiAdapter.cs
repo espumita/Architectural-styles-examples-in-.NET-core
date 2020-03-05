@@ -7,7 +7,7 @@ namespace MyMusic.Infrastructure.Adapters.Http {
             //This should Notify to Spotify Api
         }
 
-        public void NotifyPlayListNameHasChanged(string playListId, string newPlayListName) {
+        public void NotifyPlayListHasBeenRenamed(string playListId, string newPlayListName) {
             //This should Notify to Spotify Api
         }
 

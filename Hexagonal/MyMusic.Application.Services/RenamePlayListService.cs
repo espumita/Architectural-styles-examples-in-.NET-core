@@ -19,7 +19,7 @@ namespace MyMusic.Application.Services {
             var playList = playListPersistence.GetPlayList(playListId);
             playList.Rename(newPlayListName);
             playListPersistence.Persist(playList);
-            playListNotifier.NotifyPlayListNameHasChanged(playListId, newPlayListName);
+            playListNotifier.NotifyPlayListHasBeenRenamed(playListId, newPlayListName);
             return OperationSuccess;
         }
     }

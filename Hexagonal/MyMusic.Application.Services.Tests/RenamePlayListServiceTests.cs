@@ -38,7 +38,7 @@ namespace MyMusic.Application.Services.Tests {
                 playlist.Id.Equals(aPlaylistId)
                 && playlist.Name.Equals(anotherPlaylistName)
             ));
-            playListNotifierPort.Received().NotifyPlayListNameHasChanged(aPlaylistId, anotherPlaylistName);
+            playListNotifierPort.Received().NotifyPlayListHasBeenRenamed(aPlaylistId, anotherPlaylistName);
         }
     }
 }
