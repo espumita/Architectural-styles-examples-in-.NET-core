@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MyMusic.Domain {
     public class PlayList {
@@ -16,6 +17,11 @@ namespace MyMusic.Domain {
 
         public void Add(Track track) {
             TrackList.Add(track);
+        }
+
+        public void Remove(string trackId) {
+            var trackToRemove = TrackList.First(track => track.Id.Equals(trackId));
+            TrackList.Remove(trackToRemove);
         }
     }
 }

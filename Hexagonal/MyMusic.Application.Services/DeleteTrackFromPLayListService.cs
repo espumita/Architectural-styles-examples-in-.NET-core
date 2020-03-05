@@ -1,3 +1,4 @@
+using LanguageExt;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
 
@@ -5,17 +6,21 @@ namespace MyMusic.Application.Services {
     
     public class DeleteTrackFromPLayListService {
         
-        private readonly TracksPersistencePort tracksPersistence;
+        private readonly PlayListPersistencePort playListPersistencePort;
         private readonly TracksNotifierPort tracksNotifier;
-
-        public DeleteTrackFromPLayListService(TracksPersistencePort tracksPersistence, TracksNotifierPort tracksNotifier) {
-            this.tracksPersistence = tracksPersistence;
+        private const string OperationSuccess = "OperationSuccess";
+        
+        public DeleteTrackFromPLayListService(PlayListPersistencePort playListPersistencePort, TracksNotifierPort tracksNotifier) {
+            this.playListPersistencePort = playListPersistencePort;
             this.tracksNotifier = tracksNotifier;
         }
 
-        public void DeleteFromPlayList(string trackId, string playlistId) {
-            tracksPersistence.DeleteTrackFromPlayList(trackId, playlistId);
+        public Either<PlayListError, string> Execute(string trackId, string playlistId) {
+            var playList = playListPersistencePort.GetPlayList(playlistId);
+            playList.Remove(trackId);
+            playListPersistencePort.Persist(playList);
             tracksNotifier.NotifyTrackHasRemovedFromPlayList(trackId, playlistId);
+            return OperationSuccess;
         }
         
     }
