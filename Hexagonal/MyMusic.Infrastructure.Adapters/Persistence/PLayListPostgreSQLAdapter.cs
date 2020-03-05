@@ -14,7 +14,7 @@ namespace MyMusic.Infrastructure.Adapters.Persistence {
         }
 
         public void Persist(PlayList playList) {
-            //This should delete in PostgreSQL DB
+            //This should persist in PostgreSQL DB
         }
     }
 }
