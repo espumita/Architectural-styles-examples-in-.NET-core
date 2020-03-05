@@ -23,7 +23,8 @@ namespace MyMusic.Controllers {
                 Left: playListError => response = controller.BadRequest(playListError),
                 Right: queryResponse => {
                     var responseMapper = new T();
-                    return response = controller.Ok(responseMapper.From(queryResponse));
+                    var responseBody = responseMapper.From(queryResponse);
+                    return response = controller.Ok(responseBody);
                 });
             return response;
         }
