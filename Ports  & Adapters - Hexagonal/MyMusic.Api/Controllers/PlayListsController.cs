@@ -20,7 +20,7 @@ namespace MyMusic.Controllers {
         public ActionResult GetAllPlaylist(string playlistId) {
             var playListService = playListServiceCreator.CreateGetAllPlayListService();
             var result = playListService.Execute();
-            return this.BuildResponseOfType<PlayListListResponse, PlayListList>(result);
+            return this.BuildResponseOfType<ListOfPlayListsResponse, ListOfPlayLists>(result);
         }
         
         [HttpGet("{playlistId}")]
