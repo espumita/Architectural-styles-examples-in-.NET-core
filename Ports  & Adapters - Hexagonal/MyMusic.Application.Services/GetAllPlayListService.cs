@@ -14,11 +14,12 @@ namespace MyMusic.Application.Services {
             this.playListPersistence = playListPersistence;
         }
 
-        public Either<PlayListError, List<PlayList>> Execute() {
+        public Either<PlayListError, PlayListList> Execute() {
             var playLists = playListPersistence.GetAllPlayList();
-            return playLists
+            var activePlayLists = playLists
                     .Where(playList => playList.Status == PlayListStatus.Active)
                     .ToList();
+            return new PlayListList(activePlayLists);
         }
     }
 }

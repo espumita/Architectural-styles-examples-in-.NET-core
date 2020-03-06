@@ -6,6 +6,12 @@ using MyMusic.Infrastructure.Adapters.Persistence;
 namespace MyMusic.ServiceCreators {
 
     public class PlayListServiceCreator {
+        
+        public GetAllPlayListService CreateGetAllPlayListService() {
+            var playListDatabaseAdapter = new PLayListPostgreSQLAdapter();
+            return new GetAllPlayListService(playListDatabaseAdapter);
+        }
+        
         public GetPlayListService CreateGetPlayListService() {
             var playListDatabaseAdapter = new PLayListPostgreSQLAdapter();
             return new GetPlayListService(playListDatabaseAdapter);

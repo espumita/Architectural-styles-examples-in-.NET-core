@@ -38,7 +38,7 @@ namespace MyMusic.Application.Services.Tests {
 
             result.IsRight.Should().BeTrue();
             result.Match(
-                Right: playlists => playlists.Single().Id.Should().Be(aPlayListId),
+                Right: playListsList => playListsList.playLists.Single().Id.Should().Be(aPlayListId),
                 Left: error => null
             );
         }
