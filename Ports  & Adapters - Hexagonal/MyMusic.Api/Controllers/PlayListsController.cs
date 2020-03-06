@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MyMusic.Application.Services;
 using MyMusic.Domain;
 using MyMusic.Requests;
@@ -16,8 +15,8 @@ namespace MyMusic.Controllers {
             this.playListServiceCreator = playListServiceCreator;
         }
 
-        [HttpGet()]
-        public ActionResult GetAllPlaylist(string playlistId) {
+        [HttpGet]
+        public ActionResult GetAllPlaylist() {
             var playListService = playListServiceCreator.CreateGetAllPlayListService();
             var result = playListService.Execute();
             return this.BuildResponseOfType<ListOfPlayListsResponse, ListOfPlayLists>(result);
