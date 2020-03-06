@@ -3,6 +3,7 @@ using LanguageExt;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Errors;
+using MyMusic.Application.Services.Successes;
 using MyMusic.Domain;
 
 namespace MyMusic.Application.Services {
@@ -10,20 +11,19 @@ namespace MyMusic.Application.Services {
         
         private readonly PlayListPersistencePort playListPersistencePort;
         private readonly TracksNotifierPort tracksNotifier;
-        private const string OperationSuccess = "OperationSuccess";
         
         public DeleteTrackFromPLayListService(PlayListPersistencePort playListPersistencePort, TracksNotifierPort tracksNotifier) {
             this.playListPersistencePort = playListPersistencePort;
             this.tracksNotifier = tracksNotifier;
         }
 
-        public Either<PlayListError, string> Execute(string trackId, string playlistId) {
+        public Either<PlayListError, ServiceResponse> Execute(string trackId, string playlistId) {
             var playList = playListPersistencePort.GetPlayList(playlistId);
             if (TrackIsNotAlreadyIn(playList, trackId)) return PlayListError.TrackIsNotInThePlayList;
             playList.Remove(trackId);
             playListPersistencePort.Persist(playList);
             tracksNotifier.NotifyTrackHasRemovedFromPlayList(trackId, playlistId);
-            return OperationSuccess;
+            return ServiceResponse.OperationSuccess;
         }
         
         private bool TrackIsNotAlreadyIn(PlayList playList, string trackId) {

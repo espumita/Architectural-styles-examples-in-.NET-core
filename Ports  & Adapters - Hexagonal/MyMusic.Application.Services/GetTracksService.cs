@@ -1,4 +1,6 @@
+using LanguageExt;
 using MyMusic.Application.Ports.Persistence;
+using MyMusic.Application.Services.Errors;
 using MyMusic.Domain;
 
 namespace MyMusic.Application.Services {
@@ -10,7 +12,7 @@ namespace MyMusic.Application.Services {
             this.tracksPersistence = tracksPersistence;
         }
 
-        public Track Get(string trackId) {
+        public Either<PlayListError, Track> Get(string trackId) {
             return tracksPersistence.GetTrack(trackId);
         }
     }

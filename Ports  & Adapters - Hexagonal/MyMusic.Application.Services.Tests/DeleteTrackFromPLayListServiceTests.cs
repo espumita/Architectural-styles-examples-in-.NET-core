@@ -3,6 +3,7 @@ using LanguageExt;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Errors;
+using MyMusic.Application.Services.Successes;
 using MyMusic.Domain;
 using NSubstitute;
 using NUnit.Framework;
@@ -61,7 +62,7 @@ namespace MyMusic.Application.Services.Tests {
             tracksNotifier.DidNotReceive().NotifyTrackHasRemovedFromPlayList(Arg.Any<string>(), Arg.Any<string>());
         }
         
-        private static void VerifyErrorIs(PlayListError playListError, Either<PlayListError, string> result) {
+        private static void VerifyErrorIs(PlayListError playListError, Either<PlayListError, ServiceResponse> result) {
             result.Match(
                 Left: x => x.Should().Be(playListError),
                 Right: null);

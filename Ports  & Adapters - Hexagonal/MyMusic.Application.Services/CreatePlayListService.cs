@@ -3,6 +3,7 @@ using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Errors;
+using MyMusic.Application.Services.Successes;
 using MyMusic.Domain;
 
 namespace MyMusic.Application.Services {
@@ -11,7 +12,6 @@ namespace MyMusic.Application.Services {
         private readonly UniqueIdentifiersPort uniqueIdentifiersPort;
         private readonly PlayListPersistencePort playListPersistence;
         private readonly PlayListNotifierPort playListNotifier;
-        private const string OperationSuccess = "OperationSuccess";
         
         public CreatePlayListService(UniqueIdentifiersPort uniqueIdentifiersPort, PlayListPersistencePort playListPersistence, PlayListNotifierPort playListNotifier) {
             this.uniqueIdentifiersPort = uniqueIdentifiersPort;
@@ -19,12 +19,12 @@ namespace MyMusic.Application.Services {
             this.playListNotifier = playListNotifier;
         }
 
-        public Either<PlayListError, string> Execute(string playListName) {
+        public Either<PlayListError, ServiceResponse> Execute(string playListName) {
             var newPlayListId = uniqueIdentifiersPort.GetNewGuid();
             var playList = PlayList.Create(newPlayListId, playListName);
             playListPersistence.Persist(playList);
             playListNotifier.NotifyPlayListHasBeenCreated(playList.Id, playListName);
-            return OperationSuccess;
+            return ServiceResponse.OperationSuccess;
         }
         
     }
