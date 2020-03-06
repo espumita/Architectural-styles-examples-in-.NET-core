@@ -1,21 +1,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using MyMusic.Application.Read.Model;
 using MyMusic.Application.Read.Ports;
 using NSubstitute;
 using NUnit.Framework;
 
 namespace MyMusic.Application.Queries.Tests {
 
-    public class GetAllPlayListServiceTests {
-        private GetAllPlayListService getAllPlayListService;
+    public class GetAllPlayListQueryTests {
+        private GetAllPlayListQuery getAllPlayListQuery;
         private PlayListQueryPort playListQueryPort;
 
         [SetUp]
         public void SetUp() {
             playListQueryPort = Substitute.For<PlayListQueryPort>();
-            getAllPlayListService = new GetAllPlayListService(playListQueryPort);
+            getAllPlayListQuery = new GetAllPlayListQuery(playListQueryPort);
         }
 /*
         [Test]

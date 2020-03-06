@@ -6,15 +6,15 @@ using MyMusic.Application.SharedKernel.Model;
 
 namespace MyMusic.Application.Queries {
 
-    public class GetAllPlayListService {
-        private readonly PlayListQueryPort playListPersistence;
+    public class GetAllPlayListQuery {
+        private readonly PlayListQueryPort playListQueryPort;
         
-        public GetAllPlayListService(PlayListQueryPort playListPersistence) {
-            this.playListPersistence = playListPersistence;
+        public GetAllPlayListQuery(PlayListQueryPort playListQueryPort) {
+            this.playListQueryPort = playListQueryPort;
         }
 
         public Either<Error, ListOfPlayLists> Execute() {
-            var playLists = playListPersistence.GetAllPlayList();
+            var playLists = playListQueryPort.GetAllPlayList();
             var activePlayLists = playLists
                     .Where(playList => playList.Status == PlayListStatus.Active)
                     .ToList();

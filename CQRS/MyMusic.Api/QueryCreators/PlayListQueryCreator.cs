@@ -10,9 +10,9 @@ namespace MyMusic.QueryCreators {
             return new GetAllPlayListQuery(playListDatabaseAdapter);
         }
         
-        public GetPlayListService CreateGetPlayListQuery() {
+        public GetPlayListQuery CreateGetPlayListQuery() {
             var playListDatabaseAdapter = new PLayListPostgreSQLAdapter();
-            return new GetPlayListService(playListDatabaseAdapter);
+            return new GetPlayListQuery(playListDatabaseAdapter);
         }
     }
 }

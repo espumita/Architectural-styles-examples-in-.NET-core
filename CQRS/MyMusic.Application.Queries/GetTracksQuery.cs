@@ -4,11 +4,11 @@ using MyMusic.Application.Read.Ports;
 using MyMusic.Application.SharedKernel.Model;
 
 namespace MyMusic.Application.Queries {
-    public class GetTracksService {
+    public class GetTracksQuery {
         
         private readonly TracksQueryPort tracksQueryPort;
 
-        public GetTracksService(TracksQueryPort tracksQueryPort) {
+        public GetTracksQuery(TracksQueryPort tracksQueryPort) {
             this.tracksQueryPort = tracksQueryPort;
         }
 
