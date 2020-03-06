@@ -17,43 +17,43 @@ namespace MyMusic.Controllers {
 
         [HttpGet]
         public ActionResult GetAllPlaylist() {
-            var playListService = playListServiceCreator.CreateGetAllPlayListService();
-            var result = playListService.Execute();
+            var service = playListServiceCreator.CreateGetAllPlayListService();
+            var result = service.Execute();
             return this.BuildResponseOfType<ListOfPlayListsResponse, ListOfPlayLists>(result);
         }
         
         [HttpGet("{playlistId}")]
         public ActionResult GetPlaylist(string playlistId) {
-            var playListService = playListServiceCreator.CreateGetPlayListService();
-            var result = playListService.Get(playlistId);
+            var service = playListServiceCreator.CreateGetPlayListService();
+            var result = service.Get(playlistId);
             return this.BuildResponseOfType<PlayListResponse, PlayList>(result);
         }
 
         [HttpPost]
         public ActionResult CreatePlayList([FromBody]CreatePlayListRequest createPlayListRequest) {
-            var playListService = playListServiceCreator.CreateCreatePlayListService();
-            var result = playListService.Execute(createPlayListRequest.PlayListName);
+            var service = playListServiceCreator.CreateCreatePlayListService();
+            var result = service.Execute(createPlayListRequest.PlayListName);
             return this.BuildResponseFrom(result);
         }
                 
         [HttpPut("{playlistId}/name")]
         public ActionResult RenamePlaylist(string playlistId, [FromBody] RenamePlayListNameRequest renamePlayListNameRequest) {
-            var playListService = playListServiceCreator.CreateRenamePlayListService();
-            var result = playListService.Execute(playlistId, renamePlayListNameRequest.NewPlayListName);
+            var service = playListServiceCreator.CreateRenamePlayListService();
+            var result = service.Execute(playlistId, renamePlayListNameRequest.NewPlayListName);
             return this.BuildResponseFrom(result);
         }
         
         [HttpPut("{playlistId}/imageUrl")]
         public ActionResult RenamePlaylist(string playlistId, [FromBody] AddImageUrlToPlayListRequest renamePlayListNameRequest) {
-            var playListService = playListServiceCreator.CreateAddImageUrlPlayListService();
-            var result = playListService.Execute(playlistId, renamePlayListNameRequest.NewImageUrl);
+            var service = playListServiceCreator.CreateAddImageUrlPlayListService();
+            var result = service.Execute(playlistId, renamePlayListNameRequest.NewImageUrl);
             return this.BuildResponseFrom(result);
         }
         
         [HttpDelete("{playlistId}")]
         public ActionResult Delete(string playlistId) {
-            var playListService = playListServiceCreator.CreateArchivePlayListService();
-            var result = playListService.Execute(playlistId); 
+            var service = playListServiceCreator.CreateArchivePlayListService();
+            var result = service.Execute(playlistId); 
             return this.BuildResponseFrom(result);
         }
 
