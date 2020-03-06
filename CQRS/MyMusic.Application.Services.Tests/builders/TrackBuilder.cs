@@ -1,6 +1,6 @@
 using MyMusic.Domain;
 
-namespace MyMusic.Application.Services.Tests {
+namespace MyMusic.Application.Services.Tests.builders {
     public class TrackBuilder {
         
         private string id;

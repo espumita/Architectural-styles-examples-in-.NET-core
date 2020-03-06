@@ -1,6 +1,6 @@
 using Bogus;
 
-namespace MyMusic.Application.Services.Tests {
+namespace MyMusic.Application.Services.Tests.builders {
     public static class APlaylist {
         
         public static string Id = new Faker().Random.String2(64);

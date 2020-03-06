@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Bogus;
 using MyMusic.Domain;
 
-namespace MyMusic.Application.Services.Tests {
+namespace MyMusic.Application.Services.Tests.builders {
     public class PlayListBuilder {
 
         private string id;
