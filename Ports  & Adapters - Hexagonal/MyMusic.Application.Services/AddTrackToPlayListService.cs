@@ -23,7 +23,7 @@ namespace MyMusic.Application.Services {
             playList.Add(new Track(trackId, "", "", 1));
             playListPersistencePort.Persist(playList);
             tracksNotifier.NotifyTrackHasBeenAddedToPlayList(trackId, playlistId);
-            return ServiceResponse.OperationSuccess;
+            return ServiceResponse.Success;
         }
 
         private bool TrackIsAlreadyIn(PlayList playList, string trackId) {

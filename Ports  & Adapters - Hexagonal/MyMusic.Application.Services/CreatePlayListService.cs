@@ -24,7 +24,7 @@ namespace MyMusic.Application.Services {
             var playList = PlayList.Create(newPlayListId, playListName);
             playListPersistence.Persist(playList);
             playListNotifier.NotifyPlayListHasBeenCreated(playList.Id, playListName);
-            return ServiceResponse.OperationSuccess;
+            return ServiceResponse.Success;
         }
         
     }

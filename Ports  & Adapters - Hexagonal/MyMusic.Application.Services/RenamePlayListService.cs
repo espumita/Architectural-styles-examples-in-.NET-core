@@ -20,7 +20,7 @@ namespace MyMusic.Application.Services {
             playList.Rename(newPlayListName);
             playListPersistence.Persist(playList);
             playListNotifier.NotifyPlayListHasBeenRenamed(playListId, newPlayListName);
-            return ServiceResponse.OperationSuccess;
+            return ServiceResponse.Success;
         }
     }
 }

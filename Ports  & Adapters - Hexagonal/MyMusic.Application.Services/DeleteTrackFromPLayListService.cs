@@ -23,7 +23,7 @@ namespace MyMusic.Application.Services {
             playList.Remove(trackId);
             playListPersistencePort.Persist(playList);
             tracksNotifier.NotifyTrackHasRemovedFromPlayList(trackId, playlistId);
-            return ServiceResponse.OperationSuccess;
+            return ServiceResponse.Success;
         }
         
         private bool TrackIsNotAlreadyIn(PlayList playList, string trackId) {
