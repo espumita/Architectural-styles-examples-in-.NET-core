@@ -1,7 +1,7 @@
 using Bogus;
 using MyMusic.Domain;
 
-namespace MyMusic.Application.Services.Tests {
+namespace MyMusic.Application.Services.Tests.builders {
     public class TrackBuilder {
         
         private string id;
@@ -24,7 +24,7 @@ namespace MyMusic.Application.Services.Tests {
             return this;
         }
 
-        public TrackBuilder AddTrack(int durationInMs) {
+        public TrackBuilder WithDuration(int durationInMs) {
             this.durationInMs = durationInMs;
             return this;
         }
