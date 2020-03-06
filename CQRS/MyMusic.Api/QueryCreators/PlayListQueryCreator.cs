@@ -6,12 +6,12 @@ namespace MyMusic.QueryCreators {
     public class PlayListQueryCreator {
         
         public GetAllPlayListQuery CreateGetAllPlayListQuery() {
-            var playListDatabaseAdapter = new PLayListPostgreSQLAdapter();
+            var playListDatabaseAdapter = new PLayListPostgreSQLQueryAdapter();
             return new GetAllPlayListQuery(playListDatabaseAdapter);
         }
         
         public GetPlayListQuery CreateGetPlayListQuery() {
-            var playListDatabaseAdapter = new PLayListPostgreSQLAdapter();
+            var playListDatabaseAdapter = new PLayListPostgreSQLQueryAdapter();
             return new GetPlayListQuery(playListDatabaseAdapter);
         }
     }
