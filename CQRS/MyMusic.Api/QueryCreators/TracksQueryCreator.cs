@@ -4,7 +4,7 @@ using MyMusic.Infrastructure.Adapters.Queries;
 namespace MyMusic.QueryCreators {
     public class TracksQueryCreator {
         
-        public GetTracksService CreateGetTrackService() {
+        public GetTracksService CreateGetTrackQuery() {
             var tracksDatabaseAdapter = new TracksPostgreSQLAdapter();
             return new GetTracksService(tracksDatabaseAdapter);
         }
