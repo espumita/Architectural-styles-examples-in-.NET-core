@@ -14,6 +14,10 @@ namespace MyMusic.Infrastructure.Adapters.Persistence {
             return new PlayList(playlistId, "Example PlayList", PlayListStatus.Active, trackList, "https://imageUrl.com");
         }
 
+        public List<PlayList> GetAllPlayList() {
+            throw new System.NotImplementedException();
+        }
+
         public void Persist(PlayList playList) {
             //This should persist in PostgreSQL DB
         }
