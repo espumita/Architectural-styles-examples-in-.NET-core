@@ -30,9 +30,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Application.Read.Po
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Application.Read.Model", "MyMusic.Application.Read.Model\MyMusic.Application.Read.Model.csproj", "{3668AE90-6F34-461E-92AB-FACAE35B814E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application.SharedKernel", "Application.SharedKernel", "{C2C831DF-D555-4EDB-A68E-C58575F505BC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application.Shared", "Application.Shared", "{C2C831DF-D555-4EDB-A68E-C58575F505BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Application.SharedKernel.Model", "MyMusic.Application.SharedKernel.Model\MyMusic.Application.SharedKernel.Model.csproj", "{6B2EBB13-83A1-4923-90CE-F63A7E7FF874}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Application.Shared.Model", "MyMusic.Application.Shared.Model\MyMusic.Application.Shared.Model.csproj", "{6B2EBB13-83A1-4923-90CE-F63A7E7FF874}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

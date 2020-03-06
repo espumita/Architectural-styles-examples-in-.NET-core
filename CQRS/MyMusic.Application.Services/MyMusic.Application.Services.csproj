@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MyMusic.Application.SharedKernel.Model\MyMusic.Application.SharedKernel.Model.csproj" />
+      <ProjectReference Include="..\MyMusic.Application.Shared.Model\MyMusic.Application.Shared.Model.csproj" />
       <ProjectReference Include="..\MyMusic.Application.Write.Ports\MyMusic.Application.Write.Ports.csproj" />
       <ProjectReference Include="..\MyMusic.Domain\MyMusic.Domain.csproj" />
     </ItemGroup>

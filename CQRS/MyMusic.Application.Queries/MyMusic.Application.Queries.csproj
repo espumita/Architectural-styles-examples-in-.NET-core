@@ -11,7 +11,7 @@
     <ItemGroup>
       <ProjectReference Include="..\MyMusic.Application.Read.Model\MyMusic.Application.Read.Model.csproj" />
       <ProjectReference Include="..\MyMusic.Application.Read.Ports\MyMusic.Application.Read.Ports.csproj" />
-      <ProjectReference Include="..\MyMusic.Application.SharedKernel.Model\MyMusic.Application.SharedKernel.Model.csproj" />
+      <ProjectReference Include="..\MyMusic.Application.Shared.Model\MyMusic.Application.Shared.Model.csproj" />
     </ItemGroup>
 
 </Project>
