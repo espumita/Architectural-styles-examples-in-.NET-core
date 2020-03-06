@@ -11,9 +11,7 @@ namespace MyMusic.Application.Services.Tests {
         }
 
         public Track Build() {
-            return new Track(
-                id: id ?? ATrack.Id
-            );
+            return Track.With(id ?? ATrack.Id);
         }
     }
 }

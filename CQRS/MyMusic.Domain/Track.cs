@@ -2,8 +2,12 @@ namespace MyMusic.Domain {
     public class Track {
         public string Id { get; }
 
-        public Track(string id) {
+        private Track(string id) {
             Id = id;
+        }
+
+        public static Track With(string trackId) {
+            return new Track(trackId);
         }
     }
 }
