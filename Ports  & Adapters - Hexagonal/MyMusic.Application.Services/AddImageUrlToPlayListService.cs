@@ -4,11 +4,12 @@ using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Errors;
 
 namespace MyMusic.Application.Services {
-
     public class AddImageUrlToPlayListService {
+        
         private readonly PlayListPersistencePort playListPersistence;
         private readonly PlayListNotifierPort playListNotifierPort;
         private const string OperationSuccess = "OperationSuccess";
+        
         public AddImageUrlToPlayListService(PlayListPersistencePort playListPersistence, PlayListNotifierPort playListNotifierPort) {
             this.playListPersistence = playListPersistence;
             this.playListNotifierPort = playListNotifierPort;

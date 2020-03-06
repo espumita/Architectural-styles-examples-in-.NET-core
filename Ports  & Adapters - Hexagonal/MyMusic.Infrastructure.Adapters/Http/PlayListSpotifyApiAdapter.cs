@@ -3,6 +3,7 @@ using MyMusic.Application.Ports.Notifications;
 namespace MyMusic.Infrastructure.Adapters.Http {
 
     public class PlayListSpotifyApiAdapter : PlayListNotifierPort {
+        
         public void NotifyPlayListHasBeenCreated(string playListId, string playListName) {
             //This should Notify to Spotify Api
         }

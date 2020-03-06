@@ -3,6 +3,7 @@ using MyMusic.Domain;
 
 namespace MyMusic.Application.Services.Tests {
     public class TrackBuilder {
+        
         private string id;
         private string name;
         private string artist;

@@ -6,8 +6,8 @@ using System.Linq;
 using MyMusic.Application.Services.Errors;
 
 namespace MyMusic.Application.Services {
-    
     public class AddTrackToPlayListService {
+        
         private readonly PlayListPersistencePort playListPersistencePort;
         private readonly TracksNotifierPort tracksNotifier;
         private const string OperationSuccess = "OperationSuccess";

@@ -4,6 +4,7 @@ using MyMusic.Domain;
 
 namespace MyMusic.Infrastructure.Adapters.Persistence {
     public class PLayListPostgreSQLAdapter : PlayListPersistencePort {
+        
         public PlayList GetPlayList(string playlistId) {
             //This should be read from PostgreSQL DB
             var trackList = new List<Track> {

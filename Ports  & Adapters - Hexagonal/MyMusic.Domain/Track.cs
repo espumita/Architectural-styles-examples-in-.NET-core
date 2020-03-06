@@ -1,5 +1,6 @@
 namespace MyMusic.Domain {
     public class Track {
+        
         public string Id { get; }
         public string Name { get; }
         public string Artist { get; }

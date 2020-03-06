@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace MyMusic.Domain {
     public class PlayList {
+        
         public string Id { get; }
         public string Name { get; private set; }
         public PlayListStatus Status { get; private set; }

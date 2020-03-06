@@ -6,7 +6,6 @@ using MyMusic.Application.Services.Errors;
 using MyMusic.Domain;
 
 namespace MyMusic.Application.Services {
-    
     public class DeleteTrackFromPLayListService {
         
         private readonly PlayListPersistencePort playListPersistencePort;
