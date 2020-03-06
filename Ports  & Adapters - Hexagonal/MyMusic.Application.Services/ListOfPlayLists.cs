@@ -4,10 +4,10 @@ using MyMusic.Domain;
 namespace MyMusic.Application.Services {
 
     public class ListOfPlayLists {
-        public List<PlayList> elements { get; }
+        public List<PlayList> Elements { get; }
 
         public ListOfPlayLists(List<PlayList> elements) {
-            this.elements = elements;
+            Elements = elements;
         }
     }
 }

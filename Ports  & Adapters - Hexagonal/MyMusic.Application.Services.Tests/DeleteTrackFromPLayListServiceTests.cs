@@ -57,14 +57,14 @@ namespace MyMusic.Application.Services.Tests {
             var result = deleteTrackFromPLayListService.Execute(aTrackId, aPlaylistId);
 
             result.IsLeft.Should().BeTrue();
-            VerifyErrorIs(PlayListError.TrackIsNotInThePlayList, result);
+            VerifyErrorIs(Error.TrackIsNotInThe, result);
             playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
             tracksNotifier.DidNotReceive().NotifyTrackHasRemovedFromPlayList(Arg.Any<string>(), Arg.Any<string>());
         }
         
-        private static void VerifyErrorIs(PlayListError playListError, Either<PlayListError, ServiceResponse> result) {
+        private static void VerifyErrorIs(Error error, Either<Error, ServiceResponse> result) {
             result.Match(
-                Left: x => x.Should().Be(playListError),
+                Left: x => x.Should().Be(error),
                 Right: null);
         }
     }

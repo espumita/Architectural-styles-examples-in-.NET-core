@@ -8,7 +8,7 @@ namespace MyMusic.Controllers {
 
     public static class ControllerExtensions {
         
-        public static ActionResult BuildResponseFrom(this Controller controller, Either<PlayListError, ServiceResponse> result) {
+        public static ActionResult BuildResponseFrom(this Controller controller, Either<Error, ServiceResponse> result) {
             ActionResult response = null;
             result.Match(
                 Left: playListError => response = controller.BadRequest(playListError),
@@ -18,7 +18,7 @@ namespace MyMusic.Controllers {
         }
         
         
-        public static ActionResult BuildResponseOfType<T, K>(this Controller controller, Either<PlayListError, K> result) where T : ResponseBuilder<T, K>, new () {
+        public static ActionResult BuildResponseOfType<T, K>(this Controller controller, Either<Error, K> result) where T : ResponseBuilder<T, K>, new () {
             ActionResult response = null;
             result.Match(
                 Left: playListError => response = controller.BadRequest(playListError),

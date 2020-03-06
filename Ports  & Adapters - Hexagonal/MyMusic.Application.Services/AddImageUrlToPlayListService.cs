@@ -15,7 +15,7 @@ namespace MyMusic.Application.Services {
             this.playListNotifierPort = playListNotifierPort;
         }
 
-        public Either<PlayListError, ServiceResponse> Execute(string playlistId, string aNewImageUrL) {
+        public Either<Error, ServiceResponse> Execute(string playlistId, string aNewImageUrL) {
             var playList = playListPersistence.GetPlayList(playlistId);
             playList.AddImageUrl(aNewImageUrL);
             playListPersistence.Persist(playList);

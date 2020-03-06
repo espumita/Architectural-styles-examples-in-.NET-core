@@ -12,7 +12,7 @@ namespace MyMusic.Responses {
         public ListOfPlayListsResponse() {}
 
         public ListOfPlayListsResponse BuildFrom(ListOfPlayLists listOfPlayLists) {
-            PlayLists = listOfPlayLists.elements.Select(playList => new PlayListResponse().BuildFrom(playList)).ToList();
+            PlayLists = listOfPlayLists.Elements.Select(playList => new PlayListResponse().BuildFrom(playList)).ToList();
             return this;
         }
     }

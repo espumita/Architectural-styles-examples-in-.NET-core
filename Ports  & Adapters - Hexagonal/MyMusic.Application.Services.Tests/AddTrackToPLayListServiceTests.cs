@@ -58,14 +58,14 @@ namespace MyMusic.Application.Services.Tests {
             var result = addTrackToPlayListService.Execute(aTrackId, aPlaylistId);
 
             result.IsLeft.Should().BeTrue();
-            VerifyErrorIs(PlayListError.CannotAddSameTrackTwice, result);
+            VerifyErrorIs(Error.CannotAddSameTrackTwice, result);
             playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
             tracksNotifier.DidNotReceive().NotifyTrackHasBeenAddedToPlayList(Arg.Any<string>(), Arg.Any<string>());
         }
 
-        private static void VerifyErrorIs(PlayListError playListError, Either<PlayListError, ServiceResponse> result) {
+        private static void VerifyErrorIs(Error error, Either<Error, ServiceResponse> result) {
             result.Match(
-                Left: x => x.Should().Be(playListError),
+                Left: x => x.Should().Be(error),
                 Right: null);
         }
     }

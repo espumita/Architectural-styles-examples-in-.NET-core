@@ -14,7 +14,7 @@ namespace MyMusic.Application.Services {
             this.playListPersistence = playListPersistence;
         }
 
-        public Either<PlayListError, ListOfPlayLists> Execute() {
+        public Either<Error, ListOfPlayLists> Execute() {
             var playLists = playListPersistence.GetAllPlayList();
             var activePlayLists = playLists
                     .Where(playList => playList.Status == PlayListStatus.Active)

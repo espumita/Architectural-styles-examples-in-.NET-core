@@ -15,7 +15,7 @@ namespace MyMusic.Application.Services {
             this.playListNotifier = playListNotifier;
         }
 
-        public Either<PlayListError, ServiceResponse> Execute(string playListId) {
+        public Either<Error, ServiceResponse> Execute(string playListId) {
             var playList = playListPersistence.GetPlayList(playListId);
             playList.Archive();
             playListPersistence.Persist(playList);

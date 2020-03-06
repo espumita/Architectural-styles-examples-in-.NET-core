@@ -1,5 +1,5 @@
 namespace MyMusic.Application.Services.Errors {
-    public class TrackIsNotInThePlayList : PlayListError {
+    public class TrackIsNotInThe : Error {
         
     }
 }

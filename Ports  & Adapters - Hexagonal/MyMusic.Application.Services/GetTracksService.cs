@@ -12,7 +12,7 @@ namespace MyMusic.Application.Services {
             this.tracksPersistence = tracksPersistence;
         }
 
-        public Either<PlayListError, Track> Get(string trackId) {
+        public Either<Error, Track> Get(string trackId) {
             return tracksPersistence.GetTrack(trackId);
         }
     }
