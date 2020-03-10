@@ -33,11 +33,15 @@ namespace MyMusic.Application.Services.Tests {
             var result = archivePlayListService.Execute(aPlaylistId);
             
             result.IsRight.Should().BeTrue();
-            playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist => 
-                playlist.Id.Equals(aPlaylistId)
-                && playlist.Status.Equals(PlayListStatus.Archived)
-            ));
+            VerifyPlayListHasBeenPersistedWith(aPlaylistId, PlayListStatus.Archived);
             playListNotifierPort.Received().NotifyPlayListHasBeenArchived(aPlaylistId);
+        }
+
+        private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, PlayListStatus status) {
+            playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist =>
+                playlist.Id.Equals(aPlaylistId)
+                && playlist.Status.Equals(status)
+            ));
         }
     }
 }
