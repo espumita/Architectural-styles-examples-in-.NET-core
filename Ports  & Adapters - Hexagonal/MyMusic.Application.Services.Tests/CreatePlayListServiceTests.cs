@@ -33,13 +33,16 @@ namespace MyMusic.Application.Services.Tests {
             var result = createPlayListService.Execute(aPlaylistName);
             
             result.IsRight.Should().BeTrue();
-            playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist => 
-                playlist.Id.Equals(aPlaylistId)
-                && playlist.Name.Equals(aPlaylistName)
-                && playlist.Status.Equals(PlayListStatus.Active)
-            ));
+            VerifyPlayListHasBeenPersistedWith(aPlaylistId, aPlaylistName, PlayListStatus.Active);
             playListNotifierPort.Received().NotifyPlayListHasBeenCreated(aPlaylistId, aPlaylistName);
         }
 
+        private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string aPlaylistName, PlayListStatus status) {
+            playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist =>
+                playlist.Id.Equals(aPlaylistId)
+                && playlist.Name.Equals(aPlaylistName)
+                && playlist.Status.Equals(status)
+            ));
+        }
     }
 }
