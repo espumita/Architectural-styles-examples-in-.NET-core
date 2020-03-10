@@ -35,11 +35,15 @@ namespace MyMusic.Application.Services.Tests {
             var result = renamePlayListService.Execute(aPlaylistId, anotherPlaylistName);
             
             result.IsRight.Should().BeTrue();
-            playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist => 
+            VerifyPlayListHasBeenPersistedWith(aPlaylistId, anotherPlaylistName);
+            playListNotifierPort.Received().NotifyPlayListHasBeenRenamed(aPlaylistId, anotherPlaylistName);
+        }
+
+        private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string anotherPlaylistName) {
+            playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist =>
                 playlist.Id.Equals(aPlaylistId)
                 && playlist.Name.Equals(anotherPlaylistName)
             ));
-            playListNotifierPort.Received().NotifyPlayListHasBeenRenamed(aPlaylistId, anotherPlaylistName);
         }
     }
 }
