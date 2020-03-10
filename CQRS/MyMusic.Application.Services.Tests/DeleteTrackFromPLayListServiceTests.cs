@@ -40,13 +40,10 @@ namespace MyMusic.Application.Services.Tests {
             var result = deleteTrackFromPLayListService.Execute(aTrackId, aPlaylistId);
 
             result.IsRight.Should().BeTrue();
-            playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist => 
-                playlist.Id.Equals(aPlaylistId)
-                && playlist.TrackList.Count.Equals(0)
-            ));
+            VerifyAnEmptyPlayListHasBeenPersistedWith(aPlaylistId);
             tracksNotifier.Received().NotifyTrackHasRemovedFromPlayList(aTrackId, aPlaylistId);
         }
-        
+
         [Test]
         public void do_not_remove_a_track_when_it_is_not_already_in_the_play_list() {
             var aTrackId = ATrack.Id;
@@ -63,7 +60,14 @@ namespace MyMusic.Application.Services.Tests {
             playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
             tracksNotifier.DidNotReceive().NotifyTrackHasRemovedFromPlayList(Arg.Any<string>(), Arg.Any<string>());
         }
-        
+
+        private void VerifyAnEmptyPlayListHasBeenPersistedWith(string aPlaylistId) {
+            playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist =>
+                playlist.Id.Equals(aPlaylistId)
+                && playlist.TrackList.Count.Equals(0)
+            ));
+        }
+
         private static void VerifyErrorIs(ServiceError serviceError, Either<Error, ServiceResponse> result) {
             result.Match(
                 Left: x => x.Should().Be(serviceError),
