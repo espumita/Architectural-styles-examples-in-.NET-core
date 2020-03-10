@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <RootNamespace>MyMusic</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MyMusic.Application.Queries\MyMusic.Application.Queries.csproj" />
+      <ProjectReference Include="..\MyMusic.Application.Services\MyMusic.Application.Services.csproj" />
+      <ProjectReference Include="..\MyMusic.Infrastructure.Adapters\MyMusic.Infrastructure.Adapters.csproj" />
+    </ItemGroup>
+    
+
+</Project>

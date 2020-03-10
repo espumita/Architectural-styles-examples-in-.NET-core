@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="LanguageExt.Core" Version="3.4.10" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MyMusic.Application.Read.Model\MyMusic.Application.Read.Model.csproj" />
+      <ProjectReference Include="..\MyMusic.Application.Read.Ports\MyMusic.Application.Read.Ports.csproj" />
+      <ProjectReference Include="..\MyMusic.Application.Shared.Model\MyMusic.Application.Shared.Model.csproj" />
+    </ItemGroup>
+
+</Project>
