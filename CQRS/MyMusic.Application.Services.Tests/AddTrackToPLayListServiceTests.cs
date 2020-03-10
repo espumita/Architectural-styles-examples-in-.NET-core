@@ -38,10 +38,7 @@ namespace MyMusic.Application.Services.Tests {
             var result = addTrackToPlayListService.Execute(aTrackId, aPlaylistId);
 
             result.IsRight.Should().BeTrue();
-            playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist => 
-                playlist.Id.Equals(aPlaylistId)
-                && playlist.TrackList.Single().Id.Equals(aTrackId)
-            ));
+            VerifyPlayListHasBeenPersistedWith(aPlaylistId, aTrackId);
             tracksNotifier.Received().NotifyTrackHasBeenAddedToPlayList(aTrackId, aPlaylistId);
         }
 
@@ -63,6 +60,13 @@ namespace MyMusic.Application.Services.Tests {
             VerifyErrorIs(ServiceError.CannotAddSameTrackTwice, result);
             playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
             tracksNotifier.DidNotReceive().NotifyTrackHasBeenAddedToPlayList(Arg.Any<string>(), Arg.Any<string>());
+        }
+
+        private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string aTrackId) {
+            playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist =>
+                playlist.Id.Equals(aPlaylistId)
+                && playlist.TrackList.Single().Id.Equals(aTrackId)
+            ));
         }
 
         private static void VerifyErrorIs(ServiceError serviceError, Either<Error, ServiceResponse> result) {
