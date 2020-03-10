@@ -6,13 +6,17 @@ using MyMusic.Infrastructure.Adapters.Persistence;
 namespace MyMusic.ServiceCreators {
 
     public class PlayListServiceCreator {
-        
+        private readonly EventBusInMemoryAdapter eventBus;
+
+        public PlayListServiceCreator(EventBusInMemoryAdapter eventBus) {
+            this.eventBus = eventBus;
+        }
 
         public CreatePlayListService CreateCreatePlayListService() {
             var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
             var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
             var uniqueIdentifiersInMemoryAdapter = new UniqueIdentifiersInMemoryAdapter();
-            return new CreatePlayListService(uniqueIdentifiersInMemoryAdapter, pLayListDatabaseAdapter, musicCloudApiHttpAdapter, null);
+            return new CreatePlayListService(uniqueIdentifiersInMemoryAdapter, pLayListDatabaseAdapter, musicCloudApiHttpAdapter, eventBus);
         }
 
         public RenamePlayListService CreateRenamePlayListService() {

@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\MyMusic.Application.Read.Ports\MyMusic.Application.Read.Ports.csproj" />
+      <ProjectReference Include="..\MyMusic.Application.Shared.Model\MyMusic.Application.Shared.Model.csproj" />
       <ProjectReference Include="..\MyMusic.Application.Write.Ports\MyMusic.Application.Write.Ports.csproj" />
     </ItemGroup>
 
