@@ -38,7 +38,7 @@ namespace MyMusic.Application.Services.Tests {
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, aPlaylistName, PlayListStatus.Active);
             playListNotifierPort.Received().NotifyPlayListHasBeenCreated(aPlaylistId, aPlaylistName);
-            eventBus.Received().Raise(Arg.Is<PlayListHasBeenCreated>(@event => @event.Equals(new PlayListHasBeenCreated(aPlaylistId, aPlaylistName))));
+            VerifyEventHasBeenRaised(new PlayListHasBeenCreated(aPlaylistId, aPlaylistName));
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string aPlaylistName, PlayListStatus status) {
@@ -47,6 +47,12 @@ namespace MyMusic.Application.Services.Tests {
                 && playlist.Name.Equals(aPlaylistName)
                 && playlist.Status.Equals(status)
             ));
+        }
+
+        private void VerifyEventHasBeenRaised(PlayListHasBeenCreated playListHasBeenCreated) {
+            eventBus.Received()
+                .Raise(Arg.Is<PlayListHasBeenCreated>(@event =>
+                    @event.Equals(playListHasBeenCreated)));
         }
     }
 }
