@@ -33,11 +33,15 @@ namespace MyMusic.Application.Services.Tests {
             var result = addImageUrlToPlayListService.Execute(aPlaylistId, anImageUrl);
             
             result.IsRight.Should().BeTrue();
-            playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist => 
+            VerifyPlayListHasBeenPersistedWith(aPlaylistId, anImageUrl);
+            playListNotifierPort.Received().NotifyPlayListUrlHasChanged(aPlaylistId, anImageUrl);
+        }
+
+        private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string anImageUrl) {
+            playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist =>
                 playlist.Id.Equals(aPlaylistId)
                 && playlist.ImageUrl.Equals(anImageUrl)
             ));
-            playListNotifierPort.Received().NotifyPlayListUrlHasChanged(aPlaylistId, anImageUrl);
         }
     }
 }
