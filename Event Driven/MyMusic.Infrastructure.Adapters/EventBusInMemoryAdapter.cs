@@ -1,27 +1,26 @@
 using System;
 using System.Collections.Generic;
 using MyMusic.Application.Ports;
-using EventHandler = MyMusic.Application.SharedKernel.Model.EventHandler;
+using MyMusic.Application.SharedKernel.Model;
 
 namespace MyMusic.Infrastructure.Adapters {
 
     public class EventBusInMemoryAdapter : EventBus {
         
-        private Dictionary<Type, List<EventHandler>> eventsHandlers = new Dictionary<Type, List<EventHandler>>();
+        private Dictionary<Type, List<Action<Event>>> eventHandlers = new Dictionary<Type, List<Action<Event>>>();
         
-        public void Raise<T>(T @event) {
-            if(eventsHandlers.ContainsKey(typeof(T))) {
-                eventsHandlers[typeof(T)].ForEach(handler => handler.Handle(@event));
+        public void Raise<T>(T @event) where T : Event {
+            if(eventHandlers.ContainsKey(typeof(T))) {
+                eventHandlers[typeof(T)].ForEach(eventHandler => eventHandler(@event));
             }
         }
 
-        public void Register<T>(EventHandler eventHandler) {
-            if(eventsHandlers.ContainsKey(typeof(T))) {
-                eventsHandlers[typeof(T)].Add(eventHandler);
+        public void Register<T>(Action<T> eventHandler) where T : Event {
+            if(eventHandlers.ContainsKey(typeof(T))) {
+                eventHandlers[typeof(T)].Add(@event => eventHandler((T)@event));
             } else {
-                eventsHandlers[typeof(T)] = new List<EventHandler>{ eventHandler };
+                eventHandlers[typeof(T)] = new List<Action<Event>>{ @event => eventHandler((T)@event) };
             }
         }
     }
-
 }

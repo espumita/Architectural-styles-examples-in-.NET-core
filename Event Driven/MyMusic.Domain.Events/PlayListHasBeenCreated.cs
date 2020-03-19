@@ -1,7 +1,8 @@
 using System;
+using MyMusic.Application.SharedKernel.Model;
 
 namespace MyMusic.Domain.Events {
-    public class PlayListHasBeenCreated {
+    public class PlayListHasBeenCreated : Event {
         public string PlayListId { get; }
         public string PlayListName { get; }
 
