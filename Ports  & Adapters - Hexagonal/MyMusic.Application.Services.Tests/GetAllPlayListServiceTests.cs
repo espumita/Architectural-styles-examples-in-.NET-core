@@ -52,7 +52,7 @@ namespace MyMusic.Application.Services.Tests {
             VerifyPLayListIsEquivalentTo(aPlayList, result);
         }
 
-        private static void VerifyPLayListIsEquivalentTo(PlayList aPlayList, Either<Error, ListOfPlayLists> result) {
+        private static void VerifyPLayListIsEquivalentTo(PlayList aPlayList, Either<ServiceError, ListOfPlayLists> result) {
             result.Match(
                 Right: listOfPlayLists => Validate(listOfPlayLists, aPlayList),
                 Left: error => null

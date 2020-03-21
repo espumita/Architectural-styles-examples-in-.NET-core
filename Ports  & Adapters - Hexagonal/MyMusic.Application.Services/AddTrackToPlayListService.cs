@@ -17,9 +17,9 @@ namespace MyMusic.Application.Services {
             this.tracksNotifier = tracksNotifier;
         }
 
-        public Either<Error, ServiceResponse> Execute(string trackId, string playlistId) {
+        public Either<ServiceError, ServiceResponse> Execute(string trackId, string playlistId) {
             var playList = playListPersistencePort.GetPlayList(playlistId);
-            if (TrackIsAlreadyIn(playList, trackId)) return Error.CannotAddSameTrackTwice; 
+            if (TrackIsAlreadyIn(playList, trackId)) return ServiceError.CannotAddSameTrackTwice; 
             playList.Add(new Track(trackId, "UNNECESSARY", "UNNECESSARY", 0));
             playListPersistencePort.Persist(playList);
             tracksNotifier.NotifyTrackHasBeenAddedToPlayList(trackId, playlistId);

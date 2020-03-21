@@ -19,7 +19,7 @@ namespace MyMusic.Application.Services {
             this.playListNotifier = playListNotifier;
         }
 
-        public Either<Error, ServiceResponse> Execute(string playListName) {
+        public Either<ServiceError, ServiceResponse> Execute(string playListName) {
             var newPlayListId = uniqueIdentifiersPort.GetNewUniqueIdentifier();
             var playList = PlayList.Create(newPlayListId, playListName);
             playListPersistence.Persist(playList);

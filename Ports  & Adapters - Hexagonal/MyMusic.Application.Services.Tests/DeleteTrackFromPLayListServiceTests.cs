@@ -55,7 +55,7 @@ namespace MyMusic.Application.Services.Tests {
             var result = deleteTrackFromPLayListService.Execute(aTrackId, aPlaylistId);
 
             result.IsLeft.Should().BeTrue();
-            VerifyErrorIs(Error.TrackIsNotInThe, result);
+            VerifyErrorIs(ServiceError.TrackIsNotInThe, result);
             playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
             tracksNotifier.DidNotReceive().NotifyTrackHasRemovedFromPlayList(Arg.Any<string>(), Arg.Any<string>());
         }
@@ -67,9 +67,9 @@ namespace MyMusic.Application.Services.Tests {
             ));
         }
 
-        private static void VerifyErrorIs(Error error, Either<Error, ServiceResponse> result) {
+        private static void VerifyErrorIs(ServiceError serviceError, Either<ServiceError, ServiceResponse> result) {
             result.Match(
-                Left: x => x.Should().Be(error),
+                Left: x => x.Should().Be(serviceError),
                 Right: null);
         }
     }
