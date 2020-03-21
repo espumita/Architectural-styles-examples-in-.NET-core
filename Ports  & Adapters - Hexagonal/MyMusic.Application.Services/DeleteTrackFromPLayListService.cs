@@ -19,7 +19,7 @@ namespace MyMusic.Application.Services {
 
         public Either<ServiceError, ServiceResponse> Execute(string trackId, string playlistId) {
             var playList = playListPersistencePort.GetPlayList(playlistId);
-            if (TrackIsNotAlreadyIn(playList, trackId)) return ServiceError.TrackIsNotInThe;
+            if (TrackIsNotAlreadyIn(playList, trackId)) return ServiceError.TrackIsNotInThePlayList;
             playList.Remove(trackId);
             playListPersistencePort.Persist(playList);
             tracksNotifier.NotifyTrackHasRemovedFromPlayList(trackId, playlistId);
