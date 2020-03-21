@@ -5,7 +5,7 @@ namespace MyMusic.Infrastructure.Adapters {
 
     public class UniqueIdentifiersInMemoryAdapter : UniqueIdentifiersPort {
         
-        public string GetNewGuid() {
+        public string GetNewUniqueIdentifier() {
             return Guid.NewGuid().ToString();
         }
     }

@@ -28,7 +28,7 @@ namespace MyMusic.Application.Services.Tests {
         public void create_a_play_list() {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;
-            uniqueIdentifiersPort.GetNewGuid().Returns(aPlaylistId);
+            uniqueIdentifiersPort.GetNewUniqueIdentifier().Returns(aPlaylistId);
             
             var result = createPlayListService.Execute(aPlaylistName);
             

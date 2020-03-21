@@ -15,8 +15,7 @@ namespace MyMusic.Application.Services {
         private readonly PlayListNotifierPort playListNotifier;
         private readonly EventBus eventBus;
 
-        public CreatePlayListService(UniqueIdentifiersPort uniqueIdentifiersPort,
-            PlayListPersistencePort playListPersistence, PlayListNotifierPort playListNotifier, EventBus eventBus) {
+        public CreatePlayListService(UniqueIdentifiersPort uniqueIdentifiersPort, PlayListPersistencePort playListPersistence, PlayListNotifierPort playListNotifier, EventBus eventBus) {
             this.uniqueIdentifiersPort = uniqueIdentifiersPort;
             this.playListPersistence = playListPersistence;
             this.playListNotifier = playListNotifier;
@@ -24,7 +23,7 @@ namespace MyMusic.Application.Services {
         }
 
         public Either<Error, ServiceResponse> Execute(string playListName) {
-            var newPlayListId = uniqueIdentifiersPort.GetNewGuid();
+            var newPlayListId = uniqueIdentifiersPort.GetNewUniqueIdentifier();
             var playList = PlayList.Create(newPlayListId, playListName);
             playListPersistence.Persist(playList);
             playListNotifier.NotifyPlayListHasBeenCreated(playList.Id, playList.Name);
