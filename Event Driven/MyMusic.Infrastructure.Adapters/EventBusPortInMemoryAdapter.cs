@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using MyMusic.Application.Ports;
-using MyMusic.Application.SharedKernel.Model;
+using MyMusic.Domain.Events;
 
 namespace MyMusic.Infrastructure.Adapters {
 
-    public class EventBusInMemoryAdapter : EventBus {
+    public class EventBusPortInMemoryAdapter : EventBusPort {
         
         private Dictionary<Type, List<Action<Event>>> eventHandlers = new Dictionary<Type, List<Action<Event>>>();
         

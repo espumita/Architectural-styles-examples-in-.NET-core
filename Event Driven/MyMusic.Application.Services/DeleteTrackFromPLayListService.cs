@@ -4,7 +4,6 @@ using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Errors;
 using MyMusic.Application.Services.Successes;
-using MyMusic.Application.SharedKernel.Model;
 using MyMusic.Domain;
 
 namespace MyMusic.Application.Services {
@@ -18,7 +17,7 @@ namespace MyMusic.Application.Services {
             this.tracksNotifier = tracksNotifier;
         }
 
-        public Either<Error, ServiceResponse> Execute(string trackId, string playlistId) {
+        public Either<ServiceError, ServiceResponse> Execute(string trackId, string playlistId) {
             var playList = playListPersistencePort.GetPlayList(playlistId);
             if (TrackIsNotAlreadyIn(playList, trackId)) return ServiceError.TrackIsNotInThe;
             playList.Remove(trackId);

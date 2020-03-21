@@ -7,6 +7,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\MyMusic.Application.Shared.Model\MyMusic.Application.Shared.Model.csproj" />
+      <ProjectReference Include="..\MyMusic.Domain.Events\MyMusic.Domain.Events.csproj" />
       <ProjectReference Include="..\MyMusic.Domain\MyMusic.Domain.csproj" />
     </ItemGroup>
 

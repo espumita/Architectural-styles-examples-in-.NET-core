@@ -2,7 +2,7 @@ using LanguageExt;
 using MyMusic.Application.Read.Model;
 using MyMusic.Application.Read.Ports;
 using System.Linq;
-using MyMusic.Application.SharedKernel.Model;
+using MyMusic.Application.Queries.Errors;
 
 namespace MyMusic.Application.Queries {
 
@@ -13,7 +13,7 @@ namespace MyMusic.Application.Queries {
             this.playListQueryPort = playListQueryPort;
         }
 
-        public Either<Error, ListOfPlayLists> Execute() {
+        public Either<QueryError, ListOfPlayLists> Execute() {
             var playLists = playListQueryPort.GetAllPlayList();
             var activePlayLists = playLists
                     .Where(playList => playList.Status == PlayListStatus.Active)

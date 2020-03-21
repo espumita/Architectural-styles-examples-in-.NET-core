@@ -2,8 +2,8 @@ using LanguageExt;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
+using MyMusic.Application.Services.Errors;
 using MyMusic.Application.Services.Successes;
-using MyMusic.Application.SharedKernel.Model;
 using MyMusic.Domain;
 
 namespace MyMusic.Application.Services {
@@ -19,7 +19,7 @@ namespace MyMusic.Application.Services {
             this.playListNotifier = playListNotifier;
         }
 
-        public Either<Error, ServiceResponse> Execute(string playListName) {
+        public Either<ServiceError, ServiceResponse> Execute(string playListName) {
             var newPlayListId = uniqueIdentifiersPort.GetNewUniqueIdentifier();
             var playList = PlayList.Create(newPlayListId, playListName);
             playListPersistence.Persist(playList);

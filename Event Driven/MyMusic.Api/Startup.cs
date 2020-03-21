@@ -10,7 +10,6 @@ using MyMusic.EventHandlers;
 using MyMusic.Infrastructure.Adapters;
 using MyMusic.QueryCreators;
 using MyMusic.ServiceCreators;
-using EventHandler = MyMusic.Application.SharedKernel.Model;
 
 namespace MyMusic {
     public class Startup {
@@ -30,7 +29,7 @@ namespace MyMusic {
 
             services.AddSingleton<PlayListHasBeenCreatedEventHandler>();
 
-            var eventBus = new EventBusInMemoryAdapter();
+            var eventBus = new EventBusPortInMemoryAdapter();
             var playListHasBeenCreatedEventHandler = new PlayListHasBeenCreatedEventHandler();
             eventBus.Register<PlayListHasBeenCreated>(playListHasBeenCreatedEventHandler.Handle);
             services.AddSingleton(eventBus);

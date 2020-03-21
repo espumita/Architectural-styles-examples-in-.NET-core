@@ -1,15 +1,15 @@
 using LanguageExt;
 using Microsoft.AspNetCore.Mvc;
+using MyMusic.Application.Queries.Errors;
 using MyMusic.Application.Services.Errors;
 using MyMusic.Application.Services.Successes;
-using MyMusic.Application.SharedKernel.Model;
 using MyMusic.Responses;
 
 namespace MyMusic.Controllers {
 
     public static class ControllerExtensions {
         
-        public static ActionResult BuildResponseFrom(this Controller controller, Either<Error, ServiceResponse> result) {
+        public static ActionResult BuildResponseFrom(this Controller controller, Either<ServiceError, ServiceResponse> result) {
             ActionResult response = null;
             result.Match(
                 Left: error => response = controller.BadRequest(error),
@@ -19,7 +19,7 @@ namespace MyMusic.Controllers {
         }
         
         
-        public static ActionResult BuildResponseOfType<T, K>(this Controller controller, Either<Error, K> result) where T : ResponseBuilder<T, K>, new () {
+        public static ActionResult BuildResponseOfType<T, K>(this Controller controller, Either<QueryError, K> result) where T : ResponseBuilder<T, K>, new () {
             ActionResult response = null;
             result.Match(
                 Left: error => response = controller.BadRequest(error),

@@ -1,8 +1,8 @@
 using LanguageExt;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
+using MyMusic.Application.Services.Errors;
 using MyMusic.Application.Services.Successes;
-using MyMusic.Application.SharedKernel.Model;
 
 namespace MyMusic.Application.Services {
     public class AddImageUrlToPlayListService {
@@ -15,7 +15,7 @@ namespace MyMusic.Application.Services {
             this.playListNotifierPort = playListNotifierPort;
         }
 
-        public Either<Error, ServiceResponse> Execute(string playlistId, string aNewImageUrL) {
+        public Either<ServiceError, ServiceResponse> Execute(string playlistId, string aNewImageUrL) {
             var playList = playListPersistence.GetPlayList(playlistId);
             playList.AddImageUrl(aNewImageUrL);
             playListPersistence.Persist(playList);

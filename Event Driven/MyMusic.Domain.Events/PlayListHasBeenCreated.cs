@@ -1,5 +1,4 @@
 using System;
-using MyMusic.Application.SharedKernel.Model;
 
 namespace MyMusic.Domain.Events {
     public class PlayListHasBeenCreated : Event {

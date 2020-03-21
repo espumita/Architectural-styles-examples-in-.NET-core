@@ -5,7 +5,6 @@ using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Errors;
 using MyMusic.Application.Services.Successes;
 using MyMusic.Application.Services.Tests.builders;
-using MyMusic.Application.SharedKernel.Model;
 using MyMusic.Domain;
 using NSubstitute;
 using NUnit.Framework;
@@ -68,7 +67,7 @@ namespace MyMusic.Application.Services.Tests {
             ));
         }
 
-        private static void VerifyErrorIs(ServiceError serviceError, Either<Error, ServiceResponse> result) {
+        private static void VerifyErrorIs(ServiceError serviceError, Either<ServiceError, ServiceResponse> result) {
             result.Match(
                 Left: x => x.Should().Be(serviceError),
                 Right: null);

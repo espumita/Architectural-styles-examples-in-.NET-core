@@ -16,15 +16,15 @@ namespace MyMusic.Application.Services.Tests {
         private PlayListPersistencePort playListPersistence;
         private PlayListNotifierPort playListNotifierPort;
         private UniqueIdentifiersPort uniqueIdentifiersPort;
-        private EventBus eventBus;
+        private EventBusPort eventBusPort;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             playListNotifierPort = Substitute.For<PlayListNotifierPort>();
             uniqueIdentifiersPort = Substitute.For<UniqueIdentifiersPort>();
-            eventBus = Substitute.For<EventBus>();
-            createPlayListService = new CreatePlayListService(uniqueIdentifiersPort, playListPersistence, playListNotifierPort, eventBus);
+            eventBusPort = Substitute.For<EventBusPort>();
+            createPlayListService = new CreatePlayListService(uniqueIdentifiersPort, playListPersistence, playListNotifierPort, eventBusPort);
         }
         
         [Test]
@@ -50,7 +50,7 @@ namespace MyMusic.Application.Services.Tests {
         }
 
         private void VerifyEventHasBeenRaised(PlayListHasBeenCreated playListHasBeenCreated) {
-            eventBus.Received()
+            eventBusPort.Received()
                 .Raise(Arg.Is<PlayListHasBeenCreated>(@event =>
                     @event.Equals(playListHasBeenCreated)));
         }

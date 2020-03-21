@@ -1,8 +1,8 @@
 using LanguageExt;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
+using MyMusic.Application.Services.Errors;
 using MyMusic.Application.Services.Successes;
-using MyMusic.Application.SharedKernel.Model;
 
 namespace MyMusic.Application.Services {
     public class ArchivePlayListService {
@@ -15,7 +15,7 @@ namespace MyMusic.Application.Services {
             this.playListNotifier = playListNotifier;
         }
 
-        public Either<Error, ServiceResponse> Execute(string playListId) {
+        public Either<ServiceError, ServiceResponse> Execute(string playListId) {
             var playList = playListPersistence.GetPlayList(playListId);
             playList.Archive();
             playListPersistence.Persist(playList);

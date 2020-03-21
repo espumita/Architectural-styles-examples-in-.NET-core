@@ -1,7 +1,7 @@
 using LanguageExt;
+using MyMusic.Application.Queries.Errors;
 using MyMusic.Application.Read.Model;
 using MyMusic.Application.Read.Ports;
-using MyMusic.Application.SharedKernel.Model;
 
 namespace MyMusic.Application.Queries {
     public class GetTracksQuery {
@@ -12,7 +12,7 @@ namespace MyMusic.Application.Queries {
             this.tracksQueryPort = tracksQueryPort;
         }
 
-        public Either<Error, Track> Get(string trackId) {
+        public Either<QueryError, Track> Get(string trackId) {
             return tracksQueryPort.GetTrack(trackId);
         }
     }

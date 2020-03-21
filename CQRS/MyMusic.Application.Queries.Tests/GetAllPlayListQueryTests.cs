@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using LanguageExt;
+using MyMusic.Application.Queries.Errors;
 using MyMusic.Application.Queries.Tests.builders;
 using MyMusic.Application.Read.Model;
 using MyMusic.Application.Read.Ports;
-using MyMusic.Application.SharedKernel.Model;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -52,7 +52,7 @@ namespace MyMusic.Application.Queries.Tests {
             VerifyPLayListIsEquivalentTo(aPlayList, result);
         }
 
-        private static void VerifyPLayListIsEquivalentTo(PlayList aPlayList, Either<Error, ListOfPlayLists> result) {
+        private static void VerifyPLayListIsEquivalentTo(PlayList aPlayList, Either<QueryError, ListOfPlayLists> result) {
             result.Match(
                 Right: listOfPlayLists => Validate(listOfPlayLists, aPlayList),
                 Left: error => null
