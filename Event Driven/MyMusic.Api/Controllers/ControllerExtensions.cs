@@ -11,23 +11,19 @@ namespace MyMusic.Controllers {
         
         public static ActionResult BuildResponseFrom(this Controller controller, Either<ServiceError, ServiceResponse> result) {
             ActionResult response = null;
-            result.Match(
-                Left: error => response = controller.BadRequest(error),
-                Right: serviceResponse => response = controller.Ok()
-            );
+            result.IfLeft(error => response = controller.BadRequest(error));
+            result.IfRight(serviceResponse => response = controller.Ok());
             return response;
         }
         
-        
         public static ActionResult BuildResponseOfType<T, K>(this Controller controller, Either<QueryError, K> result) where T : ResponseBuilder<T, K>, new () {
             ActionResult response = null;
-            result.Match(
-                Left: error => response = controller.BadRequest(error),
-                Right: domainObject => {
-                    var responseBuilder = new T();
-                    var responseBody = responseBuilder.BuildFrom(domainObject);
-                    return response = controller.Ok(responseBody);
-                });
+            result.IfLeft(error => response = controller.BadRequest(error));
+            result.IfRight(domainObject => {
+                var responseBuilder = new T();
+                var responseBody = responseBuilder.BuildFrom(domainObject);
+                response = controller.Ok(responseBody);
+            });
             return response;
         }
     }
