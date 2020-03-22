@@ -8,18 +8,18 @@ namespace MyMusic.Application.Services {
     public class AddImageUrlToPlayListService {
         
         private readonly PlayListPersistencePort playListPersistence;
-        private readonly PlayListNotifierPort playListNotifierPort;
+        private readonly PlayListNotifierPort playListNotifier;
         
-        public AddImageUrlToPlayListService(PlayListPersistencePort playListPersistence, PlayListNotifierPort playListNotifierPort) {
+        public AddImageUrlToPlayListService(PlayListPersistencePort playListPersistence, PlayListNotifierPort playListNotifier) {
             this.playListPersistence = playListPersistence;
-            this.playListNotifierPort = playListNotifierPort;
+            this.playListNotifier = playListNotifier;
         }
 
         public Either<ServiceError, ServiceResponse> Execute(string playlistId, string aNewImageUrL) {
             var playList = playListPersistence.GetPlayList(playlistId);
             playList.AddImageUrl(aNewImageUrL);
             playListPersistence.Persist(playList);
-            playListNotifierPort.NotifyPlayListUrlHasChanged(playlistId, aNewImageUrL);
+            playListNotifier.NotifyPlayListUrlHasChanged(playlistId, aNewImageUrL);
             return ServiceResponse.Success;
         }
     }

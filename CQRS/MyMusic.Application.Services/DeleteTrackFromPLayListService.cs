@@ -9,19 +9,19 @@ using MyMusic.Domain;
 namespace MyMusic.Application.Services {
     public class DeleteTrackFromPLayListService {
         
-        private readonly PlayListPersistencePort playListPersistencePort;
+        private readonly PlayListPersistencePort playListPersistence;
         private readonly TracksNotifierPort tracksNotifier;
         
-        public DeleteTrackFromPLayListService(PlayListPersistencePort playListPersistencePort, TracksNotifierPort tracksNotifier) {
-            this.playListPersistencePort = playListPersistencePort;
+        public DeleteTrackFromPLayListService(PlayListPersistencePort playListPersistence, TracksNotifierPort tracksNotifier) {
+            this.playListPersistence = playListPersistence;
             this.tracksNotifier = tracksNotifier;
         }
 
         public Either<ServiceError, ServiceResponse> Execute(string trackId, string playlistId) {
-            var playList = playListPersistencePort.GetPlayList(playlistId);
+            var playList = playListPersistence.GetPlayList(playlistId);
             if (TrackIsNotAlreadyIn(playList, trackId)) return ServiceError.TrackIsNotInThePlayList;
             playList.Remove(trackId);
-            playListPersistencePort.Persist(playList);
+            playListPersistence.Persist(playList);
             tracksNotifier.NotifyTrackHasRemovedFromPlayList(trackId, playlistId);
             return ServiceResponse.Success;
         }

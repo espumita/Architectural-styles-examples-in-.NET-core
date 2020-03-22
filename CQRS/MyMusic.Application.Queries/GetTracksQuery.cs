@@ -6,14 +6,14 @@ using MyMusic.Application.Read.Ports;
 namespace MyMusic.Application.Queries {
     public class GetTracksQuery {
         
-        private readonly TracksQueryPort tracksQueryPort;
+        private readonly TracksQueryPort tracksQuery;
 
-        public GetTracksQuery(TracksQueryPort tracksQueryPort) {
-            this.tracksQueryPort = tracksQueryPort;
+        public GetTracksQuery(TracksQueryPort tracksQuery) {
+            this.tracksQuery = tracksQuery;
         }
 
         public Either<QueryError, Track> Get(string trackId) {
-            return tracksQueryPort.GetTrack(trackId);
+            return tracksQuery.GetTrack(trackId);
         }
     }
 }

@@ -9,19 +9,19 @@ using MyMusic.Application.Services.Successes;
 namespace MyMusic.Application.Services {
     public class AddTrackToPlayListService {
         
-        private readonly PlayListPersistencePort playListPersistencePort;
+        private readonly PlayListPersistencePort playListPersistence;
         private readonly TracksNotifierPort tracksNotifier;
         
-        public AddTrackToPlayListService(PlayListPersistencePort playListPersistencePort, TracksNotifierPort tracksNotifier) {
-            this.playListPersistencePort = playListPersistencePort;
+        public AddTrackToPlayListService(PlayListPersistencePort playListPersistence, TracksNotifierPort tracksNotifier) {
+            this.playListPersistence = playListPersistence;
             this.tracksNotifier = tracksNotifier;
         }
 
         public Either<ServiceError, ServiceResponse> Execute(string trackId, string playlistId) {
-            var playList = playListPersistencePort.GetPlayList(playlistId);
+            var playList = playListPersistence.GetPlayList(playlistId);
             if (TrackIsAlreadyIn(playList, trackId)) return ServiceError.CannotAddSameTrackTwice; 
             playList.Add(Track.With(trackId));
-            playListPersistencePort.Persist(playList);
+            playListPersistence.Persist(playList);
             tracksNotifier.NotifyTrackHasBeenAddedToPlayList(trackId, playlistId);
             return ServiceResponse.Success;
         }
