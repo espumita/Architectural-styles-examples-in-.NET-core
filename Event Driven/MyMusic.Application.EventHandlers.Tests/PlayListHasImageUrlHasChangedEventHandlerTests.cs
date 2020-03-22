@@ -6,14 +6,14 @@ using NUnit.Framework;
 namespace MyMusic.Application.EventHandlers.Tests {
 
     public class PlayListHasImageUrlHasChangedEventHandlerTests {
-        private PlayListHasImageUrlHasChangedEventHandler playListHasImageBeenCreatedEventHandler;
+        private PlayListHasImageUrlHasChangedEventHandler playListHasImageUrlHasChangedEventHandler;
         private PlayListNotifierPort playListNotifier;
 
 
         [SetUp]
         public void SetUp() {
             playListNotifier = Substitute.For<PlayListNotifierPort>();
-            playListHasImageBeenCreatedEventHandler = new PlayListHasImageUrlHasChangedEventHandler(playListNotifier);
+            playListHasImageUrlHasChangedEventHandler = new PlayListHasImageUrlHasChangedEventHandler(playListNotifier);
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace MyMusic.Application.EventHandlers.Tests {
             var aPlaylistId = APlaylist.Id;
             var aNewPlayListImageUrl = APlaylist.ImageUrl;
             
-            playListHasImageBeenCreatedEventHandler.Handle(new PlayListImageUrlHasChanged(aPlaylistId, aNewPlayListImageUrl));
+            playListHasImageUrlHasChangedEventHandler.Handle(new PlayListImageUrlHasChanged(aPlaylistId, aNewPlayListImageUrl));
             
             playListNotifier.Received().NotifyPlayListImageUrlHasChanged(aPlaylistId, aNewPlayListImageUrl);
         }
