@@ -29,13 +29,18 @@ namespace MyMusic {
             services.AddSingleton<PlayListEventHandlerCreator>();
 
             services.AddSingleton<PlayListEventConsumer>();
-            var playListHasBeenCreatedEventConsumer = services.BuildServiceProvider().GetService<PlayListEventConsumer>();
+            var playListEventConsumer = services.BuildServiceProvider().GetService<PlayListEventConsumer>();
 
             var eventBus = new EventBusPortInMemoryAdapter();
-            eventBus.Register<PlayListHasBeenCreated>(playListHasBeenCreatedEventConsumer.Consume);
-            eventBus.Register<PlayListHasBeenRenamed>(playListHasBeenCreatedEventConsumer.Consume);
-            eventBus.Register<PlayListImageUrlHasChanged>(playListHasBeenCreatedEventConsumer.Consume);
-            eventBus.Register<PlayListHasBeenArchived>(playListHasBeenCreatedEventConsumer.Consume);
+            eventBus.Register<PlayListHasBeenCreated>(playListEventConsumer.Consume);
+            eventBus.Register<PlayListHasBeenRenamed>(playListEventConsumer.Consume);
+            eventBus.Register<PlayListImageUrlHasChanged>(playListEventConsumer.Consume);
+            eventBus.Register<PlayListHasBeenArchived>(playListEventConsumer.Consume);
+            
+            services.AddSingleton<TrackEventConsumer>();
+            var trackEventConsumer = services.BuildServiceProvider().GetService<TrackEventConsumer>();
+            eventBus.Register<TrackHasBeenAddedToPlayList>(trackEventConsumer.Consume);
+            
             services.AddSingleton(eventBus);
             
  
