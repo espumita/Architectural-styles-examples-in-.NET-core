@@ -32,6 +32,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Application.Read.Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Domain.Events", "MyMusic.Domain.Events\MyMusic.Domain.Events.csproj", "{7694A1F3-4C26-4757-BDCE-1AE8151C59C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Application.EventHandlers", "MyMusic.Application.EventHandlers\MyMusic.Application.EventHandlers.csproj", "{FB5B849C-6983-4C59-AF73-6793073FEFE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Application.EventHandlers.Tests", "MyMusic.Application.EventHandlers.Tests\MyMusic.Application.EventHandlers.Tests.csproj", "{14A22EC3-77C9-4E21-9974-6930D48411B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +90,14 @@ Global
 		{7694A1F3-4C26-4757-BDCE-1AE8151C59C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7694A1F3-4C26-4757-BDCE-1AE8151C59C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7694A1F3-4C26-4757-BDCE-1AE8151C59C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB5B849C-6983-4C59-AF73-6793073FEFE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB5B849C-6983-4C59-AF73-6793073FEFE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB5B849C-6983-4C59-AF73-6793073FEFE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB5B849C-6983-4C59-AF73-6793073FEFE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14A22EC3-77C9-4E21-9974-6930D48411B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14A22EC3-77C9-4E21-9974-6930D48411B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14A22EC3-77C9-4E21-9974-6930D48411B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14A22EC3-77C9-4E21-9974-6930D48411B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0654459D-00DE-469B-9571-3E239AAEE620} = {A66E4A8C-631B-4327-87AB-A1ECEECDAA28}
@@ -99,5 +111,7 @@ Global
 		{857094A9-151B-466B-8AA1-F06744DF44FC} = {23EFD2B9-621D-45BA-8AC0-546914CE64B7}
 		{3668AE90-6F34-461E-92AB-FACAE35B814E} = {23EFD2B9-621D-45BA-8AC0-546914CE64B7}
 		{7694A1F3-4C26-4757-BDCE-1AE8151C59C9} = {A2F47B98-CE0B-4E30-81D7-3617D4938EF8}
+		{FB5B849C-6983-4C59-AF73-6793073FEFE3} = {80DE51DC-88C0-403E-842B-DDE4B1EEC95A}
+		{14A22EC3-77C9-4E21-9974-6930D48411B8} = {80DE51DC-88C0-403E-842B-DDE4B1EEC95A}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,5 @@
 using FluentAssertions;
 using MyMusic.Application.Ports;
-using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Tests.builders;
 using MyMusic.Domain;
@@ -14,17 +13,15 @@ namespace MyMusic.Application.Services.Tests {
      
         private CreatePlayListService createPlayListService;
         private PlayListPersistencePort playListPersistence;
-        private PlayListNotifierPort playListNotifierPort;
         private UniqueIdentifiersPort uniqueIdentifiersPort;
         private EventBusPort eventBusPort;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            playListNotifierPort = Substitute.For<PlayListNotifierPort>();
             uniqueIdentifiersPort = Substitute.For<UniqueIdentifiersPort>();
             eventBusPort = Substitute.For<EventBusPort>();
-            createPlayListService = new CreatePlayListService(uniqueIdentifiersPort, playListPersistence, playListNotifierPort, eventBusPort);
+            createPlayListService = new CreatePlayListService(uniqueIdentifiersPort, playListPersistence, eventBusPort);
         }
         
         [Test]
@@ -37,7 +34,6 @@ namespace MyMusic.Application.Services.Tests {
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, aPlaylistName, PlayListStatus.Active);
-            playListNotifierPort.Received().NotifyPlayListHasBeenCreated(aPlaylistId, aPlaylistName);
             VerifyEventHasBeenRaised(new PlayListHasBeenCreated(aPlaylistId, aPlaylistName));
         }
 

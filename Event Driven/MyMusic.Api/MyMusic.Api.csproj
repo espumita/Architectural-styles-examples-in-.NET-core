@@ -10,6 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\MyMusic.Application.EventHandlers\MyMusic.Application.EventHandlers.csproj" />
       <ProjectReference Include="..\MyMusic.Application.Queries\MyMusic.Application.Queries.csproj" />
       <ProjectReference Include="..\MyMusic.Application.Services\MyMusic.Application.Services.csproj" />
       <ProjectReference Include="..\MyMusic.Infrastructure.Adapters\MyMusic.Infrastructure.Adapters.csproj" />

@@ -4,9 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using MyMusic.Application.Ports.Notifications;
 using MyMusic.Domain.Events;
-using MyMusic.EventHandlers;
+using MyMusic.EventConsumers;
+using MyMusic.EventHandlerCreators;
 using MyMusic.Infrastructure.Adapters;
 using MyMusic.QueryCreators;
 using MyMusic.ServiceCreators;
@@ -26,12 +26,13 @@ namespace MyMusic {
             services.AddSingleton<TracksServiceCreator>();
             services.AddSingleton<PlayListQueryCreator>();
             services.AddSingleton<TracksQueryCreator>();
+            services.AddSingleton<PlayListEventHandlerCreator>();
 
-            services.AddSingleton<PlayListHasBeenCreatedEventHandler>();
+            services.AddSingleton<PlayListHasBeenCreatedEventConsumer>();
+            var playListHasBeenCreatedEventConsumer = services.BuildServiceProvider().GetService<PlayListHasBeenCreatedEventConsumer>();
 
             var eventBus = new EventBusPortInMemoryAdapter();
-            var playListHasBeenCreatedEventHandler = new PlayListHasBeenCreatedEventHandler();
-            eventBus.Register<PlayListHasBeenCreated>(playListHasBeenCreatedEventHandler.Handle);
+            eventBus.Register<PlayListHasBeenCreated>(playListHasBeenCreatedEventConsumer.Consume);
             services.AddSingleton(eventBus);
             
  
