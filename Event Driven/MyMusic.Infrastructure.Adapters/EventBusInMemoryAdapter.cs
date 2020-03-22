@@ -5,7 +5,7 @@ using MyMusic.Domain.Events;
 
 namespace MyMusic.Infrastructure.Adapters {
 
-    public class EventBusPortInMemoryAdapter : EventBusPort {
+    public class EventBusInMemoryAdapter : EventBusPort {
         
         private Dictionary<Type, List<Action<Event>>> eventHandlers = new Dictionary<Type, List<Action<Event>>>();
         
