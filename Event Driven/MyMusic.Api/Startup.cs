@@ -28,8 +28,8 @@ namespace MyMusic {
             services.AddSingleton<TracksQueryCreator>();
             services.AddSingleton<PlayListEventHandlerCreator>();
 
-            services.AddSingleton<PlayListHasBeenCreatedEventConsumer>();
-            var playListHasBeenCreatedEventConsumer = services.BuildServiceProvider().GetService<PlayListHasBeenCreatedEventConsumer>();
+            services.AddSingleton<PlayListEventConsumer>();
+            var playListHasBeenCreatedEventConsumer = services.BuildServiceProvider().GetService<PlayListEventConsumer>();
 
             var eventBus = new EventBusPortInMemoryAdapter();
             eventBus.Register<PlayListHasBeenCreated>(playListHasBeenCreatedEventConsumer.Consume);

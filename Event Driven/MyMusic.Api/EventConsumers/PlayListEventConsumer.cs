@@ -2,10 +2,10 @@ using MyMusic.Domain.Events;
 using MyMusic.EventHandlerCreators;
 
 namespace MyMusic.EventConsumers {
-    public class PlayListHasBeenCreatedEventConsumer {
+    public class PlayListEventConsumer {
         private readonly PlayListEventHandlerCreator playListEventHandlerCreator;
 
-        public PlayListHasBeenCreatedEventConsumer(PlayListEventHandlerCreator playListEventHandlerCreator) {
+        public PlayListEventConsumer(PlayListEventHandlerCreator playListEventHandlerCreator) {
             this.playListEventHandlerCreator = playListEventHandlerCreator;
         }
 
