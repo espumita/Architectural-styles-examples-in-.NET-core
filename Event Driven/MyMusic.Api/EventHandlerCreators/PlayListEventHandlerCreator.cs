@@ -1,6 +1,5 @@
 
 using MyMusic.Application.EventHandlers;
-using MyMusic.Domain.Events;
 using MyMusic.Infrastructure.Adapters.Http;
 
 namespace MyMusic.EventHandlerCreators {

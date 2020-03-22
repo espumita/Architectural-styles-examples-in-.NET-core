@@ -1,13 +1,13 @@
+using MyMusic.Application.Ports;
 using MyMusic.Application.Services;
-using MyMusic.Infrastructure.Adapters;
 using MyMusic.Infrastructure.Adapters.Persistence;
 
 namespace MyMusic.ServiceCreators {
 
     public class TracksServiceCreator {
-        private readonly EventBusPortInMemoryAdapter eventBus;
+        private readonly EventBusPort eventBus;
 
-        public TracksServiceCreator(EventBusPortInMemoryAdapter eventBus) {
+        public TracksServiceCreator(EventBusPort eventBus) {
             this.eventBus = eventBus;
         }
 

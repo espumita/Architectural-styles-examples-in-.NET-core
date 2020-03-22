@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using MyMusic.Application.Ports;
 using MyMusic.Domain.Events;
 using MyMusic.EventConsumers;
 using MyMusic.EventHandlerCreators;
@@ -43,7 +44,7 @@ namespace MyMusic {
             eventBus.Register<TrackHasBeenAddedToPlayList>(trackEventConsumer.Consume);
             eventBus.Register<TrackHasBeenRemovedFromPlayList>(trackEventConsumer.Consume);
             
-            services.AddSingleton(eventBus);
+            services.AddSingleton<EventBusPort>(eventBus);
             
  
             services.AddSwaggerGen(options => {
