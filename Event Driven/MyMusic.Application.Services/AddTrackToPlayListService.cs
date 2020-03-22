@@ -20,10 +20,11 @@ namespace MyMusic.Application.Services {
 
         public Either<ServiceError, ServiceResponse> Execute(string trackId, string playlistId) {
             var playList = playListPersistence.GetPlayList(playlistId);
-            if (TrackIsAlreadyIn(playList, trackId)) return ServiceError.CannotAddSameTrackTwice; 
-            playList.Add(Track.With(trackId));
+            if (TrackIsAlreadyIn(playList, trackId)) return ServiceError.CannotAddSameTrackTwice;
+            var track = Track.With(trackId);
+            playList.Add(track);
             playListPersistence.Persist(playList);
-            eventBus.Raise(new TrackHasBeenAddedToPlayList(trackId, playlistId));
+            eventBus.Raise(new TrackHasBeenAddedToPlayList(track.Id, playList.Id));
             return ServiceResponse.Success;
         }
 
