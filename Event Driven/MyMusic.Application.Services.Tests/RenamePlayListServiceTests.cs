@@ -1,7 +1,9 @@
 using FluentAssertions;
+using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Tests.builders;
 using MyMusic.Domain;
+using MyMusic.Domain.Events;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -11,11 +13,13 @@ namespace MyMusic.Application.Services.Tests {
         
         private RenamePlayListService renamePlayListService;
         private PlayListPersistencePort playListPersistence;
+        private EventBusPort eventBus;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            renamePlayListService = new RenamePlayListService(playListPersistence);
+            eventBus = Substitute.For<EventBusPort>();
+            renamePlayListService = new RenamePlayListService(playListPersistence, eventBus);
         }
 
         [Test]
@@ -40,6 +44,12 @@ namespace MyMusic.Application.Services.Tests {
                 playlist.Id.Equals(aPlaylistId)
                 && playlist.Name.Equals(anotherPlaylistName)
             ));
+        }
+        
+        private void VerifyEventHasBeenRaised(Event expectedEvent) {
+            eventBus.Received()
+                .Raise(Arg.Is<Event>(@event =>
+                    @event.Equals(expectedEvent)));
         }
     }
 }

@@ -20,7 +20,7 @@ namespace MyMusic.Application.Services {
             var playList = playListPersistence.GetPlayList(playListId);
             playList.Archive();
             playListPersistence.Persist(playList);
-            eventBus.Raise(new PlayListHasBeenArchived(playListId));
+            eventBus.Raise(new PlayListHasBeenArchived(playList.Id));
             return ServiceResponse.Success;
         }
     }

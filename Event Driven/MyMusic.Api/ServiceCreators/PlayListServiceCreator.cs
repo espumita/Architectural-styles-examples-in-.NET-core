@@ -20,7 +20,7 @@ namespace MyMusic.ServiceCreators {
 
         public RenamePlayListService CreateRenamePlayListService() {
             var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
-            return new RenamePlayListService(pLayListDatabaseAdapter);
+            return new RenamePlayListService(pLayListDatabaseAdapter, eventBusPort);
         }
 
         public ArchivePlayListService CreateArchivePlayListService() {

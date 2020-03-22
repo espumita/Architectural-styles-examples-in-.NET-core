@@ -13,13 +13,13 @@ namespace MyMusic.Application.Services.Tests {
         
         private ArchivePlayListService archivePlayListService;
         private PlayListPersistencePort playListPersistence;
-        private EventBusPort eventBusPort;
+        private EventBusPort eventBus;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            eventBusPort = Substitute.For<EventBusPort>();
-            archivePlayListService = new ArchivePlayListService(playListPersistence, eventBusPort);
+            eventBus = Substitute.For<EventBusPort>();
+            archivePlayListService = new ArchivePlayListService(playListPersistence, eventBus);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace MyMusic.Application.Services.Tests {
                            ));
         }
         private void VerifyEventHasBeenRaised(Event expectedEvent) {
-            eventBusPort.Received()
+            eventBus.Received()
                 .Raise(Arg.Is<Event>(@event =>
                     @event.Equals(expectedEvent)));
         }
