@@ -7,5 +7,10 @@ namespace MyMusic.EventHandlerCreators {
             var traksSpotifyApiAdapter = new TraksSpotifyApiAdapter();
             return new TrackHasBeenAddedToPlayListEventHandler(traksSpotifyApiAdapter);
         }
+
+        public TrackHasBeenDeletedFromPlayListEventHandler TrackHasBeenRemovedFromToPlayList() {
+            var traksSpotifyApiAdapter = new TraksSpotifyApiAdapter();
+            return new TrackHasBeenDeletedFromPlayListEventHandler(traksSpotifyApiAdapter);
+        }
     }
 }

@@ -27,6 +27,7 @@ namespace MyMusic {
             services.AddSingleton<PlayListQueryCreator>();
             services.AddSingleton<TracksQueryCreator>();
             services.AddSingleton<PlayListEventHandlerCreator>();
+            services.AddSingleton<TrackEventHandlerCreator>();
 
             services.AddSingleton<PlayListEventConsumer>();
             var playListEventConsumer = services.BuildServiceProvider().GetService<PlayListEventConsumer>();
@@ -40,6 +41,7 @@ namespace MyMusic {
             services.AddSingleton<TrackEventConsumer>();
             var trackEventConsumer = services.BuildServiceProvider().GetService<TrackEventConsumer>();
             eventBus.Register<TrackHasBeenAddedToPlayList>(trackEventConsumer.Consume);
+            eventBus.Register<TrackHasBeenDeletedFromPlayList>(trackEventConsumer.Consume);
             
             services.AddSingleton(eventBus);
             
