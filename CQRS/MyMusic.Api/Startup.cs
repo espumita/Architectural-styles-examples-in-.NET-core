@@ -18,13 +18,25 @@ namespace MyMusic {
 
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers();
-            services.AddSingleton(new PlayListServiceCreator());
-            services.AddSingleton(new TracksServiceCreator());
-            services.AddSingleton(new PlayListQueryCreator());
-            services.AddSingleton(new TracksQueryCreator());
+            ConfigureDependencyInjector(services);
             services.AddSwaggerGen(options => {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
+        }
+        
+        private static void ConfigureDependencyInjector(IServiceCollection services) {
+            AddServiceCreatorsToDependencyInjector(services);
+            AddQueryCreatorsToDependencyInjector(services);
+        }
+        
+        private static void AddServiceCreatorsToDependencyInjector(IServiceCollection services) {
+            services.AddSingleton<PlayListServiceCreator>();
+            services.AddSingleton<TracksServiceCreator>();
+        }
+        
+        private static void AddQueryCreatorsToDependencyInjector(IServiceCollection services) {
+            services.AddSingleton<PlayListQueryCreator>();
+            services.AddSingleton<TracksQueryCreator>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
