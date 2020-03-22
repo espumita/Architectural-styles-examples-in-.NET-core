@@ -6,14 +6,14 @@ using NUnit.Framework;
 namespace MyMusic.Application.EventHandlers.Tests {
 
     public class TrackHasBeenAddedToPlayListEventHandlerTests {
-        private TrackHasBeenAddedToPlayListEventHandler trackHasBeenAddedToPlayListEventHandler;
+        private TrackHasBeenAddedToPlayListEventHandler trackHasBeenAddedToPlayList;
         private TracksNotifierPort tracksNotifier;
 
 
         [SetUp]
         public void SetUp() {
             tracksNotifier = Substitute.For<TracksNotifierPort>();
-            trackHasBeenAddedToPlayListEventHandler = new TrackHasBeenAddedToPlayListEventHandler(tracksNotifier);
+            trackHasBeenAddedToPlayList = new TrackHasBeenAddedToPlayListEventHandler(tracksNotifier);
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace MyMusic.Application.EventHandlers.Tests {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;
             
-            trackHasBeenAddedToPlayListEventHandler.Handle(new TrackHasBeenAddedToPlayList(aTrackId, aPlaylistId));
+            trackHasBeenAddedToPlayList.Handle(new TrackHasBeenAddedToPlayList(aTrackId, aPlaylistId));
             
             tracksNotifier.Received().NotifyTrackHasBeenAddedToPlayList(aTrackId, aPlaylistId);
         }

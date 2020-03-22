@@ -6,14 +6,14 @@ using NUnit.Framework;
 namespace MyMusic.Application.EventHandlers.Tests {
 
     public class PlayListHasBeenCreatedEventHandlerTests {
-        private PlayListHasBeenCreatedEventHandler playListHasBeenCreatedEventHandler;
+        private PlayListHasBeenCreatedEventHandler playListHasBeenCreated;
         private PlayListNotifierPort playListNotifier;
 
 
         [SetUp]
         public void SetUp() {
             playListNotifier = Substitute.For<PlayListNotifierPort>();
-            playListHasBeenCreatedEventHandler = new PlayListHasBeenCreatedEventHandler(playListNotifier);
+            playListHasBeenCreated = new PlayListHasBeenCreatedEventHandler(playListNotifier);
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace MyMusic.Application.EventHandlers.Tests {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;
             
-            playListHasBeenCreatedEventHandler.Handle(new PlayListHasBeenCreated(aPlaylistId, aPlaylistName));
+            playListHasBeenCreated.Handle(new PlayListHasBeenCreated(aPlaylistId, aPlaylistName));
             
             playListNotifier.Received().NotifyPlayListHasBeenCreated(aPlaylistId, aPlaylistName);
         }

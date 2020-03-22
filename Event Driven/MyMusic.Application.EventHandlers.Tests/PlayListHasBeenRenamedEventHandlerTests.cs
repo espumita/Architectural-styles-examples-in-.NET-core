@@ -6,14 +6,14 @@ using NUnit.Framework;
 namespace MyMusic.Application.EventHandlers.Tests {
 
     public class PlayListHasBeenRenamedEventHandlerTests {
-        private PlayListHasBeenRenamedEventHandler playListHasBeenRenamedEventHandler;
+        private PlayListHasBeenRenamedEventHandler playListHasBeenRenamed;
         private PlayListNotifierPort playListNotifier;
 
 
         [SetUp]
         public void SetUp() {
             playListNotifier = Substitute.For<PlayListNotifierPort>();
-            playListHasBeenRenamedEventHandler = new PlayListHasBeenRenamedEventHandler(playListNotifier);
+            playListHasBeenRenamed = new PlayListHasBeenRenamedEventHandler(playListNotifier);
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace MyMusic.Application.EventHandlers.Tests {
             var aPlaylistId = APlaylist.Id;
             var aNewPlaylistName = APlaylist.Name;
             
-            playListHasBeenRenamedEventHandler.Handle(new PlayListHasBeenRenamed(aPlaylistId, aNewPlaylistName));
+            playListHasBeenRenamed.Handle(new PlayListHasBeenRenamed(aPlaylistId, aNewPlaylistName));
             
             playListNotifier.Received().NotifyPlayListHasBeenRenamed(aPlaylistId, aNewPlaylistName);
         }
