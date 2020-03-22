@@ -1,8 +1,10 @@
 using FluentAssertions;
+using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Tests.builders;
 using MyMusic.Domain;
+using MyMusic.Domain.Events;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -12,13 +14,13 @@ namespace MyMusic.Application.Services.Tests {
         
         private AddImageUrlToPlayListService addImageUrlToPlayListService;
         private PlayListPersistencePort playListPersistence;
-        private PlayListNotifierPort playListNotifier;
+        private EventBusPort eventBus;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            playListNotifier = Substitute.For<PlayListNotifierPort>();
-            addImageUrlToPlayListService = new AddImageUrlToPlayListService(playListPersistence, playListNotifier);
+            eventBus = Substitute.For<EventBusPort>();
+            addImageUrlToPlayListService = new AddImageUrlToPlayListService(playListPersistence, eventBus);
         }
 
         [Test]
@@ -34,7 +36,7 @@ namespace MyMusic.Application.Services.Tests {
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, anImageUrl);
-            playListNotifier.Received().NotifyPlayListImageUrlHasChanged(aPlaylistId, anImageUrl);
+            VerifyEventHasBeenRaised(new PlayListImageUrlHasChanged(aPlaylistId, anImageUrl));
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string anImageUrl) {
@@ -42,6 +44,12 @@ namespace MyMusic.Application.Services.Tests {
                 playlist.Id.Equals(aPlaylistId)
                 && playlist.ImageUrl.Equals(anImageUrl)
             ));
+        }
+        
+        private void VerifyEventHasBeenRaised(Event expectedEvent) {
+            eventBus.Received()
+                .Raise(Arg.Is<Event>(@event =>
+                    @event.Equals(expectedEvent)));
         }
     }
 }

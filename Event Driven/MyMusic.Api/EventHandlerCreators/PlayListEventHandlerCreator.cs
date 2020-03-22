@@ -20,5 +20,10 @@ namespace MyMusic.EventHandlerCreators {
             var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
             return new PlayListHasBeenRenamedEventHandler(musicCloudApiHttpAdapter);
         }
+
+        public PlayListHasImageUrlHasChangedEventHandler PlayListImageUrlHasChanged() {
+            var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
+            return new PlayListHasImageUrlHasChangedEventHandler(musicCloudApiHttpAdapter);
+        }
     }
 }

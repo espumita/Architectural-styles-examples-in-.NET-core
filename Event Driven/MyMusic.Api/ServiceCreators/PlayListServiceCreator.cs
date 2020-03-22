@@ -1,6 +1,5 @@
 using MyMusic.Application.Services;
 using MyMusic.Infrastructure.Adapters;
-using MyMusic.Infrastructure.Adapters.Http;
 using MyMusic.Infrastructure.Adapters.Persistence;
 
 namespace MyMusic.ServiceCreators {
@@ -30,8 +29,7 @@ namespace MyMusic.ServiceCreators {
 
         public AddImageUrlToPlayListService CreateAddImageUrlPlayListService() {
             var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
-            var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
-            return new AddImageUrlToPlayListService(pLayListDatabaseAdapter, musicCloudApiHttpAdapter);
+            return new AddImageUrlToPlayListService(pLayListDatabaseAdapter, eventBusPort);
         }
     }
 }

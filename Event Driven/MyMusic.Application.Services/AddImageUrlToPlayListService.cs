@@ -1,25 +1,26 @@
 using LanguageExt;
-using MyMusic.Application.Ports.Notifications;
+using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Errors;
 using MyMusic.Application.Services.Successes;
+using MyMusic.Domain.Events;
 
 namespace MyMusic.Application.Services {
     public class AddImageUrlToPlayListService {
         
         private readonly PlayListPersistencePort playListPersistence;
-        private readonly PlayListNotifierPort playListNotifierPort;
-        
-        public AddImageUrlToPlayListService(PlayListPersistencePort playListPersistence, PlayListNotifierPort playListNotifierPort) {
+        private readonly EventBusPort eventBus;
+
+        public AddImageUrlToPlayListService(PlayListPersistencePort playListPersistence, EventBusPort eventBus) {
             this.playListPersistence = playListPersistence;
-            this.playListNotifierPort = playListNotifierPort;
+            this.eventBus = eventBus;
         }
 
-        public Either<ServiceError, ServiceResponse> Execute(string playlistId, string aNewImageUrL) {
-            var playList = playListPersistence.GetPlayList(playlistId);
+        public Either<ServiceError, ServiceResponse> Execute(string playListId, string aNewImageUrL) {
+            var playList = playListPersistence.GetPlayList(playListId);
             playList.AddImageUrl(aNewImageUrL);
             playListPersistence.Persist(playList);
-            playListNotifierPort.NotifyPlayListImageUrlHasChanged(playlistId, aNewImageUrL);
+            eventBus.Raise(new PlayListImageUrlHasChanged(playList.Id, playList.ImageUrl));
             return ServiceResponse.Success;
         }
     }
