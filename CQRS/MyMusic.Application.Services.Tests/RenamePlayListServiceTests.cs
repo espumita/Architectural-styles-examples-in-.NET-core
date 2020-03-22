@@ -12,13 +12,13 @@ namespace MyMusic.Application.Services.Tests {
         
         private RenamePlayListService renamePlayListService;
         private PlayListPersistencePort playListPersistence;
-        private PlayListNotifierPort playListNotifierPort;
+        private PlayListNotifierPort playListNotifier;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            playListNotifierPort = Substitute.For<PlayListNotifierPort>();
-            renamePlayListService = new RenamePlayListService(playListPersistence, playListNotifierPort);
+            playListNotifier = Substitute.For<PlayListNotifierPort>();
+            renamePlayListService = new RenamePlayListService(playListPersistence, playListNotifier);
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace MyMusic.Application.Services.Tests {
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, anotherPlaylistName);
-            playListNotifierPort.Received().NotifyPlayListHasBeenRenamed(aPlaylistId, anotherPlaylistName);
+            playListNotifier.Received().NotifyPlayListHasBeenRenamed(aPlaylistId, anotherPlaylistName);
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string anotherPlaylistName) {

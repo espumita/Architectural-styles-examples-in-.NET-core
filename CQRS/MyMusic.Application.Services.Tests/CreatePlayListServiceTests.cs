@@ -13,28 +13,28 @@ namespace MyMusic.Application.Services.Tests {
      
         private CreatePlayListService createPlayListService;
         private PlayListPersistencePort playListPersistence;
-        private PlayListNotifierPort playListNotifierPort;
-        private UniqueIdentifiersPort uniqueIdentifiersPort;
+        private PlayListNotifierPort playListNotifier;
+        private UniqueIdentifiersPort uniqueIdentifiers;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            playListNotifierPort = Substitute.For<PlayListNotifierPort>();
-            uniqueIdentifiersPort = Substitute.For<UniqueIdentifiersPort>();
-            createPlayListService = new CreatePlayListService(uniqueIdentifiersPort, playListPersistence, playListNotifierPort);
+            playListNotifier = Substitute.For<PlayListNotifierPort>();
+            uniqueIdentifiers = Substitute.For<UniqueIdentifiersPort>();
+            createPlayListService = new CreatePlayListService(uniqueIdentifiers, playListPersistence, playListNotifier);
         }
         
         [Test]
         public void create_a_play_list() {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;
-            uniqueIdentifiersPort.GetNewUniqueIdentifier().Returns(aPlaylistId);
+            uniqueIdentifiers.GetNewUniqueIdentifier().Returns(aPlaylistId);
             
             var result = createPlayListService.Execute(aPlaylistName);
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, aPlaylistName, PlayListStatus.Active);
-            playListNotifierPort.Received().NotifyPlayListHasBeenCreated(aPlaylistId, aPlaylistName);
+            playListNotifier.Received().NotifyPlayListHasBeenCreated(aPlaylistId, aPlaylistName);
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string aPlaylistName, PlayListStatus status) {
