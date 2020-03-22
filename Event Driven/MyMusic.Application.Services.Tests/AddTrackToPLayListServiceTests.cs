@@ -1,10 +1,11 @@
 using System.Linq;
 using FluentAssertions;
-using MyMusic.Application.Ports.Notifications;
+using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Errors;
 using MyMusic.Application.Services.Tests.builders;
 using MyMusic.Domain;
+using MyMusic.Domain.Events;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -14,13 +15,13 @@ namespace MyMusic.Application.Services.Tests {
         
         private AddTrackToPlayListService addTrackToPlayListService;
         private PlayListPersistencePort playListPersistence;
-        private TracksNotifierPort tracksNotifier;
+        private EventBusPort eventBus;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            tracksNotifier = Substitute.For<TracksNotifierPort>();
-            addTrackToPlayListService = new AddTrackToPlayListService(playListPersistence, tracksNotifier);
+            eventBus = Substitute.For<EventBusPort>();
+            addTrackToPlayListService = new AddTrackToPlayListService(playListPersistence, eventBus);
         }
         
         [Test]
@@ -36,7 +37,7 @@ namespace MyMusic.Application.Services.Tests {
 
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, aTrackId);
-            tracksNotifier.Received().NotifyTrackHasBeenAddedToPlayList(aTrackId, aPlaylistId);
+            VerifyEventHasBeenRaised(new TrackHasBeenAddedToPlayList(aTrackId, aPlaylistId));
         }
 
         [Test]
@@ -56,7 +57,7 @@ namespace MyMusic.Application.Services.Tests {
             result.IsLeft.Should().BeTrue();
             result.IfLeft(error => error.Should().Be(ServiceError.CannotAddSameTrackTwice));
             playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
-            tracksNotifier.DidNotReceive().NotifyTrackHasBeenAddedToPlayList(Arg.Any<string>(), Arg.Any<string>());
+            eventBus.DidNotReceive().Raise(Arg.Any<Event>());
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string aTrackId) {
@@ -64,6 +65,12 @@ namespace MyMusic.Application.Services.Tests {
                 playlist.Id.Equals(aPlaylistId)
                 && playlist.TrackList.Single().Id.Equals(aTrackId)
             ));
+        }
+        
+        private void VerifyEventHasBeenRaised(Event expectedEvent) {
+            eventBus.Received()
+                .Raise(Arg.Is<Event>(@event =>
+                    @event.Equals(expectedEvent)));
         }
         
     }
