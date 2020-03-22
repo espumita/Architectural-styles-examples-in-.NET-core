@@ -7,12 +7,12 @@ using MyMusic.Application.Services.Successes;
 using MyMusic.Domain;
 
 namespace MyMusic.Application.Services {
-    public class DeleteTrackFromPLayListService {
+    public class RemoveTrackFromPLayListService {
         
         private readonly PlayListPersistencePort playListPersistence;
         private readonly TracksNotifierPort tracksNotifier;
         
-        public DeleteTrackFromPLayListService(PlayListPersistencePort playListPersistence, TracksNotifierPort tracksNotifier) {
+        public RemoveTrackFromPLayListService(PlayListPersistencePort playListPersistence, TracksNotifierPort tracksNotifier) {
             this.playListPersistence = playListPersistence;
             this.tracksNotifier = tracksNotifier;
         }
