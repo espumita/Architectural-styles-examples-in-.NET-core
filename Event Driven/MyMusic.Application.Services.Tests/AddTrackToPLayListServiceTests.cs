@@ -1,10 +1,8 @@
 using System.Linq;
 using FluentAssertions;
-using LanguageExt;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Errors;
-using MyMusic.Application.Services.Successes;
 using MyMusic.Application.Services.Tests.builders;
 using MyMusic.Domain;
 using NSubstitute;

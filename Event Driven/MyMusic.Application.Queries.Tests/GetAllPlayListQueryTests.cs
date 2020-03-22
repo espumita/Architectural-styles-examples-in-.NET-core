@@ -11,12 +11,12 @@ namespace MyMusic.Application.Queries.Tests {
 
     public class GetAllPlayListQueryTests {
         private GetAllPlayListQuery getAllPlayListQuery;
-        private PlayListQueryPort playListQueryPort;
+        private PlayListQueryPort playListQuery;
 
         [SetUp]
         public void SetUp() {
-            playListQueryPort = Substitute.For<PlayListQueryPort>();
-            getAllPlayListQuery = new GetAllPlayListQuery(playListQueryPort);
+            playListQuery = Substitute.For<PlayListQueryPort>();
+            getAllPlayListQuery = new GetAllPlayListQuery(playListQuery);
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace MyMusic.Application.Queries.Tests {
                 .WithId(anotherPlayListId)
                 .WithStatus(PlayListStatus.Archived)
                 .Build();
-            playListQueryPort.GetAllPlayList().Returns(new List<PlayList> {
+            playListQuery.GetAllPlayList().Returns(new List<PlayList> {
                 aPlayList, anotherPlayList
             });
 

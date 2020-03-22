@@ -7,14 +7,14 @@ using MyMusic.Application.Queries.Errors;
 namespace MyMusic.Application.Queries {
 
     public class GetAllPlayListQuery {
-        private readonly PlayListQueryPort playListQueryPort;
+        private readonly PlayListQueryPort playListQuery;
         
-        public GetAllPlayListQuery(PlayListQueryPort playListQueryPort) {
-            this.playListQueryPort = playListQueryPort;
+        public GetAllPlayListQuery(PlayListQueryPort playListQuery) {
+            this.playListQuery = playListQuery;
         }
 
         public Either<QueryError, ListOfPlayLists> Execute() {
-            var playLists = playListQueryPort.GetAllPlayList();
+            var playLists = playListQuery.GetAllPlayList();
             var activePlayLists = playLists
                     .Where(playList => playList.Status == PlayListStatus.Active)
                     .ToList();
