@@ -1,20 +1,21 @@
 using System.Linq;
 using LanguageExt;
-using MyMusic.Application.Ports.Notifications;
+using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Errors;
 using MyMusic.Application.Services.Successes;
 using MyMusic.Domain;
+using MyMusic.Domain.Events;
 
 namespace MyMusic.Application.Services {
     public class DeleteTrackFromPLayListService {
         
         private readonly PlayListPersistencePort playListPersistence;
-        private readonly TracksNotifierPort tracksNotifier;
+        private readonly EventBusPort eventBus;
         
-        public DeleteTrackFromPLayListService(PlayListPersistencePort playListPersistence, TracksNotifierPort tracksNotifier) {
+        public DeleteTrackFromPLayListService(PlayListPersistencePort playListPersistence, EventBusPort eventBus) {
             this.playListPersistence = playListPersistence;
-            this.tracksNotifier = tracksNotifier;
+            this.eventBus = eventBus;
         }
 
         public Either<ServiceError, ServiceResponse> Execute(string trackId, string playlistId) {
@@ -22,7 +23,7 @@ namespace MyMusic.Application.Services {
             if (TrackIsNotAlreadyIn(playList, trackId)) return ServiceError.TrackIsNotInThePlayList;
             playList.Remove(trackId);
             playListPersistence.Persist(playList);
-            tracksNotifier.NotifyTrackHasRemovedFromPlayList(trackId, playlistId);
+            eventBus.Raise(new TrackHasBeenDeletedFromPlayList(trackId, playList.Id));
             return ServiceResponse.Success;
         }
         

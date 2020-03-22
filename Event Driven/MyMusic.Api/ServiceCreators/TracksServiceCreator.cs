@@ -1,6 +1,5 @@
 using MyMusic.Application.Services;
 using MyMusic.Infrastructure.Adapters;
-using MyMusic.Infrastructure.Adapters.Http;
 using MyMusic.Infrastructure.Adapters.Persistence;
 
 namespace MyMusic.ServiceCreators {
@@ -19,8 +18,7 @@ namespace MyMusic.ServiceCreators {
         
         public DeleteTrackFromPLayListService CreateDeleteTrackFromPLayListService() {
             var pLayListPostgreSqlAdapter = new PLayListPostgreSQLPersistenceAdapter();
-            var tracksNotifierAdapter = new TraksSpotifyApiAdapter();
-            return new DeleteTrackFromPLayListService(pLayListPostgreSqlAdapter, tracksNotifierAdapter);
+            return new DeleteTrackFromPLayListService(pLayListPostgreSqlAdapter, eventBus);
         }
     }
 }
