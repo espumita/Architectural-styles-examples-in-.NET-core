@@ -15,9 +15,9 @@ namespace MyMusic.EventConsumers {
             trackHasBeenAddedToPlayListEventHandler.Handle(@event);
         }
 
-        public void Consume(TrackHasBeenDeletedFromPlayList @event) {
-            var trackHasBeenDeletedFromPlayListEventHandler = trackEventHandlerCreator.TrackHasBeenRemovedFromToPlayList();
-            trackHasBeenDeletedFromPlayListEventHandler.Handle(@event);
+        public void Consume(TrackHasBeenRemovedFromPlayList @event) {
+            var trackHasBeenRemovedFromPlayListEventHandler = trackEventHandlerCreator.TrackHasBeenRemovedFromToPlayList();
+            trackHasBeenRemovedFromPlayListEventHandler.Handle(@event);
         }
     }
 }

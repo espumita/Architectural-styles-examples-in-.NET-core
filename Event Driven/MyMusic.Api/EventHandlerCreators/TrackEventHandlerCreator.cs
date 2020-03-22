@@ -8,9 +8,9 @@ namespace MyMusic.EventHandlerCreators {
             return new TrackHasBeenAddedToPlayListEventHandler(traksSpotifyApiAdapter);
         }
 
-        public TrackHasBeenDeletedFromPlayListEventHandler TrackHasBeenRemovedFromToPlayList() {
+        public TrackHasBeenRemovedFromPlayListEventHandler TrackHasBeenRemovedFromToPlayList() {
             var traksSpotifyApiAdapter = new TraksSpotifyApiAdapter();
-            return new TrackHasBeenDeletedFromPlayListEventHandler(traksSpotifyApiAdapter);
+            return new TrackHasBeenRemovedFromPlayListEventHandler(traksSpotifyApiAdapter);
         }
     }
 }

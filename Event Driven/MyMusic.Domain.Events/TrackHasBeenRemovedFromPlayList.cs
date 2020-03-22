@@ -2,16 +2,16 @@ using System;
 
 namespace MyMusic.Domain.Events {
 
-    public class TrackHasBeenDeletedFromPlayList : Event {
+    public class TrackHasBeenRemovedFromPlayList : Event {
         public string TrackId { get; }
         public string PlayListId { get; }
 
-        public TrackHasBeenDeletedFromPlayList(string trackId, string playListId) {
+        public TrackHasBeenRemovedFromPlayList(string trackId, string playListId) {
             TrackId = trackId;
             PlayListId = playListId;
         }
 
-        protected bool Equals(TrackHasBeenDeletedFromPlayList other) {
+        protected bool Equals(TrackHasBeenRemovedFromPlayList other) {
             return TrackId == other.TrackId && PlayListId == other.PlayListId;
         }
 
@@ -19,7 +19,7 @@ namespace MyMusic.Domain.Events {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((TrackHasBeenDeletedFromPlayList) obj);
+            return Equals((TrackHasBeenRemovedFromPlayList) obj);
         }
 
         public override int GetHashCode() {

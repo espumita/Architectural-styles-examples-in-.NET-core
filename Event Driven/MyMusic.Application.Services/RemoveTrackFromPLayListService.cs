@@ -8,12 +8,12 @@ using MyMusic.Domain;
 using MyMusic.Domain.Events;
 
 namespace MyMusic.Application.Services {
-    public class DeleteTrackFromPLayListService {
+    public class RemoveTrackFromPLayListService {
         
         private readonly PlayListPersistencePort playListPersistence;
         private readonly EventBusPort eventBus;
         
-        public DeleteTrackFromPLayListService(PlayListPersistencePort playListPersistence, EventBusPort eventBus) {
+        public RemoveTrackFromPLayListService(PlayListPersistencePort playListPersistence, EventBusPort eventBus) {
             this.playListPersistence = playListPersistence;
             this.eventBus = eventBus;
         }
@@ -23,7 +23,7 @@ namespace MyMusic.Application.Services {
             if (TrackIsNotAlreadyIn(playList, trackId)) return ServiceError.TrackIsNotInThePlayList;
             playList.Remove(trackId);
             playListPersistence.Persist(playList);
-            eventBus.Raise(new TrackHasBeenDeletedFromPlayList(trackId, playList.Id));
+            eventBus.Raise(new TrackHasBeenRemovedFromPlayList(trackId, playList.Id));
             return ServiceResponse.Success;
         }
         

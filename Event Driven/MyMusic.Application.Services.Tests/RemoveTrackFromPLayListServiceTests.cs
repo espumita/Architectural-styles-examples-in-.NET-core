@@ -10,9 +10,9 @@ using NUnit.Framework;
 
 namespace MyMusic.Application.Services.Tests {
 
-    public class DeleteTrackFromPLayListServiceTests {
+    public class RemoveTrackFromPLayListServiceTests {
         
-        private DeleteTrackFromPLayListService deleteTrackFromPLayListService;
+        private RemoveTrackFromPLayListService removeTrackFromPLayListService;
         private PlayListPersistencePort playListPersistence;
         private EventBusPort eventBus;
         
@@ -20,7 +20,7 @@ namespace MyMusic.Application.Services.Tests {
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             eventBus = Substitute.For<EventBusPort>();
-            deleteTrackFromPLayListService = new DeleteTrackFromPLayListService(playListPersistence, eventBus);
+            removeTrackFromPLayListService = new RemoveTrackFromPLayListService(playListPersistence, eventBus);
         }
         
         [Test]
@@ -35,11 +35,11 @@ namespace MyMusic.Application.Services.Tests {
                 .Build();
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
 
-            var result = deleteTrackFromPLayListService.Execute(aTrackId, aPlaylistId);
+            var result = removeTrackFromPLayListService.Execute(aTrackId, aPlaylistId);
 
             result.IsRight.Should().BeTrue();
             VerifyAnEmptyPlayListHasBeenPersistedWith(aPlaylistId);
-            VerifyEventHasBeenRaised(new TrackHasBeenDeletedFromPlayList(aTrackId, aPlaylistId));
+            VerifyEventHasBeenRaised(new TrackHasBeenRemovedFromPlayList(aTrackId, aPlaylistId));
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace MyMusic.Application.Services.Tests {
                 .Build();
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
 
-            var result = deleteTrackFromPLayListService.Execute(aTrackId, aPlaylistId);
+            var result = removeTrackFromPLayListService.Execute(aTrackId, aPlaylistId);
 
             result.IsLeft.Should().BeTrue();
             result.IfLeft(error => error.Should().Be(ServiceError.TrackIsNotInThePlayList));

@@ -16,9 +16,9 @@ namespace MyMusic.ServiceCreators {
             return new AddTrackToPlayListService(pLayListPostgreSqlAdapter, eventBus);
         }
         
-        public DeleteTrackFromPLayListService CreateDeleteTrackFromPLayListService() {
+        public RemoveTrackFromPLayListService CreateRemoveTrackFromPLayListService() {
             var pLayListPostgreSqlAdapter = new PLayListPostgreSQLPersistenceAdapter();
-            return new DeleteTrackFromPLayListService(pLayListPostgreSqlAdapter, eventBus);
+            return new RemoveTrackFromPLayListService(pLayListPostgreSqlAdapter, eventBus);
         }
     }
 }

@@ -5,15 +5,15 @@ using NUnit.Framework;
 
 namespace MyMusic.Application.EventHandlers.Tests {
 
-    public class TrackHasBeenDeletedFromPlayListEventHandlerTests {
-        private TrackHasBeenDeletedFromPlayListEventHandler trackHasBeenDeletedFromPlayList;
+    public class TrackHasBeenRemovedFromPlayListEventHandlerTests {
+        private TrackHasBeenRemovedFromPlayListEventHandler trackHasBeenRemovedFromPlayList;
         private TracksNotifierPort tracksNotifier;
 
 
         [SetUp]
         public void SetUp() {
             tracksNotifier = Substitute.For<TracksNotifierPort>();
-            trackHasBeenDeletedFromPlayList = new TrackHasBeenDeletedFromPlayListEventHandler(tracksNotifier);
+            trackHasBeenRemovedFromPlayList = new TrackHasBeenRemovedFromPlayListEventHandler(tracksNotifier);
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace MyMusic.Application.EventHandlers.Tests {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;
             
-            trackHasBeenDeletedFromPlayList.Handle(new TrackHasBeenDeletedFromPlayList(aTrackId, aPlaylistId));
+            trackHasBeenRemovedFromPlayList.Handle(new TrackHasBeenRemovedFromPlayList(aTrackId, aPlaylistId));
             
             tracksNotifier.Received().NotifyTrackHasRemovedFromPlayList(aTrackId, aPlaylistId);
         }

@@ -41,7 +41,7 @@ namespace MyMusic {
             services.AddSingleton<TrackEventConsumer>();
             var trackEventConsumer = services.BuildServiceProvider().GetService<TrackEventConsumer>();
             eventBus.Register<TrackHasBeenAddedToPlayList>(trackEventConsumer.Consume);
-            eventBus.Register<TrackHasBeenDeletedFromPlayList>(trackEventConsumer.Consume);
+            eventBus.Register<TrackHasBeenRemovedFromPlayList>(trackEventConsumer.Consume);
             
             services.AddSingleton(eventBus);
             
