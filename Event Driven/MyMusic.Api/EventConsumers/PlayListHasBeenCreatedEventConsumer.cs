@@ -13,5 +13,10 @@ namespace MyMusic.EventConsumers {
             var playListHasBeenCreatedEventHandler = playListEventHandlerCreator.PlayListHasBeenCreated();
             playListHasBeenCreatedEventHandler.Handle(@event);
         }
+
+        public void Consume(PlayListHasBeenArchived @event) {
+            var playListHasBeenArchivedEventHandler = playListEventHandlerCreator.PlayListHasBeenArchived();
+            playListHasBeenArchivedEventHandler.Handle(@event);
+        }
     }
 }

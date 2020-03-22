@@ -26,8 +26,7 @@ namespace MyMusic.ServiceCreators {
 
         public ArchivePlayListService CreateArchivePlayListService() {
             var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
-            var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
-            return new ArchivePlayListService(pLayListDatabaseAdapter, musicCloudApiHttpAdapter);
+            return new ArchivePlayListService(pLayListDatabaseAdapter);
         }
 
         public AddImageUrlToPlayListService CreateAddImageUrlPlayListService() {

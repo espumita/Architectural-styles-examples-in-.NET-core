@@ -9,5 +9,10 @@ namespace MyMusic.EventHandlerCreators {
             var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
             return new PlayListHasBeenCreatedEventHandler(musicCloudApiHttpAdapter);
         }
+
+        public PlayListHasBeenArchivedEventHandler PlayListHasBeenArchived() {
+            var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
+            return new PlayListHasBeenArchivedEventHandler(musicCloudApiHttpAdapter);
+        }
     }
 }

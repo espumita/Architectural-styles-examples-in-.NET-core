@@ -1,5 +1,4 @@
 using FluentAssertions;
-using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Tests.builders;
 using MyMusic.Domain;
@@ -12,13 +11,11 @@ namespace MyMusic.Application.Services.Tests {
         
         private ArchivePlayListService archivePlayListService;
         private PlayListPersistencePort playListPersistence;
-        private PlayListNotifierPort playListNotifierPort;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            playListNotifierPort = Substitute.For<PlayListNotifierPort>();
-            archivePlayListService = new ArchivePlayListService(playListPersistence, playListNotifierPort);
+            archivePlayListService = new ArchivePlayListService(playListPersistence);
         }
 
         [Test]
@@ -34,7 +31,6 @@ namespace MyMusic.Application.Services.Tests {
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, PlayListStatus.Archived);
-            playListNotifierPort.Received().NotifyPlayListHasBeenArchived(aPlaylistId);
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, PlayListStatus status) {
