@@ -1,5 +1,6 @@
 
 using MyMusic.Application.EventHandlers;
+using MyMusic.Domain.Events;
 using MyMusic.Infrastructure.Adapters.Http;
 
 namespace MyMusic.EventHandlerCreators {
@@ -13,6 +14,11 @@ namespace MyMusic.EventHandlerCreators {
         public PlayListHasBeenArchivedEventHandler PlayListHasBeenArchived() {
             var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
             return new PlayListHasBeenArchivedEventHandler(musicCloudApiHttpAdapter);
+        }
+
+        public PlayListHasBeenRenamedEventHandler PlayListHasBeenRenamed() {
+            var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
+            return new PlayListHasBeenRenamedEventHandler(musicCloudApiHttpAdapter);
         }
     }
 }

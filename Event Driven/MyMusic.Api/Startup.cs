@@ -33,6 +33,7 @@ namespace MyMusic {
 
             var eventBus = new EventBusPortInMemoryAdapter();
             eventBus.Register<PlayListHasBeenCreated>(playListHasBeenCreatedEventConsumer.Consume);
+            eventBus.Register<PlayListHasBeenRenamed>(playListHasBeenCreatedEventConsumer.Consume);
             eventBus.Register<PlayListHasBeenArchived>(playListHasBeenCreatedEventConsumer.Consume);
             services.AddSingleton(eventBus);
             

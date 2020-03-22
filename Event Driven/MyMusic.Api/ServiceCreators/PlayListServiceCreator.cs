@@ -20,8 +20,7 @@ namespace MyMusic.ServiceCreators {
 
         public RenamePlayListService CreateRenamePlayListService() {
             var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
-            var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
-            return new RenamePlayListService(pLayListDatabaseAdapter, musicCloudApiHttpAdapter);
+            return new RenamePlayListService(pLayListDatabaseAdapter);
         }
 
         public ArchivePlayListService CreateArchivePlayListService() {
