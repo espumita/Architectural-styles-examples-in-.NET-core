@@ -19,7 +19,7 @@ namespace MyMusic.Application.Services {
             var playList = playListPersistence.GetPlayList(playlistId);
             playList.AddImageUrl(aNewImageUrL);
             playListPersistence.Persist(playList);
-            playListNotifierPort.NotifyPlayListUrlHasChanged(playlistId, aNewImageUrL);
+            playListNotifierPort.NotifyPlayListImageUrlHasChanged(playlistId, aNewImageUrL);
             return ServiceResponse.Success;
         }
     }

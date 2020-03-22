@@ -4,6 +4,6 @@ namespace MyMusic.Application.Ports.Notifications {
         void NotifyPlayListHasBeenCreated(string playListId, string playListName);
         void NotifyPlayListHasBeenRenamed(string playListId, string newPlayListName);
         void NotifyPlayListHasBeenArchived(string playListId);
-        void NotifyPlayListUrlHasChanged(string aPlaylistId, string newImageUrl);
+        void NotifyPlayListImageUrlHasChanged(string aPlaylistId, string newImageUrl);
     }
 }

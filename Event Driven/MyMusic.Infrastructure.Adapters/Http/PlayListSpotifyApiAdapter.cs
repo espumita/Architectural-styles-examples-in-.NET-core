@@ -16,7 +16,7 @@ namespace MyMusic.Infrastructure.Adapters.Http {
             //This should Notify to Spotify Api
         }
 
-        public void NotifyPlayListUrlHasChanged(string aPlaylistId, string newImageUrl) {
+        public void NotifyPlayListImageUrlHasChanged(string aPlaylistId, string newImageUrl) {
             //This should Notify to Spotify Api
         }
     }

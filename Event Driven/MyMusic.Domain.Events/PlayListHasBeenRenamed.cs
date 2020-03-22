@@ -11,15 +11,15 @@ namespace MyMusic.Domain.Events {
             NewPlayListName = newPlayListName;
         }
 
-        protected bool Equals(PlayListHasBeenCreated other) {
-            return PlayListId == other.PlayListId && NewPlayListName == other.PlayListName;
+        protected bool Equals(PlayListHasBeenRenamed other) {
+            return PlayListId == other.PlayListId && NewPlayListName == other.NewPlayListName;
         }
 
         public override bool Equals(object obj) {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((PlayListHasBeenCreated) obj);
+            return Equals((PlayListHasBeenRenamed) obj);
         }
 
         public override int GetHashCode() {

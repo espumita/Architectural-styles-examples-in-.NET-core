@@ -34,7 +34,7 @@ namespace MyMusic.Application.Services.Tests {
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, anImageUrl);
-            playListNotifier.Received().NotifyPlayListUrlHasChanged(aPlaylistId, anImageUrl);
+            playListNotifier.Received().NotifyPlayListImageUrlHasChanged(aPlaylistId, anImageUrl);
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string anImageUrl) {
