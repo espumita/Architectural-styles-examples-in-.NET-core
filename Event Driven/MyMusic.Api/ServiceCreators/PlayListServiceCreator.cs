@@ -25,7 +25,7 @@ namespace MyMusic.ServiceCreators {
 
         public ArchivePlayListService CreateArchivePlayListService() {
             var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
-            return new ArchivePlayListService(pLayListDatabaseAdapter);
+            return new ArchivePlayListService(pLayListDatabaseAdapter, eventBusPort);
         }
 
         public AddImageUrlToPlayListService CreateAddImageUrlPlayListService() {

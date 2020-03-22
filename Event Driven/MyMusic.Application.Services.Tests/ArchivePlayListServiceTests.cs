@@ -1,7 +1,9 @@
 using FluentAssertions;
+using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Tests.builders;
 using MyMusic.Domain;
+using MyMusic.Domain.Events;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -11,11 +13,13 @@ namespace MyMusic.Application.Services.Tests {
         
         private ArchivePlayListService archivePlayListService;
         private PlayListPersistencePort playListPersistence;
+        private EventBusPort eventBusPort;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            archivePlayListService = new ArchivePlayListService(playListPersistence);
+            eventBusPort = Substitute.For<EventBusPort>();
+            archivePlayListService = new ArchivePlayListService(playListPersistence, eventBusPort);
         }
 
         [Test]
@@ -31,6 +35,7 @@ namespace MyMusic.Application.Services.Tests {
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, PlayListStatus.Archived);
+            VerifyEventHasBeenRaised(new PlayListHasBeenArchived(aPlaylistId));
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, PlayListStatus status) {
@@ -38,6 +43,11 @@ namespace MyMusic.Application.Services.Tests {
                 playlist.Id.Equals(aPlaylistId)
                 && playlist.Status.Equals(status)
                            ));
+        }
+        private void VerifyEventHasBeenRaised(Event expectedEvent) {
+            eventBusPort.Received()
+                .Raise(Arg.Is<Event>(@event =>
+                    @event.Equals(expectedEvent)));
         }
     }
 }

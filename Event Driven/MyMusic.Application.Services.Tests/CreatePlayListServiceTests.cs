@@ -45,10 +45,10 @@ namespace MyMusic.Application.Services.Tests {
             ));
         }
 
-        private void VerifyEventHasBeenRaised(PlayListHasBeenCreated playListHasBeenCreated) {
+        private void VerifyEventHasBeenRaised(Event expectedEvent) {
             eventBusPort.Received()
-                .Raise(Arg.Is<PlayListHasBeenCreated>(@event =>
-                    @event.Equals(playListHasBeenCreated)));
+                .Raise(Arg.Is<Event>(@event =>
+                    @event.Equals(expectedEvent)));
         }
     }
 }
