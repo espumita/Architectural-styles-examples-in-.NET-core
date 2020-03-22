@@ -31,8 +31,8 @@ namespace MyMusic.Controllers {
         }
 
         [HttpDelete("playlists/{playlistId}/tracks/{trackId}")]
-        public ActionResult DeleteTrack(string playlistId, string trackId) {
-            var service = tracksServiceCreator.CreateDeleteTrackFromPLayListService();
+        public ActionResult RemoveTrack(string playlistId, string trackId) {
+            var service = tracksServiceCreator.CreateRemoveTrackFromPLayListService();
             var result = service.Execute(trackId, playlistId);
             return this.BuildResponseFrom(result);
         }
