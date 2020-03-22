@@ -12,13 +12,13 @@ namespace MyMusic.Application.Services.Tests {
         
         private AddImageUrlToPlayListService addImageUrlToPlayListService;
         private PlayListPersistencePort playListPersistence;
-        private PlayListNotifierPort playListNotifierPort;
+        private PlayListNotifierPort playListNotifier;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            playListNotifierPort = Substitute.For<PlayListNotifierPort>();
-            addImageUrlToPlayListService = new AddImageUrlToPlayListService(playListPersistence, playListNotifierPort);
+            playListNotifier = Substitute.For<PlayListNotifierPort>();
+            addImageUrlToPlayListService = new AddImageUrlToPlayListService(playListPersistence, playListNotifier);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace MyMusic.Application.Services.Tests {
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, anImageUrl);
-            playListNotifierPort.Received().NotifyPlayListUrlHasChanged(aPlaylistId, anImageUrl);
+            playListNotifier.Received().NotifyPlayListUrlHasChanged(aPlaylistId, anImageUrl);
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string anImageUrl) {

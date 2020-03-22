@@ -11,12 +11,12 @@ namespace MyMusic.Application.Services.Tests {
 
     public class GetAllPlayListServiceTests {
         private GetAllPlayListService getAllPlayListService;
-        private PlayListPersistencePort playListPersistencePort;
+        private PlayListPersistencePort playListPersistence;
 
         [SetUp]
         public void SetUp() {
-            playListPersistencePort = Substitute.For<PlayListPersistencePort>();
-            getAllPlayListService = new GetAllPlayListService(playListPersistencePort);
+            playListPersistence = Substitute.For<PlayListPersistencePort>();
+            getAllPlayListService = new GetAllPlayListService(playListPersistence);
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace MyMusic.Application.Services.Tests {
                 .WithId(anotherPlayListId)
                 .WithStatus(PlayListStatus.Archived)
                 .Build();
-            playListPersistencePort.GetAllPlayList().Returns(new List<PlayList> {
+            playListPersistence.GetAllPlayList().Returns(new List<PlayList> {
                 aPlayList, anotherPlayList
             });
 

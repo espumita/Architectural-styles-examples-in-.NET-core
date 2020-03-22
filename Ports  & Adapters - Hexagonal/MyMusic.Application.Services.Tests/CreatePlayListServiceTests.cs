@@ -14,21 +14,21 @@ namespace MyMusic.Application.Services.Tests {
         private CreatePlayListService createPlayListService;
         private PlayListPersistencePort playListPersistence;
         private PlayListNotifierPort playListNotifierPort;
-        private UniqueIdentifiersPort uniqueIdentifiersPort;
+        private UniqueIdentifiersPort uniqueIdentifiers;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             playListNotifierPort = Substitute.For<PlayListNotifierPort>();
-            uniqueIdentifiersPort = Substitute.For<UniqueIdentifiersPort>();
-            createPlayListService = new CreatePlayListService(uniqueIdentifiersPort, playListPersistence, playListNotifierPort);
+            uniqueIdentifiers = Substitute.For<UniqueIdentifiersPort>();
+            createPlayListService = new CreatePlayListService(uniqueIdentifiers, playListPersistence, playListNotifierPort);
         }
         
         [Test]
         public void create_a_play_list() {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;
-            uniqueIdentifiersPort.GetNewUniqueIdentifier().Returns(aPlaylistId);
+            uniqueIdentifiers.GetNewUniqueIdentifier().Returns(aPlaylistId);
             
             var result = createPlayListService.Execute(aPlaylistName);
             

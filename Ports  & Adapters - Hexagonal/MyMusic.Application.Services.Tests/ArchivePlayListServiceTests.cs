@@ -12,13 +12,13 @@ namespace MyMusic.Application.Services.Tests {
         
         private ArchivePlayListService archivePlayListService;
         private PlayListPersistencePort playListPersistence;
-        private PlayListNotifierPort playListNotifierPort;
+        private PlayListNotifierPort playListNotifier;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            playListNotifierPort = Substitute.For<PlayListNotifierPort>();
-            archivePlayListService = new ArchivePlayListService(playListPersistence, playListNotifierPort);
+            playListNotifier = Substitute.For<PlayListNotifierPort>();
+            archivePlayListService = new ArchivePlayListService(playListPersistence, playListNotifier);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace MyMusic.Application.Services.Tests {
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, PlayListStatus.Archived);
-            playListNotifierPort.Received().NotifyPlayListHasBeenArchived(aPlaylistId);
+            playListNotifier.Received().NotifyPlayListHasBeenArchived(aPlaylistId);
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, PlayListStatus status) {
