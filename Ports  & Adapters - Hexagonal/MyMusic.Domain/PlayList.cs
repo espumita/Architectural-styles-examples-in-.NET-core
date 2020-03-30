@@ -42,5 +42,9 @@ namespace MyMusic.Domain {
         public void AddImageUrl(string aNewImageUrL) {
             ImageUrl = aNewImageUrL;
         }
+
+        public bool ContainsTrack(string trackId) {
+            return TrackList.FirstOrDefault(x => x.Id.Equals(trackId)) != null;
+        }
     }
 }
