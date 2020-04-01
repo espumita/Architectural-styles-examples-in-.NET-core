@@ -5,6 +5,7 @@ using MyMusic.Domain;
 using System.Linq;
 using MyMusic.Application.Services.Errors;
 using MyMusic.Application.Services.Successes;
+using MyMusic.Domain.Errors;
 
 namespace MyMusic.Application.Services {
     public class AddTrackToPlayListService {
@@ -17,9 +18,9 @@ namespace MyMusic.Application.Services {
             this.tracksNotifier = tracksNotifier;
         }
 
-        public Either<ServiceError, ServiceResponse> Execute(string trackId, string playlistId) {
+        public Either<DomainError, ServiceResponse> Execute(string trackId, string playlistId) {
             var playList = playListPersistence.GetPlayList(playlistId);
-            if (TrackIsAlreadyIn(playList, trackId)) return ServiceError.CannotAddSameTrackTwice; 
+            if (TrackIsAlreadyIn(playList, trackId)) return DomainError.CannotAddSameTrackTwice; 
             playList.Add(new Track(trackId, "UNNECESSARY", "UNNECESSARY", 0));
             playListPersistence.Persist(playList);
             tracksNotifier.NotifyTrackHasBeenAddedToPlayList(trackId, playlistId);

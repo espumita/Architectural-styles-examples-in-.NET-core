@@ -1,12 +1,10 @@
 using System.Linq;
 using FluentAssertions;
-using LanguageExt;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;
-using MyMusic.Application.Services.Errors;
-using MyMusic.Application.Services.Successes;
 using MyMusic.Application.Services.Tests.builders;
 using MyMusic.Domain;
+using MyMusic.Domain.Errors;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -56,7 +54,7 @@ namespace MyMusic.Application.Services.Tests {
             var result = addTrackToPlayListService.Execute(aTrackId, aPlaylistId);
 
             result.IsLeft.Should().BeTrue();
-            result.IfLeft(error => error.Should().Be(ServiceError.CannotAddSameTrackTwice));
+            result.IfLeft(error => error.Should().Be(DomainError.CannotAddSameTrackTwice));
             playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
             tracksNotifier.DidNotReceive().NotifyTrackHasBeenAddedToPlayList(Arg.Any<string>(), Arg.Any<string>());
         }
