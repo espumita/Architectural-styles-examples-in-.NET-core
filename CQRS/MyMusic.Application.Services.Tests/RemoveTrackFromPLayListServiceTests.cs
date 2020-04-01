@@ -4,6 +4,7 @@ using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Errors;
 using MyMusic.Application.Services.Tests.builders;
 using MyMusic.Domain;
+using MyMusic.Domain.Errors;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -53,7 +54,7 @@ namespace MyMusic.Application.Services.Tests {
             var result = removeTrackFromPLayListService.Execute(aTrackId, aPlaylistId);
 
             result.IsLeft.Should().BeTrue();
-            result.IfLeft(error => error.Should().Be(ServiceError.TrackIsNotInThePlayList));
+            result.IfLeft(error => error.Should().Be(DomainError.TrackIsNotInThePlayList));
             playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
             tracksNotifier.DidNotReceive().NotifyTrackHasRemovedFromPlayList(Arg.Any<string>(), Arg.Any<string>());
         }
