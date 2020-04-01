@@ -1,8 +1,8 @@
 using LanguageExt;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
-using MyMusic.Application.Services.Errors;
 using MyMusic.Application.Services.Successes;
+using MyMusic.Domain.Error;
 using MyMusic.Domain.Events;
 
 namespace MyMusic.Application.Services {
@@ -16,7 +16,7 @@ namespace MyMusic.Application.Services {
             this.eventBus = eventBus;
         }
 
-        public Either<ServiceError, ServiceResponse> Execute(string playListId, string newPlayListName) {
+        public Either<DomainError, ServiceResponse> Execute(string playListId, string newPlayListName) {
             var playList = playListPersistence.GetPlayList(playListId);
             playList.Rename(newPlayListName);
             playListPersistence.Persist(playList);
