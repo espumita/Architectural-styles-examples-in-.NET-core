@@ -24,8 +24,11 @@ namespace MyMusic.Domain {
             return new PlayList(id, name, PlayListStatus.Active, new List<Track>(), null);
         }
         
-        public void Add(Track track) {
+        public Option<DomainError> Add(Track track) {
+            var trackToAddAlreadyInPlayList = TrackList.FirstOrDefault(x => x.Id.Equals(track.Id));
+            if (trackToAddAlreadyInPlayList != null) return DomainError.CannotAddSameTrackTwice; 
             TrackList.Add(track);
+            return Option<DomainError>.None;
         }
 
         public Option<DomainError> Remove(string trackId) {

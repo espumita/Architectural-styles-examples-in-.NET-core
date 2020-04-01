@@ -41,7 +41,7 @@ namespace MyMusic.Application.Services.Tests {
             playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist =>
                 playlist.Id.Equals(aPlaylistId)
                 && playlist.Status.Equals(status)
-                           ));
+            ));
         }
     }
 }
