@@ -32,6 +32,7 @@ namespace MyMusic.Application.Services.Tests {
                 .AddTrack(new TrackBuilder()
                     .WithId(ATrack.Id)
                     .WithName(ATrack.Name)
+                    .WithArtist(ATrack.Artist)
                     .WithDuration(ATrack.DurationInMs)
                     .Build())
                 .Build();

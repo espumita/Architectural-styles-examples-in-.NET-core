@@ -1,9 +1,8 @@
-using System.Collections.Generic;
 using System.Linq;
 using LanguageExt;
 using MyMusic.Application.Ports.Persistence;
-using MyMusic.Application.Services.Errors;
 using MyMusic.Domain;
+using MyMusic.Domain.Errors;
 
 namespace MyMusic.Application.Services {
 
@@ -14,7 +13,7 @@ namespace MyMusic.Application.Services {
             this.playListPersistence = playListPersistence;
         }
 
-        public Either<ServiceError, ListOfPlayLists> Execute() {
+        public Either<DomainError, ListOfPlayLists> Execute() {
             var playLists = playListPersistence.GetAllPlayList();
             var activePlayLists = playLists
                     .Where(playList => playList.Status == PlayListStatus.Active)

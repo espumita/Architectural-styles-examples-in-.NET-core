@@ -1,7 +1,7 @@
 using LanguageExt;
 using MyMusic.Application.Ports.Persistence;
-using MyMusic.Application.Services.Errors;
 using MyMusic.Domain;
+using MyMusic.Domain.Errors;
 
 namespace MyMusic.Application.Services {
     public class GetTracksService {
@@ -12,7 +12,7 @@ namespace MyMusic.Application.Services {
             this.tracksPersistence = tracksPersistence;
         }
 
-        public Either<ServiceError, Track> Get(string trackId) {
+        public Either<DomainError, Track> Get(string trackId) {
             return tracksPersistence.GetTrack(trackId);
         }
     }
