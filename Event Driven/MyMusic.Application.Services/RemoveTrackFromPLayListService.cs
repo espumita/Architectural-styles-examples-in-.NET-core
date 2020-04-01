@@ -1,10 +1,9 @@
-using System.Linq;
 using LanguageExt;
+using LanguageExt.UnsafeValueAccess;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
-using MyMusic.Application.Services.Errors;
 using MyMusic.Application.Services.Successes;
-using MyMusic.Domain;
+using MyMusic.Domain.Error;
 using MyMusic.Domain.Events;
 
 namespace MyMusic.Application.Services {
@@ -18,18 +17,14 @@ namespace MyMusic.Application.Services {
             this.eventBus = eventBus;
         }
 
-        public Either<ServiceError, ServiceResponse> Execute(string trackId, string playlistId) {
+        public Either<DomainError, ServiceResponse> Execute(string trackId, string playlistId) {
             var playList = playListPersistence.GetPlayList(playlistId);
-            if (TrackIsNotAlreadyIn(playList, trackId)) return ServiceError.TrackIsNotInThePlayList;
-            playList.Remove(trackId);
+            var error = playList.Remove(trackId);
+            if (error.IsSome) return error.ValueUnsafe();
+            
             playListPersistence.Persist(playList);
-            eventBus.Raise(new TrackHasBeenRemovedFromPlayList(trackId, playList.Id));
-            return ServiceResponse.Success;
+            eventBus.Raise(new TrackHasBeenRemovedFromPlayList(trackId, playList.Id));            return ServiceResponse.Success;
         }
-        
-        private bool TrackIsNotAlreadyIn(PlayList playList, string trackId) {
-            return playList.TrackList.FirstOrDefault(x => x.Id.Equals(trackId)) == null;
-        }
-        
+
     }
 }

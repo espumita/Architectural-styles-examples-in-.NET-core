@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using LanguageExt;
+using MyMusic.Domain.Error;
 
 namespace MyMusic.Domain {
     public class PlayList {
@@ -26,9 +28,11 @@ namespace MyMusic.Domain {
             TrackList.Add(track);
         }
 
-        public void Remove(string trackId) {
-            var trackToRemove = TrackList.First(track => track.Id.Equals(trackId));
+        public Option<DomainError> Remove(string trackId) {
+            var trackToRemove = TrackList.FirstOrDefault(track => track.Id.Equals(trackId));
+            if (trackToRemove == null) return DomainError.TrackIsNotInThePlayList;
             TrackList.Remove(trackToRemove);
+            return Option<DomainError>.None;
         }
 
         public void Rename(string newPlayListName) {
