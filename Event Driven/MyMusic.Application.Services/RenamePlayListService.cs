@@ -18,8 +18,8 @@ namespace MyMusic.Application.Services {
         public Either<DomainError, ServiceResponse> Execute(string playListId, string newPlayListName) {
             var playList = playListPersistence.GetPlayList(playListId);
             playList.Rename(newPlayListName);
-            playListPersistence.Persist(playList);
             
+            playListPersistence.Persist(playList);
             eventBus.Raise(playList.Events());
             return ServiceResponse.Success;
         }
