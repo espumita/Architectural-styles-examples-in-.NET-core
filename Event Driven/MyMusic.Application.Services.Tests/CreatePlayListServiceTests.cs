@@ -9,7 +9,7 @@ using NUnit.Framework;
 
 namespace MyMusic.Application.Services.Tests {
 
-    public class CreatePlayListServiceTests {
+    public class CreatePlayListServiceTests : ServiceTest {
      
         private CreatePlayListService createPlayListService;
         private PlayListPersistencePort playListPersistence;
@@ -34,7 +34,7 @@ namespace MyMusic.Application.Services.Tests {
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, aPlaylistName, PlayListStatus.Active);
-            VerifyEventHasBeenRaised(new PlayListHasBeenCreated(aPlaylistId, aPlaylistName));
+            VerifyEventHasBeenRaised(new PlayListHasBeenCreated(aPlaylistId, aPlaylistName), eventBus);
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string aPlaylistName, PlayListStatus status) {
@@ -44,11 +44,6 @@ namespace MyMusic.Application.Services.Tests {
                 && playlist.Status.Equals(status)
             ));
         }
-
-        private void VerifyEventHasBeenRaised(Event expectedEvent) {
-            eventBus.Received()
-                .Raise(Arg.Is<Event>(@event =>
-                    @event.Equals(expectedEvent)));
-        }
+        
     }
 }

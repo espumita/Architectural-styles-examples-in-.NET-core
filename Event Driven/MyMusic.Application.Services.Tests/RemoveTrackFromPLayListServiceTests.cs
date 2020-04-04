@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using FluentAssertions;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
@@ -10,7 +11,7 @@ using NUnit.Framework;
 
 namespace MyMusic.Application.Services.Tests {
 
-    public class RemoveTrackFromPLayListServiceTests {
+    public class RemoveTrackFromPLayListServiceTests : ServiceTest {
         
         private RemoveTrackFromPLayListService removeTrackFromPLayListService;
         private PlayListPersistencePort playListPersistence;
@@ -39,7 +40,7 @@ namespace MyMusic.Application.Services.Tests {
 
             result.IsRight.Should().BeTrue();
             VerifyAnEmptyPlayListHasBeenPersistedWith(aPlaylistId);
-            VerifyEventHasBeenRaised(new TrackHasBeenRemovedFromPlayList(aTrackId, aPlaylistId));
+            VerifyEventHasBeenRaised(new TrackHasBeenRemovedFromPlayList(aTrackId, aPlaylistId), eventBus);
         }
 
         [Test]
@@ -56,7 +57,7 @@ namespace MyMusic.Application.Services.Tests {
             result.IsLeft.Should().BeTrue();
             result.IfLeft(error => error.Should().Be(DomainError.TrackIsNotInThePlayList));
             playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
-            eventBus.DidNotReceive().Raise(Arg.Any<Event>());
+            eventBus.DidNotReceive().Raise(Arg.Any<List<Event>>());
         }
 
         private void VerifyAnEmptyPlayListHasBeenPersistedWith(string aPlaylistId) {
@@ -64,12 +65,6 @@ namespace MyMusic.Application.Services.Tests {
                 playlist.Id.Equals(aPlaylistId)
                 && playlist.TrackList.Count.Equals(0)
             ));
-        }
-        
-        private void VerifyEventHasBeenRaised(Event expectedEvent) {
-            eventBus.Received()
-                .Raise(Arg.Is<Event>(@event =>
-                    @event.Equals(expectedEvent)));
         }
         
     }

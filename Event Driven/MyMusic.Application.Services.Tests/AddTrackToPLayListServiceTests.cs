@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using MyMusic.Application.Ports;
@@ -11,7 +12,7 @@ using NUnit.Framework;
 
 namespace MyMusic.Application.Services.Tests {
 
-    public class AddTrackToPLayListServiceTests {
+    public class AddTrackToPLayListServiceTests : ServiceTest {
         
         private AddTrackToPlayListService addTrackToPlayListService;
         private PlayListPersistencePort playListPersistence;
@@ -37,7 +38,7 @@ namespace MyMusic.Application.Services.Tests {
 
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, aTrackId);
-            VerifyEventHasBeenRaised(new TrackHasBeenAddedToPlayList(aTrackId, aPlaylistId));
+            VerifyEventHasBeenRaised(new TrackHasBeenAddedToPlayList(aTrackId, aPlaylistId), eventBus);
         }
 
         [Test]
@@ -57,7 +58,7 @@ namespace MyMusic.Application.Services.Tests {
             result.IsLeft.Should().BeTrue();
             result.IfLeft(error => error.Should().Be(DomainError.CannotAddSameTrackTwice));
             playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
-            eventBus.DidNotReceive().Raise(Arg.Any<Event>());
+            eventBus.DidNotReceive().Raise(Arg.Any<List<Event>>());
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string aTrackId) {
@@ -66,12 +67,6 @@ namespace MyMusic.Application.Services.Tests {
                 && playlist.TrackList.Single().Id.Equals(aTrackId)
             ));
         }
-        
-        private void VerifyEventHasBeenRaised(Event expectedEvent) {
-            eventBus.Received()
-                .Raise(Arg.Is<Event>(@event =>
-                    @event.Equals(expectedEvent)));
-        }
-        
+
     }
 }

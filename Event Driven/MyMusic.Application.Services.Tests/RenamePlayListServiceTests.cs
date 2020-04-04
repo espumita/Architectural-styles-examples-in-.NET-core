@@ -46,10 +46,6 @@ namespace MyMusic.Application.Services.Tests {
             ));
         }
         
-        private void VerifyEventHasBeenRaised(Event expectedEvent) {
-            eventBus.Received()
-                .Raise(Arg.Is<Event>(@event =>
-                    @event.Equals(expectedEvent)));
-        }
+
     }
 }
