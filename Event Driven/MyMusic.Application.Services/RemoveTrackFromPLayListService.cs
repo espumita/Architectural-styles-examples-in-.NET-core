@@ -4,7 +4,6 @@ using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Successes;
 using MyMusic.Domain.Error;
-using MyMusic.Domain.Events;
 
 namespace MyMusic.Application.Services {
     public class RemoveTrackFromPLayListService {
@@ -23,7 +22,8 @@ namespace MyMusic.Application.Services {
             if (error.IsSome) return error.ValueUnsafe();
             
             playListPersistence.Persist(playList);
-            eventBus.Raise(new TrackHasBeenRemovedFromPlayList(trackId, playList.Id));            return ServiceResponse.Success;
+            eventBus.Raise(playList.Events());
+            return ServiceResponse.Success;
         }
 
     }

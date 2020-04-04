@@ -4,7 +4,6 @@ using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Successes;
 using MyMusic.Domain;
 using MyMusic.Domain.Error;
-using MyMusic.Domain.Events;
 
 namespace MyMusic.Application.Services {
     public class CreatePlayListService {
@@ -22,8 +21,9 @@ namespace MyMusic.Application.Services {
         public Either<DomainError, ServiceResponse> Execute(string playListName) {
             var newPlayListId = uniqueIdentifiers.GetNewUniqueIdentifier();
             var playList = PlayList.Create(newPlayListId, playListName);
+            
             playListPersistence.Persist(playList);
-            eventBus.Raise(new PlayListHasBeenCreated(playList.Id, playList.Name));
+            eventBus.Raise(playList.Events());
             return ServiceResponse.Success;
         }
         

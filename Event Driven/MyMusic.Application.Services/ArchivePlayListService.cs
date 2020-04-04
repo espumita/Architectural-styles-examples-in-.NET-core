@@ -3,7 +3,6 @@ using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Successes;
 using MyMusic.Domain.Error;
-using MyMusic.Domain.Events;
 
 namespace MyMusic.Application.Services {
     public class ArchivePlayListService {
@@ -19,8 +18,9 @@ namespace MyMusic.Application.Services {
         public Either<DomainError, ServiceResponse> Execute(string playListId) {
             var playList = playListPersistence.GetPlayList(playListId);
             playList.Archive();
+            
             playListPersistence.Persist(playList);
-            eventBus.Raise(new PlayListHasBeenArchived(playList.Id));
+            eventBus.Raise(playList.Events());
             return ServiceResponse.Success;
         }
     }

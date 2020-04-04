@@ -5,7 +5,6 @@ using LanguageExt.UnsafeValueAccess;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Services.Successes;
 using MyMusic.Domain.Error;
-using MyMusic.Domain.Events;
 
 namespace MyMusic.Application.Services {
     public class AddTrackToPlayListService {
@@ -24,7 +23,7 @@ namespace MyMusic.Application.Services {
             if (error.IsSome) return error.ValueUnsafe();
             
             playListPersistence.Persist(playList);
-            eventBus.Raise(new TrackHasBeenAddedToPlayList(trackId, playList.Id));
+            eventBus.Raise(playList.Events());
             return ServiceResponse.Success;
         }
         

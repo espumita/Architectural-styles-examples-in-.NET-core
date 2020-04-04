@@ -3,7 +3,6 @@ using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Successes;
 using MyMusic.Domain.Error;
-using MyMusic.Domain.Events;
 
 namespace MyMusic.Application.Services {
     public class RenamePlayListService {
@@ -20,7 +19,8 @@ namespace MyMusic.Application.Services {
             var playList = playListPersistence.GetPlayList(playListId);
             playList.Rename(newPlayListName);
             playListPersistence.Persist(playList);
-            eventBus.Raise(new PlayListHasBeenRenamed(playList.Id, playList.Name));
+            
+            eventBus.Raise(playList.Events());
             return ServiceResponse.Success;
         }
     }

@@ -9,10 +9,12 @@ namespace MyMusic.Infrastructure.Adapters {
         
         private Dictionary<Type, List<Action<Event>>> eventHandlers = new Dictionary<Type, List<Action<Event>>>();
         
-        public void Raise<T>(T @event) where T : Event {
-            if(eventHandlers.ContainsKey(typeof(T))) {
-                eventHandlers[typeof(T)].ForEach(eventHandler => eventHandler(@event));
-            }
+        public void Raise<T>(List<T> events) where T : Event {
+            events.ForEach(@event => {
+                if(eventHandlers.ContainsKey(typeof(T))) {
+                    eventHandlers[typeof(T)].ForEach(eventHandler => eventHandler(@event));
+                }
+            });
         }
 
         public void Register<T>(Action<T> eventHandler) where T : Event {
