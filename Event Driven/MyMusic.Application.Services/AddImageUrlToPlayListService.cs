@@ -8,11 +8,11 @@ namespace MyMusic.Application.Services {
     public class AddImageUrlToPlayListService {
         
         private readonly PlayListPersistencePort playListPersistence;
-        private readonly EventBusPort eventBus;
+        private readonly EventPublisherPort eventPublisher;
 
-        public AddImageUrlToPlayListService(PlayListPersistencePort playListPersistence, EventBusPort eventBus) {
+        public AddImageUrlToPlayListService(PlayListPersistencePort playListPersistence, EventPublisherPort eventPublisher) {
             this.playListPersistence = playListPersistence;
-            this.eventBus = eventBus;
+            this.eventPublisher = eventPublisher;
         }
 
         public Either<DomainError, ServiceResponse> Execute(string playListId, string aNewImageUrL) {
@@ -20,7 +20,7 @@ namespace MyMusic.Application.Services {
             playList.AddImageUrl(aNewImageUrL);
 
             playListPersistence.Persist(playList);
-            eventBus.Raise(playList.Events());
+            eventPublisher.Publish(playList.Events());
             return ServiceResponse.Success;
         }
     }

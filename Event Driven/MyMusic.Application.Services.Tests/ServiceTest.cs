@@ -8,9 +8,9 @@ namespace MyMusic.Application.Services.Tests {
 
     public class ServiceTest {
         
-        protected void VerifyEventHasBeenRaised(Event expectedEvent, EventBusPort eventBus) {
-            eventBus.Received()
-                .Raise(Arg.Is <List<Event>>(events =>
+        protected void VerifyEventHasBeenRaised(Event expectedEvent, EventPublisherPort eventPublisher) {
+            eventPublisher.Received()
+                .Publish(Arg.Is <List<Event>>(events =>
                     events.Single().Equals(expectedEvent)));
         }
     }

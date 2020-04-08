@@ -14,14 +14,14 @@ namespace MyMusic.Application.Services.Tests {
         private CreatePlayListService createPlayListService;
         private PlayListPersistencePort playListPersistence;
         private UniqueIdentifiersPort uniqueIdentifiers;
-        private EventBusPort eventBus;
+        private EventPublisherPort eventPublisher;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             uniqueIdentifiers = Substitute.For<UniqueIdentifiersPort>();
-            eventBus = Substitute.For<EventBusPort>();
-            createPlayListService = new CreatePlayListService(uniqueIdentifiers, playListPersistence, eventBus);
+            eventPublisher = Substitute.For<EventPublisherPort>();
+            createPlayListService = new CreatePlayListService(uniqueIdentifiers, playListPersistence, eventPublisher);
         }
         
         [Test]
@@ -34,7 +34,7 @@ namespace MyMusic.Application.Services.Tests {
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, aPlaylistName, PlayListStatus.Active);
-            VerifyEventHasBeenRaised(new PlayListHasBeenCreated(aPlaylistId, aPlaylistName), eventBus);
+            VerifyEventHasBeenRaised(new PlayListHasBeenCreated(aPlaylistId, aPlaylistName), eventPublisher);
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string aPlaylistName, PlayListStatus status) {

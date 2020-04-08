@@ -8,11 +8,11 @@ namespace MyMusic.Application.Services {
     public class ArchivePlayListService {
         
         private readonly PlayListPersistencePort playListPersistence;
-        private readonly EventBusPort eventBus;
+        private readonly EventPublisherPort eventPublisher;
 
-        public ArchivePlayListService(PlayListPersistencePort playListPersistence, EventBusPort eventBus) {
+        public ArchivePlayListService(PlayListPersistencePort playListPersistence, EventPublisherPort eventPublisher) {
             this.playListPersistence = playListPersistence;
-            this.eventBus = eventBus;
+            this.eventPublisher = eventPublisher;
         }
 
         public Either<DomainError, ServiceResponse> Execute(string playListId) {
@@ -20,7 +20,7 @@ namespace MyMusic.Application.Services {
             playList.Archive();
             
             playListPersistence.Persist(playList);
-            eventBus.Raise(playList.Events());
+            eventPublisher.Publish(playList.Events());
             return ServiceResponse.Success;
         }
     }

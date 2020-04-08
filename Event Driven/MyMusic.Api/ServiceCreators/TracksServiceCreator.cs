@@ -5,20 +5,20 @@ using MyMusic.Infrastructure.Adapters.Persistence;
 namespace MyMusic.ServiceCreators {
 
     public class TracksServiceCreator {
-        private readonly EventBusPort eventBus;
+        private readonly EventPublisherPort eventPublisher;
 
-        public TracksServiceCreator(EventBusPort eventBus) {
-            this.eventBus = eventBus;
+        public TracksServiceCreator(EventPublisherPort eventPublisher) {
+            this.eventPublisher = eventPublisher;
         }
 
         public AddTrackToPlayListService CreateAddTrackToPlayListService() {
             var pLayListPostgreSqlAdapter = new PLayListPostgreSQLPersistenceAdapter();
-            return new AddTrackToPlayListService(pLayListPostgreSqlAdapter, eventBus);
+            return new AddTrackToPlayListService(pLayListPostgreSqlAdapter, eventPublisher);
         }
         
         public RemoveTrackFromPLayListService CreateRemoveTrackFromPLayListService() {
             var pLayListPostgreSqlAdapter = new PLayListPostgreSQLPersistenceAdapter();
-            return new RemoveTrackFromPLayListService(pLayListPostgreSqlAdapter, eventBus);
+            return new RemoveTrackFromPLayListService(pLayListPostgreSqlAdapter, eventPublisher);
         }
     }
 }

@@ -13,13 +13,13 @@ namespace MyMusic.Application.Services.Tests {
         
         private ArchivePlayListService archivePlayListService;
         private PlayListPersistencePort playListPersistence;
-        private EventBusPort eventBus;
+        private EventPublisherPort eventPublisher;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            eventBus = Substitute.For<EventBusPort>();
-            archivePlayListService = new ArchivePlayListService(playListPersistence, eventBus);
+            eventPublisher = Substitute.For<EventPublisherPort>();
+            archivePlayListService = new ArchivePlayListService(playListPersistence, eventPublisher);
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace MyMusic.Application.Services.Tests {
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, PlayListStatus.Archived);
-            VerifyEventHasBeenRaised(new PlayListHasBeenArchived(aPlaylistId), eventBus);
+            VerifyEventHasBeenRaised(new PlayListHasBeenArchived(aPlaylistId), eventPublisher);
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, PlayListStatus status) {

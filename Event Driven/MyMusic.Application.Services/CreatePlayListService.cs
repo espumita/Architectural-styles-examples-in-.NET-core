@@ -10,12 +10,12 @@ namespace MyMusic.Application.Services {
         
         private readonly UniqueIdentifiersPort uniqueIdentifiers;
         private readonly PlayListPersistencePort playListPersistence;
-        private readonly EventBusPort eventBus;
+        private readonly EventPublisherPort eventPublisher;
 
-        public CreatePlayListService(UniqueIdentifiersPort uniqueIdentifiers, PlayListPersistencePort playListPersistence, EventBusPort eventBus) {
+        public CreatePlayListService(UniqueIdentifiersPort uniqueIdentifiers, PlayListPersistencePort playListPersistence, EventPublisherPort eventPublisher) {
             this.uniqueIdentifiers = uniqueIdentifiers;
             this.playListPersistence = playListPersistence;
-            this.eventBus = eventBus;
+            this.eventPublisher = eventPublisher;
         }
 
         public Either<DomainError, ServiceResponse> Execute(string playListName) {
@@ -23,7 +23,7 @@ namespace MyMusic.Application.Services {
             var playList = PlayList.Create(newPlayListId, playListName);
             
             playListPersistence.Persist(playList);
-            eventBus.Raise(playList.Events());
+            eventPublisher.Publish(playList.Events());
             return ServiceResponse.Success;
         }
         

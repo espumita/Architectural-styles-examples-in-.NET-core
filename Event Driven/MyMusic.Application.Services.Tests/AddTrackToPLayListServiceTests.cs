@@ -16,13 +16,13 @@ namespace MyMusic.Application.Services.Tests {
         
         private AddTrackToPlayListService addTrackToPlayListService;
         private PlayListPersistencePort playListPersistence;
-        private EventBusPort eventBus;
+        private EventPublisherPort eventPublisher;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            eventBus = Substitute.For<EventBusPort>();
-            addTrackToPlayListService = new AddTrackToPlayListService(playListPersistence, eventBus);
+            eventPublisher = Substitute.For<EventPublisherPort>();
+            addTrackToPlayListService = new AddTrackToPlayListService(playListPersistence, eventPublisher);
         }
         
         [Test]
@@ -38,7 +38,7 @@ namespace MyMusic.Application.Services.Tests {
 
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, aTrackId);
-            VerifyEventHasBeenRaised(new TrackHasBeenAddedToPlayList(aTrackId, aPlaylistId), eventBus);
+            VerifyEventHasBeenRaised(new TrackHasBeenAddedToPlayList(aTrackId, aPlaylistId), eventPublisher);
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace MyMusic.Application.Services.Tests {
             result.IsLeft.Should().BeTrue();
             result.IfLeft(error => error.Should().Be(DomainError.CannotAddSameTrackTwice));
             playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
-            eventBus.DidNotReceive().Raise(Arg.Any<List<Event>>());
+            eventPublisher.DidNotReceive().Publish(Arg.Any<List<Event>>());
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string aTrackId) {

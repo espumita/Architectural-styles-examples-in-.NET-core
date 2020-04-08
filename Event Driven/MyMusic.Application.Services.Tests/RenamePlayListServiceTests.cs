@@ -13,13 +13,13 @@ namespace MyMusic.Application.Services.Tests {
         
         private RenamePlayListService renamePlayListService;
         private PlayListPersistencePort playListPersistence;
-        private EventBusPort eventBus;
+        private EventPublisherPort eventPublisher;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            eventBus = Substitute.For<EventBusPort>();
-            renamePlayListService = new RenamePlayListService(playListPersistence, eventBus);
+            eventPublisher = Substitute.For<EventPublisherPort>();
+            renamePlayListService = new RenamePlayListService(playListPersistence, eventPublisher);
         }
 
         [Test]

@@ -15,13 +15,13 @@ namespace MyMusic.Application.Services.Tests {
         
         private RemoveTrackFromPLayListService removeTrackFromPLayListService;
         private PlayListPersistencePort playListPersistence;
-        private EventBusPort eventBus;
+        private EventPublisherPort eventPublisher;
         
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            eventBus = Substitute.For<EventBusPort>();
-            removeTrackFromPLayListService = new RemoveTrackFromPLayListService(playListPersistence, eventBus);
+            eventPublisher = Substitute.For<EventPublisherPort>();
+            removeTrackFromPLayListService = new RemoveTrackFromPLayListService(playListPersistence, eventPublisher);
         }
         
         [Test]
@@ -40,7 +40,7 @@ namespace MyMusic.Application.Services.Tests {
 
             result.IsRight.Should().BeTrue();
             VerifyAnEmptyPlayListHasBeenPersistedWith(aPlaylistId);
-            VerifyEventHasBeenRaised(new TrackHasBeenRemovedFromPlayList(aTrackId, aPlaylistId), eventBus);
+            VerifyEventHasBeenRaised(new TrackHasBeenRemovedFromPlayList(aTrackId, aPlaylistId), eventPublisher);
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace MyMusic.Application.Services.Tests {
             result.IsLeft.Should().BeTrue();
             result.IfLeft(error => error.Should().Be(DomainError.TrackIsNotInThePlayList));
             playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
-            eventBus.DidNotReceive().Raise(Arg.Any<List<Event>>());
+            eventPublisher.DidNotReceive().Publish(Arg.Any<List<Event>>());
         }
 
         private void VerifyAnEmptyPlayListHasBeenPersistedWith(string aPlaylistId) {

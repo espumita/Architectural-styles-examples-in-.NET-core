@@ -33,10 +33,10 @@ namespace MyMusic {
             AddServiceCreatorsToDependencyInjector(services);
             AddQueryCreatorsToDependencyInjector(services);
             AddEventHandlerCreatorsToDependencyInjector(services);
-            var eventBus = new EventBusInMemoryAdapter();
-            RegisterPlayListEventConsumerInToDependencyInjector(services, eventBus);
-            RegisterTrackEventConsumerInToDependencyInjector(services, eventBus);
-            services.AddSingleton<EventBusPort>(eventBus);
+            var eventPublisher = new EventPublisherInMemoryAdapter();
+            RegisterPlayListEventConsumerInToDependencyInjector(services, eventPublisher);
+            RegisterTrackEventConsumerInToDependencyInjector(services, eventPublisher);
+            services.AddSingleton<EventPublisherPort>(eventPublisher);
         }
 
         private static void AddServiceCreatorsToDependencyInjector(IServiceCollection services) {
@@ -54,28 +54,28 @@ namespace MyMusic {
             services.AddSingleton<TrackEventHandlerCreator>();
         }
 
-        private static void RegisterPlayListEventConsumerInToDependencyInjector(IServiceCollection services, EventBusPort eventBus) {
+        private static void RegisterPlayListEventConsumerInToDependencyInjector(IServiceCollection services, EventPublisherPort eventPublisher) {
             services.AddSingleton<PlayListEventConsumer>();
             var playListEventConsumer = services.BuildServiceProvider().GetService<PlayListEventConsumer>();
-            RegisterPlayListEventConsumersInTo(eventBus, playListEventConsumer);
+            RegisterPlayListEventConsumersInTo(eventPublisher, playListEventConsumer);
         }
 
-        private static void RegisterPlayListEventConsumersInTo(EventBusPort eventBus, PlayListEventConsumer playListEventConsumer) {
-            eventBus.Register<PlayListHasBeenCreated>(playListEventConsumer.Consume);
-            eventBus.Register<PlayListHasBeenRenamed>(playListEventConsumer.Consume);
-            eventBus.Register<PlayListImageUrlHasChanged>(playListEventConsumer.Consume);
-            eventBus.Register<PlayListHasBeenArchived>(playListEventConsumer.Consume);
+        private static void RegisterPlayListEventConsumersInTo(EventPublisherPort eventPublisher, PlayListEventConsumer playListEventConsumer) {
+            eventPublisher.Register<PlayListHasBeenCreated>(playListEventConsumer.Consume);
+            eventPublisher.Register<PlayListHasBeenRenamed>(playListEventConsumer.Consume);
+            eventPublisher.Register<PlayListImageUrlHasChanged>(playListEventConsumer.Consume);
+            eventPublisher.Register<PlayListHasBeenArchived>(playListEventConsumer.Consume);
         }
 
-        private static void RegisterTrackEventConsumerInToDependencyInjector(IServiceCollection services, EventBusInMemoryAdapter eventBus) {
+        private static void RegisterTrackEventConsumerInToDependencyInjector(IServiceCollection services, EventPublisherInMemoryAdapter eventPublisher) {
             services.AddSingleton<TrackEventConsumer>();
             var trackEventConsumer = services.BuildServiceProvider().GetService<TrackEventConsumer>();
-            RegisterTrackEventConsumersInTo(eventBus, trackEventConsumer);
+            RegisterTrackEventConsumersInTo(eventPublisher, trackEventConsumer);
         }
 
-        private static void RegisterTrackEventConsumersInTo(EventBusInMemoryAdapter eventBus, TrackEventConsumer trackEventConsumer) {
-            eventBus.Register<TrackHasBeenAddedToPlayList>(trackEventConsumer.Consume);
-            eventBus.Register<TrackHasBeenRemovedFromPlayList>(trackEventConsumer.Consume);
+        private static void RegisterTrackEventConsumersInTo(EventPublisherInMemoryAdapter eventPublisher, TrackEventConsumer trackEventConsumer) {
+            eventPublisher.Register<TrackHasBeenAddedToPlayList>(trackEventConsumer.Consume);
+            eventPublisher.Register<TrackHasBeenRemovedFromPlayList>(trackEventConsumer.Consume);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {

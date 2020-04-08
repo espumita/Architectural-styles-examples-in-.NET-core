@@ -6,31 +6,31 @@ using MyMusic.Infrastructure.Adapters.Persistence;
 namespace MyMusic.ServiceCreators {
 
     public class PlayListServiceCreator {
-        private readonly EventBusPort eventBus;
+        private readonly EventPublisherPort eventPublisher;
 
-        public PlayListServiceCreator(EventBusPort eventBus) {
-            this.eventBus = eventBus;
+        public PlayListServiceCreator(EventPublisherPort eventPublisher) {
+            this.eventPublisher = eventPublisher;
         }
 
         public CreatePlayListService CreateCreatePlayListService() {
             var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
             var uniqueIdentifiersInMemoryAdapter = new UniqueIdentifiersInMemoryAdapter();
-            return new CreatePlayListService(uniqueIdentifiersInMemoryAdapter, pLayListDatabaseAdapter, eventBus);
+            return new CreatePlayListService(uniqueIdentifiersInMemoryAdapter, pLayListDatabaseAdapter, eventPublisher);
         }
 
         public RenamePlayListService CreateRenamePlayListService() {
             var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
-            return new RenamePlayListService(pLayListDatabaseAdapter, eventBus);
+            return new RenamePlayListService(pLayListDatabaseAdapter, eventPublisher);
         }
 
         public ArchivePlayListService CreateArchivePlayListService() {
             var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
-            return new ArchivePlayListService(pLayListDatabaseAdapter, eventBus);
+            return new ArchivePlayListService(pLayListDatabaseAdapter, eventPublisher);
         }
 
         public AddImageUrlToPlayListService CreateAddImageUrlPlayListService() {
             var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
-            return new AddImageUrlToPlayListService(pLayListDatabaseAdapter, eventBus);
+            return new AddImageUrlToPlayListService(pLayListDatabaseAdapter, eventPublisher);
         }
     }
 }

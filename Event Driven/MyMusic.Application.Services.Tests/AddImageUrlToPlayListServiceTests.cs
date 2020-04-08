@@ -13,13 +13,13 @@ namespace MyMusic.Application.Services.Tests {
         
         private AddImageUrlToPlayListService addImageUrlToPlayListService;
         private PlayListPersistencePort playListPersistence;
-        private EventBusPort eventBus;
+        private EventPublisherPort eventPublisher;
 
         [SetUp]
         public void SetUp() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
-            eventBus = Substitute.For<EventBusPort>();
-            addImageUrlToPlayListService = new AddImageUrlToPlayListService(playListPersistence, eventBus);
+            eventPublisher = Substitute.For<EventPublisherPort>();
+            addImageUrlToPlayListService = new AddImageUrlToPlayListService(playListPersistence, eventPublisher);
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace MyMusic.Application.Services.Tests {
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, anImageUrl);
-            VerifyEventHasBeenRaised(new PlayListImageUrlHasChanged(aPlaylistId, anImageUrl), eventBus);
+            VerifyEventHasBeenRaised(new PlayListImageUrlHasChanged(aPlaylistId, anImageUrl), eventPublisher);
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string anImageUrl) {
