@@ -40,7 +40,7 @@ namespace MyMusic {
 
         private static void ConfigureCommands(IServiceCollection services) {
             CommandHandlersConfiguration.Configure(services);
-            var commandQueue = new CommandQueueInMemoryAdapter();
+            var commandQueue = new AsynchronousCommandQueueInMemoryAdapter();
             CommandProcessorsConfiguration.Configure(services, commandQueue);
             services.AddSingleton<CommandQueuePort>(commandQueue);
         }
