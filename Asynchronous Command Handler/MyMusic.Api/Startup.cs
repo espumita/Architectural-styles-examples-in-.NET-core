@@ -32,19 +32,20 @@ namespace MyMusic {
         }
 
         private static void ConfigureDependencyInjector(IServiceCollection services) {
-            AddCommandHandlersCreatorsToDependencyInjector(services);
             AddQueryCreatorsToDependencyInjector(services);
             AddEventHandlerCreatorsToDependencyInjector(services);
 
-            var commandQueue = new CommandQueueInMemoryAdapter();
-            RegisterPlayListCommandProcessorsInToDependencyInjector(services, commandQueue);
-            RegisterTrackCommandProcessorsInToDependencyInjector(services, commandQueue);
-            services.AddSingleton<CommandQueuePort>(commandQueue);
-            
             var eventPublisher = new EventPublisherInMemoryAdapter();
             RegisterPlayListEventConsumerInToDependencyInjector(services, eventPublisher);
             RegisterTrackEventConsumerInToDependencyInjector(services, eventPublisher);
             services.AddSingleton<EventPublisherPort>(eventPublisher);
+            
+            AddCommandHandlersCreatorsToDependencyInjector(services);
+            
+            var commandQueue = new CommandQueueInMemoryAdapter();
+            RegisterPlayListCommandProcessorsInToDependencyInjector(services, commandQueue);
+            RegisterTrackCommandProcessorsInToDependencyInjector(services, commandQueue);
+            services.AddSingleton<CommandQueuePort>(commandQueue);
         }
 
         private static void AddCommandHandlersCreatorsToDependencyInjector(IServiceCollection services) {
