@@ -1,5 +1,6 @@
 using FluentAssertions;
 using MyMusic.Application.CommandHandlers.Tests.builders;
+using MyMusic.Application.Commands;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Domain;
@@ -30,8 +31,9 @@ namespace MyMusic.Application.CommandHandlers.Tests {
                 .Build();
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
             var anImageUrl = APlaylist.AnotherImageUrl;
+            var command = new ChangePlayListImageUrl(aPlaylistId, anImageUrl);
             
-            var result = addImageUrlToPlayListCommandHandler.Execute(aPlaylistId, anImageUrl);
+            var result = addImageUrlToPlayListCommandHandler.Handle(command);
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, anImageUrl);

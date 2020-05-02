@@ -21,7 +21,7 @@ namespace MyMusic.Application.CommandHandlers {
 
         public Either<DomainError, CommandResult> Handle(CreatePLayList command) {
             var newPlayListId = uniqueIdentifiers.GetNewUniqueIdentifier();
-            var playList = PlayList.Create(newPlayListId, command.playListName);
+            var playList = PlayList.Create(newPlayListId, command.PlayListName);
             
             playListPersistence.Persist(playList);
             eventPublisher.Publish(playList.Events());

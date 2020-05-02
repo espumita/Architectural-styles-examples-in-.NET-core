@@ -1,5 +1,6 @@
 using LanguageExt;
 using MyMusic.Application.CommandHandlers.Successes;
+using MyMusic.Application.Commands;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Domain.Error;
@@ -15,9 +16,9 @@ namespace MyMusic.Application.CommandHandlers {
             this.eventPublisher = eventPublisher;
         }
 
-        public Either<DomainError, CommandResult> Execute(string playListId, string aNewImageUrL) {
-            var playList = playListPersistence.GetPlayList(playListId);
-            playList.AddImageUrl(aNewImageUrL);
+        public Either<DomainError, CommandResult> Handle(ChangePlayListImageUrl command) {
+            var playList = playListPersistence.GetPlayList(command.PlaylistId);
+            playList.AddImageUrl(command.NewImageUrl);
 
             playListPersistence.Persist(playList);
             eventPublisher.Publish(playList.Events());

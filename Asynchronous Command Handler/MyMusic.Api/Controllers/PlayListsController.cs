@@ -46,14 +46,12 @@ namespace MyMusic.Controllers {
         public ActionResult RenamePlaylist(string playlistId, [FromBody] RenamePlayListNameRequest request) {
             commandQueuePort.Queue(new RenamePlaylist(playlistId, request.NewPlayListName));
             return Ok();
-
         }
         
         [HttpPut("{playlistId}/imageUrl")]
-        public ActionResult RenamePlaylist(string playlistId, [FromBody] AddImageUrlToPlayListRequest renamePlayListNameRequest) {
-            var service = playListCommandHandlerCreator.CreateAddImageUrlPlayListCommandHandler();
-            var result = service.Execute(playlistId, renamePlayListNameRequest.NewImageUrl);
-            return this.BuildResponseFrom(result);
+        public ActionResult ChangePlayListImageUrl(string playlistId, [FromBody] AddImageUrlToPlayListRequest request) {
+            commandQueuePort.Queue(new ChangePlayListImageUrl(playlistId, request.NewImageUrl));
+            return Ok();
         }
         
         [HttpDelete("{playlistId}")]

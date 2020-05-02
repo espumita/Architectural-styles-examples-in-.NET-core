@@ -17,8 +17,8 @@ namespace MyMusic.Application.CommandHandlers {
         }
 
         public Either<DomainError, CommandResult> Handle(RenamePlaylist command) {
-            var playList = playListPersistence.GetPlayList(command.playlistId);
-            playList.Rename(command.newPlayListName);
+            var playList = playListPersistence.GetPlayList(command.PlaylistId);
+            playList.Rename(command.NewPlayListName);
             
             playListPersistence.Persist(playList);
             eventPublisher.Publish(playList.Events());

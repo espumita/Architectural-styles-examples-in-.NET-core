@@ -1,11 +1,11 @@
 namespace MyMusic.Application.Commands {
     public class RenamePlaylist: Command{
-        public string playlistId { get; }
-        public string newPlayListName { get; }
+        public string PlaylistId { get; }
+        public string NewPlayListName { get; }
 
         public RenamePlaylist(string playlistId, string newPlayListName) {
-            this.playlistId = playlistId;
-            this.newPlayListName = newPlayListName;
+            PlaylistId = playlistId;
+            NewPlayListName = newPlayListName;
         }
     }
 }
