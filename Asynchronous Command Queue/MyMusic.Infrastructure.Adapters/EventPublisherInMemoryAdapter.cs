@@ -11,8 +11,8 @@ namespace MyMusic.Infrastructure.Adapters {
         
         public void Publish<T>(List<T> events) where T : Event {
             events.ForEach(@event => {
-                if(eventConsumers.ContainsKey(typeof(T))) {
-                    eventConsumers[typeof(T)].ForEach(eventConsumer => eventConsumer(@event));
+                if(eventConsumers.ContainsKey(@event.GetType())) {
+                    eventConsumers[@event.GetType()].ForEach(eventConsumer => eventConsumer(@event));
                 }
             });
         }

@@ -4,13 +4,13 @@ using MyMusic.Infrastructure.Adapters.Http;
 namespace MyMusic.EventHandlerCreators {
     public class TrackEventHandlerCreator {
         public TrackHasBeenAddedToPlayListEventHandler TrackHasBeenAddedToPlayList() {
-            var traksSpotifyApiAdapter = new TraksSpotifyApiAdapter();
-            return new TrackHasBeenAddedToPlayListEventHandler(traksSpotifyApiAdapter);
+            var notifier = new TraksSpotifyApiAdapter();
+            return new TrackHasBeenAddedToPlayListEventHandler(notifier);
         }
 
         public TrackHasBeenRemovedFromPlayListEventHandler TrackHasBeenRemovedFromToPlayList() {
-            var traksSpotifyApiAdapter = new TraksSpotifyApiAdapter();
-            return new TrackHasBeenRemovedFromPlayListEventHandler(traksSpotifyApiAdapter);
+            var notifier = new TraksSpotifyApiAdapter();
+            return new TrackHasBeenRemovedFromPlayListEventHandler(notifier);
         }
     }
 }

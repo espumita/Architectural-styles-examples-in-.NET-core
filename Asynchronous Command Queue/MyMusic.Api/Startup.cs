@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using MyMusic.Application.Ports;
 using MyMusic.Configuration;
 using MyMusic.Infrastructure.Adapters;
+using MyMusic.Infrastructure.Adapters.Websockets;
 
 namespace MyMusic {
     public class Startup {
@@ -23,6 +24,7 @@ namespace MyMusic {
             services.AddSwaggerGen(options => {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
+            services.AddSignalR();
         }
 
         private static void ConfigureDependencyInjector(IServiceCollection services) {
@@ -56,7 +58,11 @@ namespace MyMusic {
             });
             app.UseRouting();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllers();
+                endpoints.MapHub<SignalRWebsocketAdapter>("/MyMusicHub");
+            });
+            
         }
     }
 }

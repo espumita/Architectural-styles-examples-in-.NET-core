@@ -9,4 +9,8 @@
       <ProjectReference Include="..\MyMusic.Application.Write.Ports\MyMusic.Application.Write.Ports.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    </ItemGroup>
+
 </Project>
