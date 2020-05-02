@@ -12,7 +12,11 @@ namespace MyMusic.CommandProcessors {
         
         public void Process(AddTrackToPLayList command) {
             var commandHandler = tracksCommandHandlerCreator.CreateAddTrackToPlayListCommandHandler();
-            var result = commandHandler.Execute(command);
+            var result = commandHandler.Handle(command);
+        }
+        public void Process(RemoveTrackFromPlayList command) {
+            var service = tracksCommandHandlerCreator.CreateRemoveTrackFromPLayListCommandHandler();
+            var result = service.Handle(command);
         }
     }
 }

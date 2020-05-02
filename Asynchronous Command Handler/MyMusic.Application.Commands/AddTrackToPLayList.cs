@@ -3,7 +3,7 @@ namespace MyMusic.Application.Commands {
         public string PlaylistId { get; }
         public string TrackId { get; }
 
-        public AddTrackToPLayList(string playlistId, string trackId) {
+        public AddTrackToPLayList(string trackId, string playlistId) {
             PlaylistId = playlistId;
             TrackId = trackId;
         }

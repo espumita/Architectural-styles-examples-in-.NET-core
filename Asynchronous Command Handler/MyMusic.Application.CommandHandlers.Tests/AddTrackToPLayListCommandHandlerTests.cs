@@ -34,9 +34,9 @@ namespace MyMusic.Application.CommandHandlers.Tests {
                 .WithId(aPlaylistId)
                 .Build();
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
-            var command = new AddTrackToPLayList(aPlaylistId, aTrackId);
+            var command = new AddTrackToPLayList(aTrackId, aPlaylistId);
 
-            var result = addTrackToPlayListCommandHandler.Execute(command);
+            var result = addTrackToPlayListCommandHandler.Handle(command);
 
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, aTrackId);
@@ -54,9 +54,9 @@ namespace MyMusic.Application.CommandHandlers.Tests {
                     .Build())
                 .Build();
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
-            var command = new AddTrackToPLayList(aPlaylistId, aTrackId);
+            var command = new AddTrackToPLayList(aTrackId, aPlaylistId);
 
-            var result = addTrackToPlayListCommandHandler.Execute(command);
+            var result = addTrackToPlayListCommandHandler.Handle(command);
 
             result.IsLeft.Should().BeTrue();
             result.IfLeft(error => error.Should().Be(DomainError.CannotAddSameTrackTwice));

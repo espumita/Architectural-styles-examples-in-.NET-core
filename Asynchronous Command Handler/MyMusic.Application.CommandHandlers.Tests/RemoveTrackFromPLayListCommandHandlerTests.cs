@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using FluentAssertions;
 using MyMusic.Application.CommandHandlers.Tests.builders;
+using MyMusic.Application.Commands;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Domain;
@@ -35,8 +36,9 @@ namespace MyMusic.Application.CommandHandlers.Tests {
                     .Build())
                 .Build();
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
+            var command = new RemoveTrackFromPlayList(aTrackId, aPlaylistId);
 
-            var result = removeTrackFromPLayListCommandHandler.Execute(aTrackId, aPlaylistId);
+            var result = removeTrackFromPLayListCommandHandler.Handle(command);
 
             result.IsRight.Should().BeTrue();
             VerifyAnEmptyPlayListHasBeenPersistedWith(aPlaylistId);
@@ -51,8 +53,9 @@ namespace MyMusic.Application.CommandHandlers.Tests {
                 .WithId(aPlaylistId)
                 .Build();
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
-
-            var result = removeTrackFromPLayListCommandHandler.Execute(aTrackId, aPlaylistId);
+            var command = new RemoveTrackFromPlayList(aTrackId, aPlaylistId);
+            
+            var result = removeTrackFromPLayListCommandHandler.Handle(command);
 
             result.IsLeft.Should().BeTrue();
             result.IfLeft(error => error.Should().Be(DomainError.TrackIsNotInThePlayList));

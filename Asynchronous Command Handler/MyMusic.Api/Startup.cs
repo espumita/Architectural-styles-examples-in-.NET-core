@@ -83,6 +83,7 @@ namespace MyMusic {
 
         private static void RegisterTrackCommandProcessorsInTo(CommandQueuePort commandQueue, TrackCommandProcessor trackCommandProcessor) {
             commandQueue.SetQueueSingleConsumer<AddTrackToPLayList>(trackCommandProcessor.Process);
+            commandQueue.SetQueueSingleConsumer<RemoveTrackFromPlayList>(trackCommandProcessor.Process);
 
         }
         

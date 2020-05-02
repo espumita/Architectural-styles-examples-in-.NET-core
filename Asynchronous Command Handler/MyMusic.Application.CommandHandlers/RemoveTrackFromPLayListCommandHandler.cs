@@ -1,6 +1,7 @@
 using LanguageExt;
 using LanguageExt.UnsafeValueAccess;
 using MyMusic.Application.CommandHandlers.Successes;
+using MyMusic.Application.Commands;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Domain.Error;
@@ -16,9 +17,9 @@ namespace MyMusic.Application.CommandHandlers {
             this.eventPublisher = eventPublisher;
         }
 
-        public Either<DomainError, CommandResult> Execute(string trackId, string playlistId) {
-            var playList = playListPersistence.GetPlayList(playlistId);
-            var error = playList.Remove(trackId);
+        public Either<DomainError, CommandResult> Handle(RemoveTrackFromPlayList command) {
+            var playList = playListPersistence.GetPlayList(command.PlaylistId);
+            var error = playList.Remove(command.TrackId);
             if (error.IsSome) return error.ValueUnsafe();
             
             playListPersistence.Persist(playList);
