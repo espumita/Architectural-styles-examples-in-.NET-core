@@ -3,7 +3,6 @@ using MyMusic.Application.Commands;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Queries;
 using MyMusic.Application.Read.Model;
-using MyMusic.CommandHandlerCreators;
 using MyMusic.QueryCreators;
 using MyMusic.Requests;
 using MyMusic.Responses;
@@ -12,14 +11,12 @@ namespace MyMusic.Controllers {
 
     [Route("playlists")]
     public class PlaylistsController: Controller {
-        private readonly PlayListCommandHandlerCreator playListCommandHandlerCreator;
         private readonly PlayListQueryCreator playListQueryCreator;
         private readonly CommandQueuePort commandQueuePort;
 
-        public PlaylistsController(PlayListCommandHandlerCreator playListCommandHandlerCreator, PlayListQueryCreator playListQueryCreator, CommandQueuePort commandQueuePort) {
-            this.playListCommandHandlerCreator = playListCommandHandlerCreator;
-            this.playListQueryCreator = playListQueryCreator;
+        public PlaylistsController(CommandQueuePort commandQueuePort, PlayListQueryCreator playListQueryCreator) {
             this.commandQueuePort = commandQueuePort;
+            this.playListQueryCreator = playListQueryCreator;
         }
 
         [HttpGet]
@@ -55,10 +52,9 @@ namespace MyMusic.Controllers {
         }
         
         [HttpDelete("{playlistId}")]
-        public ActionResult Archive(string playlistId) {
-            var service = playListCommandHandlerCreator.CreateArchivePlayListCommandHandler();
-            var result = service.Execute(playlistId); 
-            return this.BuildResponseFrom(result);
+        public ActionResult ArchivePlayList(string playlistId) {
+            commandQueuePort.Queue(new ArchivePlayList(playlistId));
+            return Ok();
         }
 
     }

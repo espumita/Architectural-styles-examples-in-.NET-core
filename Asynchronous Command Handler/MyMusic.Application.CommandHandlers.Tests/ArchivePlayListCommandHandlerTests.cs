@@ -1,5 +1,6 @@
 using FluentAssertions;
 using MyMusic.Application.CommandHandlers.Tests.builders;
+using MyMusic.Application.Commands;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Domain;
@@ -30,8 +31,9 @@ namespace MyMusic.Application.CommandHandlers.Tests {
                 .WithStatus(PlayListStatus.Active)
                 .Build();
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
-            
-            var result = archivePlayListCommandHandler.Execute(aPlaylistId);
+            var command = new ArchivePlayList(aPlaylistId);
+
+            var result = archivePlayListCommandHandler.Handle(command);
             
             result.IsRight.Should().BeTrue();
             VerifyPlayListHasBeenPersistedWith(aPlaylistId, PlayListStatus.Archived);

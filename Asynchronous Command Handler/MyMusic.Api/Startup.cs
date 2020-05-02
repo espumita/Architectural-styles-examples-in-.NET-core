@@ -72,6 +72,7 @@ namespace MyMusic {
             commandQueue.SetQueueSingleConsumer<CreatePLayList>(playListCommandProcessor.Process);
             commandQueue.SetQueueSingleConsumer<RenamePlaylist>(playListCommandProcessor.Process);
             commandQueue.SetQueueSingleConsumer<ChangePlayListImageUrl>(playListCommandProcessor.Process);
+            commandQueue.SetQueueSingleConsumer<ArchivePlayList>(playListCommandProcessor.Process);
         }
         
         private static void RegisterTrackCommandProcessorsInToDependencyInjector(IServiceCollection services, CommandQueuePort commandQueue) {

@@ -24,6 +24,10 @@ namespace MyMusic.CommandProcessors {
             var commandHandler = playListCommandHandlerCreator.CreateAddImageUrlPlayListCommandHandler();
             var result = commandHandler.Handle(command);
         }
+        public void Process(ArchivePlayList command) {
+            var commandHandler = playListCommandHandlerCreator.CreateArchivePlayListCommandHandler();
+            var result = commandHandler.Handle(command); 
+        }
         
     }
 }

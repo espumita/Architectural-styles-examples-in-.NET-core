@@ -1,5 +1,6 @@
 using LanguageExt;
 using MyMusic.Application.CommandHandlers.Successes;
+using MyMusic.Application.Commands;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Domain.Error;
@@ -15,8 +16,8 @@ namespace MyMusic.Application.CommandHandlers {
             this.eventPublisher = eventPublisher;
         }
 
-        public Either<DomainError, CommandResult> Execute(string playListId) {
-            var playList = playListPersistence.GetPlayList(playListId);
+        public Either<DomainError, CommandResult> Handle(ArchivePlayList command) {
+            var playList = playListPersistence.GetPlayList(command.PlaylistId);
             playList.Archive();
             
             playListPersistence.Persist(playList);
