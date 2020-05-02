@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using MyMusic.Application.Commands;
+using MyMusic.Application.Ports;
 using MyMusic.Application.Read.Model;
 using MyMusic.CommandHandlerCreators;
 using MyMusic.QueryCreators;
@@ -8,11 +10,11 @@ namespace MyMusic.Controllers {
     
     public class TracksController : Controller {
         
-        private readonly TracksCommandHandlerCreator tracksCommandHandlerCreator;
+        private readonly CommandQueuePort commandQueue;
         private readonly TracksQueryCreator tracksQueryCreator;
 
-        public TracksController(TracksCommandHandlerCreator tracksCommandHandlerCreator, TracksQueryCreator tracksQueryCreator) {
-            this.tracksCommandHandlerCreator = tracksCommandHandlerCreator;
+        public TracksController(CommandQueuePort commandQueue, TracksQueryCreator tracksQueryCreator) {
+            this.commandQueue = commandQueue;
             this.tracksQueryCreator = tracksQueryCreator;
         }
 
@@ -24,10 +26,9 @@ namespace MyMusic.Controllers {
         }
         
         [HttpPost("playlists/{playlistId}/tracks/{trackId}")]
-        public ActionResult AddTrack(string playlistId, string trackId) {
-            var service = tracksCommandHandlerCreator.CreateAddTrackToPlayListCommandHandler();
-            var result = service.Execute(trackId, playlistId);
-            return this.BuildResponseFrom(result);
+        public ActionResult AddTrackToPLayList(string playlistId, string trackId) {
+            commandQueue.Queue(new AddTrackToPLayList(playlistId, trackId));
+            return Ok();
         }
 
         [HttpDelete("playlists/{playlistId}/tracks/{trackId}")]

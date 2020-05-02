@@ -12,10 +12,10 @@ namespace MyMusic.Controllers {
     [Route("playlists")]
     public class PlaylistsController: Controller {
         private readonly PlayListQueryCreator playListQueryCreator;
-        private readonly CommandQueuePort commandQueuePort;
+        private readonly CommandQueuePort commandQueue;
 
-        public PlaylistsController(CommandQueuePort commandQueuePort, PlayListQueryCreator playListQueryCreator) {
-            this.commandQueuePort = commandQueuePort;
+        public PlaylistsController(CommandQueuePort commandQueue, PlayListQueryCreator playListQueryCreator) {
+            this.commandQueue = commandQueue;
             this.playListQueryCreator = playListQueryCreator;
         }
 
@@ -35,25 +35,25 @@ namespace MyMusic.Controllers {
 
         [HttpPost]
         public ActionResult CreatePlayList([FromBody]CreatePlayListRequest request) {
-            commandQueuePort.Queue(new CreatePLayList(request.PlayListName));
+            commandQueue.Queue(new CreatePLayList(request.PlayListName));
             return Ok();
         }
                 
         [HttpPut("{playlistId}/name")]
         public ActionResult RenamePlaylist(string playlistId, [FromBody] RenamePlayListNameRequest request) {
-            commandQueuePort.Queue(new RenamePlaylist(playlistId, request.NewPlayListName));
+            commandQueue.Queue(new RenamePlaylist(playlistId, request.NewPlayListName));
             return Ok();
         }
         
         [HttpPut("{playlistId}/imageUrl")]
         public ActionResult ChangePlayListImageUrl(string playlistId, [FromBody] AddImageUrlToPlayListRequest request) {
-            commandQueuePort.Queue(new ChangePlayListImageUrl(playlistId, request.NewImageUrl));
+            commandQueue.Queue(new ChangePlayListImageUrl(playlistId, request.NewImageUrl));
             return Ok();
         }
         
         [HttpDelete("{playlistId}")]
         public ActionResult ArchivePlayList(string playlistId) {
-            commandQueuePort.Queue(new ArchivePlayList(playlistId));
+            commandQueue.Queue(new ArchivePlayList(playlistId));
             return Ok();
         }
 

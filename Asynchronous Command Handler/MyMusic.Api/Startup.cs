@@ -82,6 +82,8 @@ namespace MyMusic {
         }
 
         private static void RegisterTrackCommandProcessorsInTo(CommandQueuePort commandQueue, TrackCommandProcessor trackCommandProcessor) {
+            commandQueue.SetQueueSingleConsumer<AddTrackToPLayList>(trackCommandProcessor.Process);
+
         }
         
         private static void RegisterPlayListEventConsumerInToDependencyInjector(IServiceCollection services, EventPublisherPort eventPublisher) {

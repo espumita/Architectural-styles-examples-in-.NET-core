@@ -1,3 +1,4 @@
+using MyMusic.Application.Commands;
 using MyMusic.CommandHandlerCreators;
 
 namespace MyMusic.CommandProcessors {
@@ -7,6 +8,11 @@ namespace MyMusic.CommandProcessors {
 
         public TrackCommandProcessor(TracksCommandHandlerCreator tracksCommandHandlerCreator) {
             this.tracksCommandHandlerCreator = tracksCommandHandlerCreator;
+        }
+        
+        public void Process(AddTrackToPLayList command) {
+            var commandHandler = tracksCommandHandlerCreator.CreateAddTrackToPlayListCommandHandler();
+            var result = commandHandler.Execute(command);
         }
     }
 }
