@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using MyMusic.ServiceCreators;
+using MyMusic.Configuration;
 
 namespace MyMusic {
     public class Startup {
@@ -24,12 +24,7 @@ namespace MyMusic {
         }
         
         private static void ConfigureDependencyInjector(IServiceCollection services) {
-            AddServiceCreatorsToDependencyInjector(services);
-        }
-        
-        private static void AddServiceCreatorsToDependencyInjector(IServiceCollection services) {
-            services.AddSingleton<PlayListServiceCreator>();
-            services.AddSingleton<TracksServiceCreator>();
+            ServicesConfiguration.Configure(services);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
