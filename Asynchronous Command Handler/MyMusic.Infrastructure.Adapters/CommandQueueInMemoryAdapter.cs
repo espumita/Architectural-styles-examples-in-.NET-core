@@ -17,9 +17,7 @@ namespace MyMusic.Infrastructure.Adapters {
         public void SetQueueSingleConsumer<T>(Action<T> commandProcessor) where T : Command {
             if(commandProcessors.ContainsKey(typeof(T))) {
                 commandProcessors[typeof(T)] = command => commandProcessor((T)command);
-            } else {
-                commandProcessors[typeof(T)] = command => commandProcessor((T)command);
-            }
+            } 
         }
         
     }
