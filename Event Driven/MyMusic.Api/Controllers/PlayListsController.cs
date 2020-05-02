@@ -33,28 +33,28 @@ namespace MyMusic.Controllers {
         }
 
         [HttpPost]
-        public ActionResult CreatePlayList([FromBody]CreatePlayListRequest createPlayListRequest) {
+        public ActionResult CreatePlayList([FromBody]CreatePlayListRequest request) {
             var service = playListServiceCreator.CreateCreatePlayListService();
-            var result = service.Execute(createPlayListRequest.PlayListName);
+            var result = service.Execute(request.PlayListName);
             return this.BuildResponseFrom(result);
         }
                 
         [HttpPut("{playlistId}/name")]
-        public ActionResult RenamePlaylist(string playlistId, [FromBody] RenamePlayListNameRequest renamePlayListNameRequest) {
+        public ActionResult RenamePlaylist(string playlistId, [FromBody] RenamePlayListNameRequest request) {
             var service = playListServiceCreator.CreateRenamePlayListService();
-            var result = service.Execute(playlistId, renamePlayListNameRequest.NewPlayListName);
+            var result = service.Execute(playlistId, request.NewPlayListName);
             return this.BuildResponseFrom(result);
         }
         
         [HttpPut("{playlistId}/imageUrl")]
-        public ActionResult RenamePlaylist(string playlistId, [FromBody] AddImageUrlToPlayListRequest renamePlayListNameRequest) {
+        public ActionResult ChangePlayListImageUrl(string playlistId, [FromBody] AddImageUrlToPlayListRequest request) {
             var service = playListServiceCreator.CreateAddImageUrlPlayListService();
-            var result = service.Execute(playlistId, renamePlayListNameRequest.NewImageUrl);
+            var result = service.Execute(playlistId, request.NewImageUrl);
             return this.BuildResponseFrom(result);
         }
         
         [HttpDelete("{playlistId}")]
-        public ActionResult Archive(string playlistId) {
+        public ActionResult ArchivePlayList(string playlistId) {
             var service = playListServiceCreator.CreateArchivePlayListService();
             var result = service.Execute(playlistId); 
             return this.BuildResponseFrom(result);
