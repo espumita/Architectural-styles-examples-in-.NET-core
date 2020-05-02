@@ -67,13 +67,13 @@ namespace MyMusic {
             eventPublisher.Register<PlayListHasBeenArchived>(playListEventConsumer.Consume);
         }
 
-        private static void RegisterTrackEventConsumerInToDependencyInjector(IServiceCollection services, EventPublisherInMemoryAdapter eventPublisher) {
+        private static void RegisterTrackEventConsumerInToDependencyInjector(IServiceCollection services, EventPublisherPort eventPublisher) {
             services.AddSingleton<TrackEventConsumer>();
             var trackEventConsumer = services.BuildServiceProvider().GetService<TrackEventConsumer>();
             RegisterTrackEventConsumersInTo(eventPublisher, trackEventConsumer);
         }
 
-        private static void RegisterTrackEventConsumersInTo(EventPublisherInMemoryAdapter eventPublisher, TrackEventConsumer trackEventConsumer) {
+        private static void RegisterTrackEventConsumersInTo(EventPublisherPort eventPublisher, TrackEventConsumer trackEventConsumer) {
             eventPublisher.Register<TrackHasBeenAddedToPlayList>(trackEventConsumer.Consume);
             eventPublisher.Register<TrackHasBeenRemovedFromPlayList>(trackEventConsumer.Consume);
         }
