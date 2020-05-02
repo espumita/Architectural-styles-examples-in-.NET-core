@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <RootNamespace>MyMusic.Application.Ports</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MyMusic.Application.Commands\MyMusic.Application.Commands.csproj" />
+      <ProjectReference Include="..\MyMusic.Domain.Events\MyMusic.Domain.Events.csproj" />
+      <ProjectReference Include="..\MyMusic.Domain\MyMusic.Domain.csproj" />
+    </ItemGroup>
+
+</Project>
