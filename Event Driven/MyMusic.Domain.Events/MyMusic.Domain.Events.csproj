@@ -4,8 +4,4 @@
         <TargetFramework>netcoreapp3.0</TargetFramework>
     </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\MyMusic.Application.Shared.Model\MyMusic.Application.Shared.Model.csproj" />
-    </ItemGroup>
-
 </Project>
