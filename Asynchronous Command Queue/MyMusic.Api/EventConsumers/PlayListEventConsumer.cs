@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using MyMusic.Domain.Events;
 using MyMusic.EventHandlerCreators;
 
