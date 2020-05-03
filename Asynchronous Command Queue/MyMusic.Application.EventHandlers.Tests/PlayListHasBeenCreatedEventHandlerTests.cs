@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Websockets;
 using MyMusic.Domain.Events;
@@ -20,15 +21,15 @@ namespace MyMusic.Application.EventHandlers.Tests {
         }
 
         [Test]
-        public void notify_play_list_has_been_created_and_send_to_websocket() {
+        public async Task notify_play_list_has_been_created_and_send_to_websocket() {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;
             var @event = new PlayListHasBeenCreated(aPlaylistId, aPlaylistName);
 
-            playListHasBeenCreated.Handle(@event);
+            await playListHasBeenCreated.Handle(@event);
             
             playListNotifier.Received().NotifyPlayListHasBeenCreated(aPlaylistId, aPlaylistName);
-            websocket.Received().PushMessageWithEventToAll(@event);
+            await websocket.Received().PushMessageWithEventToAll(@event);
         }
     }
 }
