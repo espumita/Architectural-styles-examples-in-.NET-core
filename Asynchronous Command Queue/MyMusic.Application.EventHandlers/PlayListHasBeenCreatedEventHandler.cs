@@ -1,4 +1,5 @@
 ﻿
+using System.Threading.Tasks;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Websockets;
 using MyMusic.Domain.Events;
@@ -13,9 +14,9 @@ namespace MyMusic.Application.EventHandlers {
             this.websocket = websocket;
         }
 
-        public void Handle(PlayListHasBeenCreated @event) {
+        public async Task Handle(PlayListHasBeenCreated @event) {
             playListNotifier.NotifyPlayListHasBeenCreated(@event.PlayListId, @event.PlayListName);
-            websocket.PushMessageWithEventToAll(@event).GetAwaiter().GetResult();
+            await websocket.PushMessageWithEventToAll(@event);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using MyMusic.Domain.Events;
 using MyMusic.EventHandlerCreators;
 
@@ -9,9 +10,9 @@ namespace MyMusic.EventConsumers {
             this.playListEventHandlerCreator = playListEventHandlerCreator;
         }
 
-        public void Consume(PlayListHasBeenCreated @event) {
+        public async void Consume(PlayListHasBeenCreated @event) {
             var playListHasBeenCreatedEventHandler = playListEventHandlerCreator.PlayListHasBeenCreated();
-            playListHasBeenCreatedEventHandler.Handle(@event);
+            await playListHasBeenCreatedEventHandler.Handle(@event);
         }
 
         public void Consume(PlayListHasBeenArchived @event) {
