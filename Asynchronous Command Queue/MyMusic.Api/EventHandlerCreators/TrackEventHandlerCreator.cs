@@ -16,7 +16,7 @@ namespace MyMusic.EventHandlerCreators {
 
         public TrackHasBeenRemovedFromPlayListEventHandler TrackHasBeenRemovedFromToPlayList() {
             var notifier = new TraksSpotifyApiAdapter();
-            return new TrackHasBeenRemovedFromPlayListEventHandler(notifier);
+            return new TrackHasBeenRemovedFromPlayListEventHandler(notifier, signalRWebsocketAdapter);
         }
     }
 }
