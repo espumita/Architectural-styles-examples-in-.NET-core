@@ -1,4 +1,4 @@
-namespace MyMusic.Application.CommandHandlers.Successes {
+namespace MyMusic.Application.Commands.Successes {
     public class OperationSuccess : CommandResult {
     }
 }

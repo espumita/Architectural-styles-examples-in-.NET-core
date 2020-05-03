@@ -1,6 +1,6 @@
 using LanguageExt;
-using MyMusic.Application.CommandHandlers.Successes;
 using MyMusic.Application.Commands;
+using MyMusic.Application.Commands.Successes;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Domain.Error;

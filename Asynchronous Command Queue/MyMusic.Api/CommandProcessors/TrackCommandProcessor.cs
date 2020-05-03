@@ -1,22 +1,28 @@
+using LanguageExt;
 using MyMusic.Application.Commands;
+using MyMusic.Application.Commands.Successes;
 using MyMusic.CommandHandlerCreators;
+using MyMusic.Domain.Error;
 
 namespace MyMusic.CommandProcessors {
 
-    public class TrackCommandProcessor {
+    public class TrackCommandProcessor : CommandProcessor {
         private readonly TracksCommandHandlerCreator tracksCommandHandlerCreator;
+        private readonly SignalRWebsocketAdapter signalRWebsocketAdapter;
 
-        public TrackCommandProcessor(TracksCommandHandlerCreator tracksCommandHandlerCreator) {
+        public TrackCommandProcessor(TracksCommandHandlerCreator tracksCommandHandlerCreator, SignalRWebsocketAdapter signalRWebsocketAdapter) {
             this.tracksCommandHandlerCreator = tracksCommandHandlerCreator;
+            this.signalRWebsocketAdapter = signalRWebsocketAdapter;
         }
         
-        public void Process(AddTrackToPLayList command) {
+        public Either<DomainError, CommandResult> Process(AddTrackToPLayList command) {
             var commandHandler = tracksCommandHandlerCreator.CreateAddTrackToPlayListCommandHandler();
-            var result = commandHandler.Handle(command);
+            return commandHandler.Handle(command);
         }
-        public void Process(RemoveTrackFromPlayList command) {
+
+        public Either<DomainError, CommandResult> Process(RemoveTrackFromPlayList command) {
             var service = tracksCommandHandlerCreator.CreateRemoveTrackFromPLayListCommandHandler();
-            var result = service.Handle(command);
+            return service.Handle(command);
         }
     }
 }

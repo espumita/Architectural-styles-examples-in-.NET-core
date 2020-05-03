@@ -1,5 +1,8 @@
+using LanguageExt;
 using MyMusic.Application.Commands;
+using MyMusic.Application.Commands.Successes;
 using MyMusic.CommandHandlerCreators;
+using MyMusic.Domain.Error;
 
 namespace MyMusic.CommandProcessors {
 
@@ -10,23 +13,23 @@ namespace MyMusic.CommandProcessors {
             this.playListCommandHandlerCreator = playListCommandHandlerCreator;
         }
 
-        public void Process(CreatePLayList command) {
+        public Either<DomainError, CommandResult> Process(CreatePLayList command) {
             var commandHandler = playListCommandHandlerCreator.CreateCreatePlayListCommandHandler();
-            var result = commandHandler.Handle(command);
+            return commandHandler.Handle(command);
         }
         
-        public void Process(RenamePlaylist command) {
+        public Either<DomainError, CommandResult> Process(RenamePlaylist command) {
             var commandHandler = playListCommandHandlerCreator.CreateRenamePlayListCommandHandler();
-            var result = commandHandler.Handle(command);
+            return commandHandler.Handle(command);
         }
         
-        public void Process(ChangePlayListImageUrl command) {
+        public Either<DomainError, CommandResult> Process(ChangePlayListImageUrl command) {
             var commandHandler = playListCommandHandlerCreator.CreateAddImageUrlPlayListCommandHandler();
-            var result = commandHandler.Handle(command);
+            return commandHandler.Handle(command);
         }
-        public void Process(ArchivePlayList command) {
+        public Either<DomainError, CommandResult> Process(ArchivePlayList command) {
             var commandHandler = playListCommandHandlerCreator.CreateArchivePlayListCommandHandler();
-            var result = commandHandler.Handle(command); 
+            return commandHandler.Handle(command); 
         }
         
     }

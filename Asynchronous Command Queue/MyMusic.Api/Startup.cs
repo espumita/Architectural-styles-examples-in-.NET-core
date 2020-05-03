@@ -46,7 +46,9 @@ namespace MyMusic {
 
         private static void ConfigureCommands(IServiceCollection services) {
             CommandHandlersConfiguration.Configure(services);
-            var commandQueue = new AsynchronousCommandQueueInMemoryAdapter();
+            services.AddSingleton<WebsocketErrorHandlerDecorator>();
+            var errorHandlerDecorator = services.BuildServiceProvider().GetService<WebsocketErrorHandlerDecorator>();
+            var commandQueue = new AsynchronousCommandQueueInMemoryAdapter(errorHandlerDecorator);
             CommandProcessorsConfiguration.Configure(services, commandQueue);
             services.AddSingleton<CommandQueuePort>(commandQueue);
         }
