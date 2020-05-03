@@ -9,8 +9,4 @@
       <ProjectReference Include="..\MyMusic.Application.Write.Ports\MyMusic.Application.Write.Ports.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Websockets" />
-    </ItemGroup>
-
 </Project>

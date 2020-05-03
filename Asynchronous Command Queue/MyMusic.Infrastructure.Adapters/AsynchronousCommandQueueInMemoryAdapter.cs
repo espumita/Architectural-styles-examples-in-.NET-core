@@ -9,10 +9,10 @@ using MyMusic.Domain.Error;
 
 namespace MyMusic.Infrastructure.Adapters {
     public class AsynchronousCommandQueueInMemoryAdapter : CommandQueuePort {
-        private readonly ErrorHandlerDecoratorPort errorHandlerDecoratorPort;
+        private readonly ErrorHandlerDecoratorPort errorHandlerDecorator;
 
-        public AsynchronousCommandQueueInMemoryAdapter(ErrorHandlerDecoratorPort errorHandlerDecoratorPort) {
-            this.errorHandlerDecoratorPort = errorHandlerDecoratorPort;
+        public AsynchronousCommandQueueInMemoryAdapter(ErrorHandlerDecoratorPort errorHandlerDecorator) {
+            this.errorHandlerDecorator = errorHandlerDecorator;
         }
 
         private Dictionary<Type, Func<Command, Either<DomainError, CommandResult>>> commandProcessors = new Dictionary<Type, Func<Command, Either<DomainError, CommandResult>>>();
@@ -20,7 +20,7 @@ namespace MyMusic.Infrastructure.Adapters {
         public void Queue<T>(T command) where T : Command {
             if(commandProcessors.ContainsKey(typeof(T))) {
               Task.Run(() => {
-                  errorHandlerDecoratorPort.Execute(commandProcessors[typeof(T)],command);
+                  errorHandlerDecorator.Execute(commandProcessors[typeof(T)],command);
               });
             }
         }

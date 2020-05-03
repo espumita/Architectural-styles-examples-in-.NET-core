@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using MyMusic.Websockets;
 
 namespace MyMusic.Configuration {
     public static class WebsocketConfiguration {

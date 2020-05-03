@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using MyMusic.Application.Ports;
 using MyMusic.Configuration;
 using MyMusic.Infrastructure.Adapters;
+using MyMusic.Websockets;
 
 namespace MyMusic {
     public class Startup {

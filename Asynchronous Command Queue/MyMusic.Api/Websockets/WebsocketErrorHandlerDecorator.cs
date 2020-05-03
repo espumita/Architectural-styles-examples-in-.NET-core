@@ -5,12 +5,12 @@ using MyMusic.Application.Commands.Successes;
 using MyMusic.Application.Ports;
 using MyMusic.Domain.Error;
 
-namespace MyMusic {
+namespace MyMusic.Websockets {
     public class WebsocketErrorHandlerDecorator: ErrorHandlerDecoratorPort {
-        private readonly SignalRWebsocketAdapter websocketPort;
+        private readonly SignalRWebsocketAdapter websocket;
 
-        public WebsocketErrorHandlerDecorator(SignalRWebsocketAdapter websocketPort) {
-            this.websocketPort = websocketPort;
+        public WebsocketErrorHandlerDecorator(SignalRWebsocketAdapter websocket) {
+            this.websocket = websocket;
         }
 
         public void Execute<T>(Func<Command,Either<DomainError,CommandResult>> commandProcessor, T command) where T : Command {
@@ -23,11 +23,11 @@ namespace MyMusic {
         }
 
         private async void HandleError(DomainError error, Command command) {
-            await websocketPort.PushMessageWithErrorToAll(error.GetType().Name, command);
+            await websocket.PushMessageWithErrorToAll(error.GetType().Name, command);
         }
 
         private async void HandleException(Exception exception, Command command) {
-            await websocketPort.PushMessageWithErrorToAll(exception.GetType().Name, command);
+            await websocket.PushMessageWithErrorToAll(exception.GetType().Name, command);
         }
     }
 }

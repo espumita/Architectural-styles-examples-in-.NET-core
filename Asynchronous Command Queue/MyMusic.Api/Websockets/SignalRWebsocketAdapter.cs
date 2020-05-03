@@ -2,10 +2,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using MyMusic.Application.Commands;
 using MyMusic.Application.Ports.Websockets;
-using MyMusic.Domain.Error;
 using MyMusic.Domain.Events;
 
-namespace MyMusic {
+namespace MyMusic.Websockets {
     public class SignalRWebsocketAdapter : Hub, WebsocketPort {
         
         public async  Task PushMessageWithEventToAll(Event @event) {

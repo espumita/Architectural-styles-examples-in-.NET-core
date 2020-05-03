@@ -3,6 +3,7 @@ using MyMusic.Application.Commands;
 using MyMusic.Application.Commands.Successes;
 using MyMusic.CommandHandlerCreators;
 using MyMusic.Domain.Error;
+using MyMusic.Websockets;
 
 namespace MyMusic.CommandProcessors {
 
