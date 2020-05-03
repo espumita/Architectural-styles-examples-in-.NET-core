@@ -7,7 +7,7 @@ using MyMusic.Websockets;
 
 namespace MyMusic.CommandProcessors {
 
-    public class TrackCommandProcessor : CommandProcessor {
+    public class TrackCommandProcessor {
         private readonly TracksCommandHandlerCreator tracksCommandHandlerCreator;
         private readonly SignalRWebsocketAdapter signalRWebsocketAdapter;
 
