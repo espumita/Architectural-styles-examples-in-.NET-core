@@ -1,7 +1,6 @@
 
 using MyMusic.Application.EventHandlers;
 using MyMusic.Infrastructure.Adapters.Http;
-using MyMusic.Infrastructure.Adapters.Websockets;
 
 namespace MyMusic.EventHandlerCreators {
 
