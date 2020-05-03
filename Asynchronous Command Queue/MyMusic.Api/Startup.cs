@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.Extensions.Configuration;
@@ -7,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MyMusic.Application.Ports;
-using MyMusic.Application.Ports.Websockets;
 using MyMusic.Configuration;
 using MyMusic.Infrastructure.Adapters;
 
@@ -46,11 +44,15 @@ namespace MyMusic {
 
         private static void ConfigureCommands(IServiceCollection services) {
             CommandHandlersConfiguration.Configure(services);
-            services.AddSingleton<WebsocketErrorHandlerDecorator>();
-            var errorHandlerDecorator = services.BuildServiceProvider().GetService<WebsocketErrorHandlerDecorator>();
-            var commandQueue = new AsynchronousCommandQueueInMemoryAdapter(errorHandlerDecorator);
+            var commandQueue = ConfigureCommandQueue(services);
             CommandProcessorsConfiguration.Configure(services, commandQueue);
             services.AddSingleton<CommandQueuePort>(commandQueue);
+        }
+
+        private static AsynchronousCommandQueueInMemoryAdapter ConfigureCommandQueue(IServiceCollection services) {
+            services.AddSingleton<WebsocketErrorHandlerDecorator>();
+            var errorHandlerDecorator = services.BuildServiceProvider().GetService<WebsocketErrorHandlerDecorator>();
+            return new AsynchronousCommandQueueInMemoryAdapter(errorHandlerDecorator);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
