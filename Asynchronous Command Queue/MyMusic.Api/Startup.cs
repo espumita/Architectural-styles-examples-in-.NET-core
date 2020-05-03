@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.Extensions.Configuration;
@@ -19,18 +20,11 @@ namespace MyMusic {
         }
 
         public void ConfigureServices(IServiceCollection services) {
+            services.AddCors();
             services.AddControllers();
             ConfigureDependencyInjector(services);
             services.AddSwaggerGen(options => {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-            });
-            services.AddCors(options => {
-                options.AddPolicy(name: "AllowAll", builder => {
-                    builder
-                        .AllowAnyOrigin() 
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
-                } );
             });
             services.AddSignalR();
         }
@@ -59,13 +53,17 @@ namespace MyMusic {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(builder => builder.WithOrigins(
+                    "http://localhost:8081", "*")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
             app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI(options => {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
             app.UseRouting();
-            app.UseCors("AllowAll");
             app.UseAuthorization();
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
