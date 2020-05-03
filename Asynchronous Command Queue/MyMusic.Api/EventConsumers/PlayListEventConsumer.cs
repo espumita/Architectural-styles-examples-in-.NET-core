@@ -24,9 +24,9 @@ namespace MyMusic.EventConsumers {
             await playListHasBeenRenamedEventHandler.Handle(@event);
         }
 
-        public void Consume(PlayListImageUrlHasChanged @event) {
+        public async void Consume(PlayListImageUrlHasChanged @event) {
             var playListHasBeenRenamedEventHandler = playListEventHandlerCreator.PlayListImageUrlHasChanged();
-            playListHasBeenRenamedEventHandler.Handle(@event);
+            await playListHasBeenRenamedEventHandler.Handle(@event);
         }
     }
 }

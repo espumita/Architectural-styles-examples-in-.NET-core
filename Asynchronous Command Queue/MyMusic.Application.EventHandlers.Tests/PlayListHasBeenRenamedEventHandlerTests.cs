@@ -21,7 +21,7 @@ namespace MyMusic.Application.EventHandlers.Tests {
         }
 
         [Test]
-        public async Task notify_play_list_has_been_renamed() {
+        public async Task notify_play_list_has_been_renamed_and_send_to_websocket() {
             var aPlaylistId = APlaylist.Id;
             var aNewPlaylistName = APlaylist.Name;
             var @event = new PlayListHasBeenRenamed(aPlaylistId, aNewPlaylistName);

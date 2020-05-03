@@ -28,7 +28,7 @@ namespace MyMusic.EventHandlerCreators {
 
         public PlayListHasImageUrlHasChangedEventHandler PlayListImageUrlHasChanged() {
             var notifier = new PlayListSpotifyApiAdapter();
-            return new PlayListHasImageUrlHasChangedEventHandler(notifier);
+            return new PlayListHasImageUrlHasChangedEventHandler(notifier, signalRWebsocketAdapter);
         }
     }
 }
