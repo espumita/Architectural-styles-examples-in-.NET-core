@@ -14,13 +14,11 @@ namespace MyMusic.Controllers {
     [Route("playlists")]
     public class PlaylistsController: Controller {
         private readonly PlayListQueryCreator playListQueryCreator;
-        private readonly SignalRWebsocketAdapter websocketAdapter;
         private readonly CommandQueuePort commandQueue;
 
-        public PlaylistsController(CommandQueuePort commandQueue, PlayListQueryCreator playListQueryCreator, SignalRWebsocketAdapter websocketAdapter) {
+        public PlaylistsController(CommandQueuePort commandQueue, PlayListQueryCreator playListQueryCreator) {
             this.commandQueue = commandQueue;
             this.playListQueryCreator = playListQueryCreator;
-            this.websocketAdapter = websocketAdapter;
         }
 
         [HttpGet]
@@ -38,9 +36,8 @@ namespace MyMusic.Controllers {
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreatePlayList([FromBody]CreatePlayListRequest request) {
-            //commandQueue.Queue(new CreatePLayList(request.PlayListName));
-            await websocketAdapter.PushMessageWithEventToAll(new PlayListHasBeenCreated("wtf", "isthisshit"));
+        public ActionResult CreatePlayList([FromBody]CreatePlayListRequest request) {
+            commandQueue.Queue(new CreatePLayList(request.PlayListName));
             return Ok();
         }
                 

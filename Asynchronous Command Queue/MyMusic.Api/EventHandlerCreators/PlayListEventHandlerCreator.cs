@@ -1,13 +1,19 @@
 
 using MyMusic.Application.EventHandlers;
+using MyMusic.Application.Ports.Websockets;
 using MyMusic.Infrastructure.Adapters.Http;
 
 namespace MyMusic.EventHandlerCreators {
 
     public class PlayListEventHandlerCreator {
+        private readonly SignalRWebsocketAdapter signalRWebsocketAdapter;
+
+        public PlayListEventHandlerCreator(SignalRWebsocketAdapter signalRWebsocketAdapter) {
+            this.signalRWebsocketAdapter = signalRWebsocketAdapter;
+        }
+
         public PlayListHasBeenCreatedEventHandler PlayListHasBeenCreated() {
             var notifier = new PlayListSpotifyApiAdapter();
-            var signalRWebsocketAdapter = new SignalRWebsocketAdapter();
             return new PlayListHasBeenCreatedEventHandler(notifier, signalRWebsocketAdapter);
         }
 

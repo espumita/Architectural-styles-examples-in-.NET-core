@@ -12,6 +12,7 @@ namespace MyMusic.Infrastructure.Adapters {
         public void Queue<T>(T command) where T : Command {
             if(commandProcessors.ContainsKey(typeof(T))) {
               Task.Run(() => commandProcessors[typeof(T)](command));
+             //commandProcessors[typeof(T)](command);
             }
         }
         

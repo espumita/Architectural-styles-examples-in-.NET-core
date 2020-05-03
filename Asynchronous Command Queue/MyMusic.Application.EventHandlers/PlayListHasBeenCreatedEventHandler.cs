@@ -15,7 +15,7 @@ namespace MyMusic.Application.EventHandlers {
 
         public void Handle(PlayListHasBeenCreated @event) {
             playListNotifier.NotifyPlayListHasBeenCreated(@event.PlayListId, @event.PlayListName);
-            websocket.PushMessageWithEventToAll(@event);
+            websocket.PushMessageWithEventToAll(@event).GetAwaiter().GetResult();
         }
     }
 }

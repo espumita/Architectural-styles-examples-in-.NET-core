@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MyMusic.Application.Ports;
+using MyMusic.Application.Ports.Websockets;
 using MyMusic.Configuration;
 using MyMusic.Infrastructure.Adapters;
 
@@ -26,12 +27,12 @@ namespace MyMusic {
             services.AddSwaggerGen(options => {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
-            services.AddSingleton<SignalRWebsocketAdapter>();
             services.AddSignalR();
         }
 
         private static void ConfigureDependencyInjector(IServiceCollection services) {
             QueriesConfiguration.Configure(services);
+            WebsocketConfiguration.Configure(services);
             ConfigureEvents(services);
             ConfigureCommands(services);
         }
