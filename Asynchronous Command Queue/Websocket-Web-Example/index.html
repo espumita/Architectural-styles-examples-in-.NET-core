@@ -5,14 +5,14 @@
         <script>
             var connection = new signalR.HubConnectionBuilder()
                 .withUrl("https://localhost:44375/MyMusicHub", {
-                 //   skipNegotiation: true,
-                 //   transport: signalR.HttpTransportType.WebSockets
+                    skipNegotiation: true,
+                    transport: signalR.HttpTransportType.WebSockets
                 })
                 .configureLogging(signalR.LogLevel.Debug)
                 .build();
                 
             connection.on("ReceiveMessage", function (user, message) {
-                console.log(user, message)
+                console.log("ReceiveMessage", user, message)
             });
 
             connection.start().then(function () {

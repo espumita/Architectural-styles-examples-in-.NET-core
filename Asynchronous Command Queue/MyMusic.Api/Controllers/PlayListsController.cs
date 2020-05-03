@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using MyMusic.Application.Commands;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Queries;
 using MyMusic.Application.Read.Model;
+using MyMusic.Domain.Events;
 using MyMusic.QueryCreators;
 using MyMusic.Requests;
 using MyMusic.Responses;
@@ -12,11 +14,13 @@ namespace MyMusic.Controllers {
     [Route("playlists")]
     public class PlaylistsController: Controller {
         private readonly PlayListQueryCreator playListQueryCreator;
+        private readonly SignalRWebsocketAdapter websocketAdapter;
         private readonly CommandQueuePort commandQueue;
 
-        public PlaylistsController(CommandQueuePort commandQueue, PlayListQueryCreator playListQueryCreator) {
+        public PlaylistsController(CommandQueuePort commandQueue, PlayListQueryCreator playListQueryCreator, SignalRWebsocketAdapter websocketAdapter) {
             this.commandQueue = commandQueue;
             this.playListQueryCreator = playListQueryCreator;
+            this.websocketAdapter = websocketAdapter;
         }
 
         [HttpGet]
@@ -34,8 +38,9 @@ namespace MyMusic.Controllers {
         }
 
         [HttpPost]
-        public ActionResult CreatePlayList([FromBody]CreatePlayListRequest request) {
-            commandQueue.Queue(new CreatePLayList(request.PlayListName));
+        public async Task<ActionResult> CreatePlayList([FromBody]CreatePlayListRequest request) {
+            //commandQueue.Queue(new CreatePLayList(request.PlayListName));
+            await websocketAdapter.PushMessageWithEvent(new PlayListHasBeenCreated("wtf", "isthisshit"));
             return Ok();
         }
                 

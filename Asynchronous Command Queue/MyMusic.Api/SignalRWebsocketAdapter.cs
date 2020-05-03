@@ -6,9 +6,11 @@ using MyMusic.Domain.Events;
 
 namespace MyMusic {
     public class SignalRWebsocketAdapter : Hub, WebsocketPort {
-        public async Task PushMessageWithEvent(Event @event) {
+        public async  Task PushMessageWithEvent(Event @event) {
             var serializedMessage = JsonSerializer.Serialize(@event);
-            await Clients.All.SendAsync("ReceiveMessage", "test",serializedMessage);
+            if (Clients != null){
+                await Clients.All.SendAsync("ReceiveMessage", "test", serializedMessage);
+            }
         }
     }
 }

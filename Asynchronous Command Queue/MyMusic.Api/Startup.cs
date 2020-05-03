@@ -26,6 +26,7 @@ namespace MyMusic {
             services.AddSwaggerGen(options => {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
+            services.AddSingleton<SignalRWebsocketAdapter>();
             services.AddSignalR();
         }
 
