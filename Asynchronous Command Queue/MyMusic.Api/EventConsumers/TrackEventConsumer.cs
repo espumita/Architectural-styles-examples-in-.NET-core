@@ -10,9 +10,9 @@ namespace MyMusic.EventConsumers {
             this.trackEventHandlerCreator = trackEventHandlerCreator;
         }
 
-        public void Consume(TrackHasBeenAddedToPlayList @event) {
+        public async void Consume(TrackHasBeenAddedToPlayList @event) {
             var trackHasBeenAddedToPlayListEventHandler = trackEventHandlerCreator.TrackHasBeenAddedToPlayList();
-            trackHasBeenAddedToPlayListEventHandler.Handle(@event);
+            await trackHasBeenAddedToPlayListEventHandler.Handle(@event);
         }
 
         public void Consume(TrackHasBeenRemovedFromPlayList @event) {
