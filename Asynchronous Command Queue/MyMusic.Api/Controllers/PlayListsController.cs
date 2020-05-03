@@ -40,7 +40,7 @@ namespace MyMusic.Controllers {
         [HttpPost]
         public async Task<ActionResult> CreatePlayList([FromBody]CreatePlayListRequest request) {
             //commandQueue.Queue(new CreatePLayList(request.PlayListName));
-            await websocketAdapter.PushMessageWithEvent(new PlayListHasBeenCreated("wtf", "isthisshit"));
+            await websocketAdapter.PushMessageWithEventToAll(new PlayListHasBeenCreated("wtf", "isthisshit"));
             return Ok();
         }
                 

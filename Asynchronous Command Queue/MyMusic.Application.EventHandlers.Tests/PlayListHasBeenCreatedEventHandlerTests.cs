@@ -28,7 +28,7 @@ namespace MyMusic.Application.EventHandlers.Tests {
             playListHasBeenCreated.Handle(@event);
             
             playListNotifier.Received().NotifyPlayListHasBeenCreated(aPlaylistId, aPlaylistName);
-            websocket.Received().PushMessageWithEvent(@event);
+            websocket.Received().PushMessageWithEventToAll(@event);
         }
     }
 }

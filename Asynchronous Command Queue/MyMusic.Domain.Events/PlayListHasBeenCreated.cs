@@ -5,6 +5,8 @@ namespace MyMusic.Domain.Events {
         public string PlayListId { get; }
         public string PlayListName { get; }
 
+        public PlayListHasBeenCreated() { }
+
         public PlayListHasBeenCreated(string playListId, string playListName) {
             PlayListId = playListId;
             PlayListName = playListName;

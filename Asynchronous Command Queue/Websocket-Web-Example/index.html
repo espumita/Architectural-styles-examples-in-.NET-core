@@ -11,8 +11,8 @@
                 .configureLogging(signalR.LogLevel.Debug)
                 .build();
                 
-            connection.on("ReceiveMessage", function (user, message) {
-                console.log("ReceiveMessage", user, message)
+            connection.on("AllMyMusicTarget", function (user, message) {
+                console.log("AllMyMusicTarget", user, message)
             });
 
             connection.start().then(function () {
