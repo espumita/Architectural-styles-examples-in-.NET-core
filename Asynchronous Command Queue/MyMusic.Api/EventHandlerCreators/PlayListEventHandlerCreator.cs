@@ -18,12 +18,12 @@ namespace MyMusic.EventHandlerCreators {
 
         public PlayListHasBeenArchivedEventHandler PlayListHasBeenArchived() {
             var notifier = new PlayListSpotifyApiAdapter();
-            return new PlayListHasBeenArchivedEventHandler(notifier);
+            return new PlayListHasBeenArchivedEventHandler(notifier, signalRWebsocketAdapter);
         }
 
         public PlayListHasBeenRenamedEventHandler PlayListHasBeenRenamed() {
             var notifier = new PlayListSpotifyApiAdapter();
-            return new PlayListHasBeenRenamedEventHandler(notifier);
+            return new PlayListHasBeenRenamedEventHandler(notifier, signalRWebsocketAdapter);
         }
 
         public PlayListHasImageUrlHasChangedEventHandler PlayListImageUrlHasChanged() {

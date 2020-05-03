@@ -14,14 +14,14 @@ namespace MyMusic.EventConsumers {
             await playListHasBeenCreatedEventHandler.Handle(@event);
         }
 
-        public void Consume(PlayListHasBeenArchived @event) {
+        public async void Consume(PlayListHasBeenArchived @event) {
             var playListHasBeenArchivedEventHandler = playListEventHandlerCreator.PlayListHasBeenArchived();
-            playListHasBeenArchivedEventHandler.Handle(@event);
+            await playListHasBeenArchivedEventHandler.Handle(@event);
         }
 
-        public void Consume(PlayListHasBeenRenamed @event) {
+        public async void Consume(PlayListHasBeenRenamed @event) {
             var playListHasBeenRenamedEventHandler = playListEventHandlerCreator.PlayListHasBeenRenamed();
-            playListHasBeenRenamedEventHandler.Handle(@event);
+            await playListHasBeenRenamedEventHandler.Handle(@event);
         }
 
         public void Consume(PlayListImageUrlHasChanged @event) {

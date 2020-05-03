@@ -1,4 +1,6 @@
+using System.Threading.Tasks;
 using MyMusic.Application.Ports.Notifications;
+using MyMusic.Application.Ports.Websockets;
 using MyMusic.Domain.Events;
 using NSubstitute;
 using NUnit.Framework;
@@ -8,22 +10,26 @@ namespace MyMusic.Application.EventHandlers.Tests {
     public class PlayListHasBeenRenamedEventHandlerTests {
         private PlayListHasBeenRenamedEventHandler playListHasBeenRenamed;
         private PlayListNotifierPort playListNotifier;
+        private WebsocketPort websocketPort;
 
 
         [SetUp]
         public void SetUp() {
             playListNotifier = Substitute.For<PlayListNotifierPort>();
-            playListHasBeenRenamed = new PlayListHasBeenRenamedEventHandler(playListNotifier);
+            websocketPort = Substitute.For<WebsocketPort>();
+            playListHasBeenRenamed = new PlayListHasBeenRenamedEventHandler(playListNotifier, websocketPort);
         }
 
         [Test]
-        public void notify_play_list_has_been_renamed() {
+        public async Task notify_play_list_has_been_renamed() {
             var aPlaylistId = APlaylist.Id;
             var aNewPlaylistName = APlaylist.Name;
-            
-            playListHasBeenRenamed.Handle(new PlayListHasBeenRenamed(aPlaylistId, aNewPlaylistName));
+            var @event = new PlayListHasBeenRenamed(aPlaylistId, aNewPlaylistName);
+
+            await playListHasBeenRenamed.Handle(@event);
             
             playListNotifier.Received().NotifyPlayListHasBeenRenamed(aPlaylistId, aNewPlaylistName);
+            await websocketPort.Received().PushMessageWithEventToAll(@event);
         }
     }
 }
