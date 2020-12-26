@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@microsoft/signalr": "^5.0.1",
     "http-server": "^0.12.3"
   },
   "devDependencies": {},
