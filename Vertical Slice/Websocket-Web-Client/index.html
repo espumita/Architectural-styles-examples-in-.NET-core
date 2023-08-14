@@ -1,0 +1,26 @@
+<html>
+    <head></head>
+    <body>
+        <script src="./node_modules/@microsoft/signalr/dist/browser/signalr.min.js"></script>
+        <script>
+            var connection = new signalR.HubConnectionBuilder()
+                .withUrl("https://localhost:5001/MyMusicHub", {
+                    skipNegotiation: true,
+                    transport: signalR.HttpTransportType.WebSockets
+                })
+                .configureLogging(signalR.LogLevel.Debug)
+                .build();
+                
+            connection.on("AllMyMusicTarget", function (user, message) {
+                console.log("AllMyMusicTarget", user, message)
+            });
+
+            connection.start().then(function () {
+                console.log("SignalR connection started...")
+            }).catch(function (error) {
+                return console.error(error.toString());
+            });
+
+        </script>
+    </body>
+</html>
