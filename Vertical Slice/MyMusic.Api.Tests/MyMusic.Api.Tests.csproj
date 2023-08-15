@@ -15,10 +15,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Adapters\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\MyMusic.Api\MyMusic.Api.csproj" />
 	</ItemGroup>
 

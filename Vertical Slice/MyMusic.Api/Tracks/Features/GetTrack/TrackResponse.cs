@@ -1,5 +1,4 @@
-
-using MyMusic.PlayList.Features.GetPlayListQuery;
+using MyMusic.PlayLists.Features.GetPlayListQuery;
 using MyMusic.Shared;
 
 namespace MyMusic.Tracks.Features.GetTrack {

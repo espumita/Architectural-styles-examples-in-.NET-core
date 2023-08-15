@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using MyMusic.PlayList;
+using MyMusic.PlayLists;
 using MyMusic.Tracks;
 
 namespace MyMusic.ApiConfiguration {

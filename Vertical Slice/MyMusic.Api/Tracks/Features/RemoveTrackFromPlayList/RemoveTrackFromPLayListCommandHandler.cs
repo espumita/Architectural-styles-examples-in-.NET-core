@@ -1,7 +1,7 @@
 using LanguageExt;
 using LanguageExt.UnsafeValueAccess;
-using MyMusic.PlayList.Domain.Error;
-using MyMusic.PlayList.Features;
+using MyMusic.PlayLists.Domain.Error;
+using MyMusic.PlayLists.Features;
 using MyMusic.Shared.Commands.Successes;
 using MyMusic.Shared.Ports;
 

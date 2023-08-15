@@ -1,4 +1,4 @@
-using MyMusic.PlayList.Features.GetPlayListQuery;
+using MyMusic.PlayLists.Features.GetPlayListQuery;
 
 namespace MyMusic.Tracks.Features {
 

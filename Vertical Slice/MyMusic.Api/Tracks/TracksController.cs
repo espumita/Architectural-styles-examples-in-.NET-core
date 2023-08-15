@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using MyMusic.PlayList.Features.GetPlayListQuery;
+using MyMusic.PlayLists.Features.GetPlayListQuery;
 using MyMusic.Shared;
 using MyMusic.Shared.Ports;
 using MyMusic.Tracks.Features;

@@ -1,6 +1,6 @@
 using System;
 using LanguageExt;
-using MyMusic.PlayList.Domain.Error;
+using MyMusic.PlayLists.Domain.Error;
 using MyMusic.Shared.Commands;
 using MyMusic.Shared.Commands.Successes;
 

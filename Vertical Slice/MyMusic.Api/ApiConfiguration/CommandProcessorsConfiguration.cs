@@ -1,9 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
-using MyMusic.PlayList;
-using MyMusic.PlayList.Features.ArchivePlayList;
-using MyMusic.PlayList.Features.ChangePlayListImageUrl;
-using MyMusic.PlayList.Features.CreatePLayList;
-using MyMusic.PlayList.Features.RenamePlaylist;
+using MyMusic.PlayLists;
+using MyMusic.PlayLists.Features.ArchivePlayList;
+using MyMusic.PlayLists.Features.ChangePlayListImageUrl;
+using MyMusic.PlayLists.Features.CreatePLayList;
+using MyMusic.PlayLists.Features.RenamePlaylist;
 using MyMusic.Shared.Ports;
 using MyMusic.Tracks;
 using MyMusic.Tracks.Features.AddTrackToPLayList;
