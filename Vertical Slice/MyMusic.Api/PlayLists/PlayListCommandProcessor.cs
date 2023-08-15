@@ -1,6 +1,6 @@
 using LanguageExt;
-using MyMusic.PlayLists.Domain.Error;
 using MyMusic.Shared;
+using MyMusic.Shared.Domain.Error;
 
 namespace MyMusic.PlayLists {
 

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Bogus;
-using MyMusic.PlayLists.Domain;
-using MyMusic.Tracks.Domain;
+using MyMusic.Shared.Domain;
 
 namespace MyMusic.Api.Tests.Shared.builders {
     public class PlayListBuilder {

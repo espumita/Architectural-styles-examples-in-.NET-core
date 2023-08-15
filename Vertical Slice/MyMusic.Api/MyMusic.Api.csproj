@@ -10,9 +10,5 @@
       <PackageReference Include="LanguageExt.Core" Version="4.4.3" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Tracks\Domain\" />
-    </ItemGroup>
-
 
 </Project>

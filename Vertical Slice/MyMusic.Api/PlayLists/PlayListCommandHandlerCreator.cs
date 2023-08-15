@@ -4,6 +4,7 @@ using MyMusic.PlayLists.Features.ChangePlayListImageUrl;
 using MyMusic.PlayLists.Features.CreatePLayList;
 using MyMusic.PlayLists.Features.RenamePlaylist;
 using MyMusic.Shared.Infrastructure;
+using MyMusic.Shared.Persistence;
 
 namespace MyMusic.PlayLists {
 

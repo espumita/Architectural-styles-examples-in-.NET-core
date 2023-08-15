@@ -1,9 +1,10 @@
 using FluentAssertions;
 using MyMusic.Api.Tests.Shared.builders;
-using MyMusic.PlayLists.Domain;
 using MyMusic.PlayLists.Features;
 using MyMusic.PlayLists.Features.RenamePlaylist;
+using MyMusic.Shared.Domain;
 using MyMusic.Shared.Infrastructure;
+using MyMusic.Shared.Persistence;
 using NSubstitute;
 using NUnit.Framework;
 

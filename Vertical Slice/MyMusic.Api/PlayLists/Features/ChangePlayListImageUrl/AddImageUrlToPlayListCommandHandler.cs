@@ -1,7 +1,8 @@
 using LanguageExt;
-using MyMusic.PlayLists.Domain.Error;
 using MyMusic.Shared;
+using MyMusic.Shared.Domain.Error;
 using MyMusic.Shared.Infrastructure;
+using MyMusic.Shared.Persistence;
 
 namespace MyMusic.PlayLists.Features.ChangePlayListImageUrl {
     public class AddImageUrlToPlayListCommandHandler {

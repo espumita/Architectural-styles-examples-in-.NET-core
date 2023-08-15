@@ -1,10 +1,11 @@
 using LanguageExt;
 using LanguageExt.UnsafeValueAccess;
-using MyMusic.PlayLists.Domain.Error;
 using MyMusic.PlayLists.Features;
 using MyMusic.Shared;
+using MyMusic.Shared.Domain;
+using MyMusic.Shared.Domain.Error;
 using MyMusic.Shared.Infrastructure;
-using MyMusic.Tracks.Domain;
+using MyMusic.Shared.Persistence;
 
 namespace MyMusic.Tracks.Features.AddTrackToPLayList {
     public class AddTrackToPlayListCommandHandler {

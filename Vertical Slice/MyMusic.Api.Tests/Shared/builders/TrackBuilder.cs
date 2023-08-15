@@ -1,5 +1,5 @@
 using MyMusic.Api.Tests.Tracks;
-using MyMusic.Tracks.Domain;
+using MyMusic.Shared.Domain;
 
 namespace MyMusic.Api.Tests.Shared.builders {
     public class TrackBuilder {

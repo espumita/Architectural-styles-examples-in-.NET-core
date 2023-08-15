@@ -1,4 +1,4 @@
-namespace MyMusic.Tracks.Domain {
+namespace MyMusic.Shared.Domain {
     public class Track {
         public string Id { get; }
 

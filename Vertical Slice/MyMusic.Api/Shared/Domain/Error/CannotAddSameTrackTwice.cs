@@ -1,4 +1,4 @@
-namespace MyMusic.PlayLists.Domain.Error {
+namespace MyMusic.Shared.Domain.Error {
     public class CannotAddSameTrackTwice : DomainError {
         
     }

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using LanguageExt;
-using MyMusic.PlayLists.Domain.Error;
+using MyMusic.Shared.Domain.Error;
 
 namespace MyMusic.Shared.Infrastructure {
     public class AsynchronousCommandQueueInMemory : CommandQueue {

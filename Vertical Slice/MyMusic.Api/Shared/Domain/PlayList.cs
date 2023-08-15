@@ -1,17 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using LanguageExt;
-using MyMusic.PlayLists.Domain.Error;
 using MyMusic.PlayLists.Features.ArchivePlayList;
 using MyMusic.PlayLists.Features.ChangePlayListImageUrl;
 using MyMusic.PlayLists.Features.CreatePLayList;
 using MyMusic.PlayLists.Features.RenamePlaylist;
-using MyMusic.Shared;
-using MyMusic.Tracks.Domain;
+using MyMusic.Shared.Domain.Error;
 using MyMusic.Tracks.Features.AddTrackToPLayList;
 using MyMusic.Tracks.Features.RemoveTrackFromPlayList;
 
-namespace MyMusic.PlayLists.Domain {
+namespace MyMusic.Shared.Domain {
     public class PlayList {
         
         public string Id { get; }
