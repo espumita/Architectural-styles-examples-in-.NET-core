@@ -1,7 +1,6 @@
 using FluentAssertions;
 using MyMusic.Api.Tests.Shared;
 using MyMusic.Api.Tests.Shared.builders;
-using MyMusic.PlayLists.Features;
 using MyMusic.PlayLists.Features.CreatePLayList;
 using MyMusic.Shared.Domain;
 using MyMusic.Shared.Infrastructure;

@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
-using MyMusic.PlayLists.Features;
 
 namespace MyMusic.Shared.Infrastructure {
     public class SignalRWebsocket : Hub, Websocket {

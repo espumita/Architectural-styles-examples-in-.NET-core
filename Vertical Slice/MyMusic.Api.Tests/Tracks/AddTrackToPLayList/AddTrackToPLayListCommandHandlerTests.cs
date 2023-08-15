@@ -3,7 +3,6 @@ using System.Linq;
 using FluentAssertions;
 using MyMusic.Api.Tests.Shared;
 using MyMusic.Api.Tests.Shared.builders;
-using MyMusic.PlayLists.Features;
 using MyMusic.Shared;
 using MyMusic.Shared.Domain;
 using MyMusic.Shared.Domain.Error;

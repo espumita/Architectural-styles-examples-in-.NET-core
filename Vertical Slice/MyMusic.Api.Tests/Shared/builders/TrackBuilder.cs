@@ -1,4 +1,3 @@
-using MyMusic.Api.Tests.Tracks;
 using MyMusic.Shared.Domain;
 
 namespace MyMusic.Api.Tests.Shared.builders {

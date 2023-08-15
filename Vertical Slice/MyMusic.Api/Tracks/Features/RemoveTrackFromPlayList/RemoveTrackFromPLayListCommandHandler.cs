@@ -1,6 +1,5 @@
 using LanguageExt;
 using LanguageExt.UnsafeValueAccess;
-using MyMusic.PlayLists.Features;
 using MyMusic.Shared;
 using MyMusic.Shared.Domain.Error;
 using MyMusic.Shared.Infrastructure;

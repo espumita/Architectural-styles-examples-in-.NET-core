@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using MyMusic.Api.Tests.Shared.builders;
-using MyMusic.PlayLists.Features;
 using MyMusic.Shared.Infrastructure;
 using MyMusic.Tracks.Features;
 using MyMusic.Tracks.Features.RemoveTrackFromPlayList;
