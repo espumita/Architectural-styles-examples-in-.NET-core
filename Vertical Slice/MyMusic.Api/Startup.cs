@@ -5,10 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using MyMusic.Application.Write.Ports;
-using MyMusic.Configuration;
-using MyMusic.Infrastructure;
-using MyMusic.Websockets;
+using MyMusic.ApiConfiguration;
+using MyMusic.Shared.Infrastructure;
+using MyMusic.Shared.Ports;
+using MyMusic.Shared.Websockets;
 
 namespace MyMusic {
     public class Startup {

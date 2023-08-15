@@ -1,5 +1,5 @@
 using Bogus;
-using MyMusic.Application.Read.Model;
+using MyMusic.PlayList.Features.GetPlayListQuery;
 
 namespace MyMusic.Api.Tests.Queries.builders {
     public class TrackBuilder {

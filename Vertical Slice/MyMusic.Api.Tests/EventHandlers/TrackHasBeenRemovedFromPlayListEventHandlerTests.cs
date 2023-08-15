@@ -1,8 +1,7 @@
 using System.Threading.Tasks;
-using MyMusic.Application.Write.EventHandlers;
-using MyMusic.Application.Write.Ports.Notifications;
-using MyMusic.Application.Write.Ports.Websockets;
-using MyMusic.Events;
+using MyMusic.PlayList.Features;
+using MyMusic.Tracks.Features;
+using MyMusic.Tracks.Features.RemoveTrackFromPlayList;
 using NSubstitute;
 using NUnit.Framework;
 

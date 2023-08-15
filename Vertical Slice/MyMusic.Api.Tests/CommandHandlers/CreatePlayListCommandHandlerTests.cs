@@ -1,11 +1,10 @@
 using FluentAssertions;
 using MyMusic.Api.Tests.CommandHandlers.builders;
-using MyMusic.Application.Write.CommandHandlers;
-using MyMusic.Application.Write.Commands;
-using MyMusic.Application.Write.Ports;
-using MyMusic.Application.Write.Ports.Persistence;
-using MyMusic.Domain;
-using MyMusic.Events;
+using MyMusic.PlayList;
+using MyMusic.PlayList.Domain;
+using MyMusic.PlayList.Features;
+using MyMusic.PlayList.Features.CreatePLayList;
+using MyMusic.Shared.Ports;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -41,7 +40,7 @@ namespace MyMusic.Api.Tests.CommandHandlers {
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string aPlaylistName, PlayListStatus status) {
-            playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist =>
+            playListPersistence.Received().Persist(Arg.Is<PlayList.Domain.PlayList>(playlist =>
                 playlist.Id.Equals(aPlaylistId)
                 && playlist.Name.Equals(aPlaylistName)
                 && playlist.Status.Equals(status)

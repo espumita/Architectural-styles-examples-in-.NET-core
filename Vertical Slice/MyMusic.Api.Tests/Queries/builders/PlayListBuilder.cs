@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Bogus;
-using MyMusic.Application.Read.Model;
+using MyMusic.PlayList.Features.GetPlayListQuery;
 
 namespace MyMusic.Api.Tests.Queries.builders {
     public class PlayListBuilder {
@@ -36,9 +36,9 @@ namespace MyMusic.Api.Tests.Queries.builders {
             return this;
         }
 
-        public PlayList Build() {
+        public PlayList.Features.GetPlayListQuery.PlayList Build() {
             var faker = new Faker();
-            return new PlayList(
+            return new PlayList.Features.GetPlayListQuery.PlayList(
                 id: id ?? APlaylist.Id,
                 name: name ?? APlaylist.Name,
                 status: status ?? PlayListStatus.Active,

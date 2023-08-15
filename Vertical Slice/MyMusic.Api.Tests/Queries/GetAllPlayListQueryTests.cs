@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using MyMusic.Api.Tests.Queries.builders;
-using MyMusic.Application.Read.Model;
-using MyMusic.Application.Read.Ports;
-using MyMusic.Application.Read.Queries;
+using MyMusic.PlayList.Features;
+using MyMusic.PlayList.Features.GetAllPlayListQuery;
+using MyMusic.PlayList.Features.GetPlayListQuery;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -42,7 +42,7 @@ namespace MyMusic.Api.Tests.Queries {
                 .WithId(anotherPlayListId)
                 .WithStatus(PlayListStatus.Archived)
                 .Build();
-            playListQuery.GetAllPlayList().Returns(new List<PlayList> {
+            playListQuery.GetAllPlayList().Returns(new List<PlayList.Features.GetPlayListQuery.PlayList> {
                 aPlayList, anotherPlayList
             });
 
@@ -52,7 +52,7 @@ namespace MyMusic.Api.Tests.Queries {
             result.IfRight(listOfPlayLists => VerifyAreEquivalent(listOfPlayLists, aPlayList));
         }
         
-        private static void VerifyAreEquivalent(ListOfPlayLists playListsList, PlayList expectedPlayList) {
+        private static void VerifyAreEquivalent(ListOfPlayLists playListsList, PlayList.Features.GetPlayListQuery.PlayList expectedPlayList) {
             var playList = playListsList.Elements.Single();
             playList.Should().BeEquivalentTo(expectedPlayList);
         }

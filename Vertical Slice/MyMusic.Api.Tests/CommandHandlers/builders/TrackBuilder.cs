@@ -1,4 +1,5 @@
-using MyMusic.Domain;
+using MyMusic.Tracks;
+using MyMusic.Tracks.Domain;
 
 namespace MyMusic.Api.Tests.CommandHandlers.builders {
     public class TrackBuilder {

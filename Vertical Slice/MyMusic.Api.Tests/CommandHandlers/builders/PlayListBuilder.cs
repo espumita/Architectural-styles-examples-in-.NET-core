@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using Bogus;
-using MyMusic.Domain;
+using MyMusic.PlayList;
+using MyMusic.PlayList.Domain;
+using MyMusic.Tracks;
+using MyMusic.Tracks.Domain;
 
 namespace MyMusic.Api.Tests.CommandHandlers.builders {
     public class PlayListBuilder {
@@ -36,9 +39,9 @@ namespace MyMusic.Api.Tests.CommandHandlers.builders {
             return this;
         }
 
-        public PlayList Build() {
+        public PlayList.Domain.PlayList Build() {
             var faker = new Faker();
-            return new PlayList(
+            return new PlayList.Domain.PlayList(
                 id: id ?? APlaylist.Id,
                 name: name ?? APlaylist.Name,
                 status: status ?? PlayListStatus.Active,

@@ -2,13 +2,12 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using MyMusic.Api.Tests.CommandHandlers.builders;
-using MyMusic.Application.Write.CommandHandlers;
-using MyMusic.Application.Write.Commands;
-using MyMusic.Application.Write.Ports;
-using MyMusic.Application.Write.Ports.Persistence;
-using MyMusic.Domain;
-using MyMusic.Domain.Error;
-using MyMusic.Events;
+using MyMusic.PlayList.Domain.Error;
+using MyMusic.PlayList.Features;
+using MyMusic.Shared;
+using MyMusic.Shared.Ports;
+using MyMusic.Tracks.Features;
+using MyMusic.Tracks.Features.AddTrackToPLayList;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -61,12 +60,12 @@ namespace MyMusic.Api.Tests.CommandHandlers {
 
             result.IsLeft.Should().BeTrue();
             result.IfLeft(error => error.Should().Be(DomainError.CannotAddSameTrackTwice));
-            playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList>());
+            playListPersistence.DidNotReceive().Persist(Arg.Any<PlayList.Domain.PlayList>());
             eventPublisher.DidNotReceive().Publish(Arg.Any<List<Event>>());
         }
 
         private void VerifyPlayListHasBeenPersistedWith(string aPlaylistId, string aTrackId) {
-            playListPersistence.Received().Persist(Arg.Is<PlayList>(playlist =>
+            playListPersistence.Received().Persist(Arg.Is<PlayList.Domain.PlayList>(playlist =>
                 playlist.Id.Equals(aPlaylistId)
                 && playlist.TrackList.Single().Id.Equals(aTrackId)
             ));

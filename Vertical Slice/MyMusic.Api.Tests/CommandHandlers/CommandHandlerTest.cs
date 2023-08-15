@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using MyMusic.Application.Write.Ports;
-using MyMusic.Events;
+using MyMusic.Shared;
+using MyMusic.Shared.Ports;
 using NSubstitute;
 
 namespace MyMusic.Api.Tests.CommandHandlers {
