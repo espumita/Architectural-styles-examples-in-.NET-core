@@ -3,35 +3,35 @@ using MyMusic.PlayLists.Features.ArchivePlayList;
 using MyMusic.PlayLists.Features.ChangePlayListImageUrl;
 using MyMusic.PlayLists.Features.CreatePLayList;
 using MyMusic.PlayLists.Features.RenamePlaylist;
-using MyMusic.Shared.Websockets;
+using MyMusic.Shared.Infrastructure;
 
 namespace MyMusic.PlayLists {
 
     public class PlayListEventHandlerCreator {
-        private readonly SignalRWebsocketAdapter signalRWebsocketAdapter;
+        private readonly SignalRWebsocket signalRWebsocket;
 
-        public PlayListEventHandlerCreator(SignalRWebsocketAdapter signalRWebsocketAdapter) {
-            this.signalRWebsocketAdapter = signalRWebsocketAdapter;
+        public PlayListEventHandlerCreator(SignalRWebsocket signalRWebsocket) {
+            this.signalRWebsocket = signalRWebsocket;
         }
 
         public PlayListHasBeenCreatedEventHandler PlayListHasBeenCreated() {
-            var notifier = new PlayListSpotifyApiAdapter();
-            return new PlayListHasBeenCreatedEventHandler(notifier, signalRWebsocketAdapter);
+            var notifier = new PlayListSpotifyApi();
+            return new PlayListHasBeenCreatedEventHandler(notifier, signalRWebsocket);
         }
 
         public PlayListHasBeenArchivedEventHandler PlayListHasBeenArchived() {
-            var notifier = new PlayListSpotifyApiAdapter();
-            return new PlayListHasBeenArchivedEventHandler(notifier, signalRWebsocketAdapter);
+            var notifier = new PlayListSpotifyApi();
+            return new PlayListHasBeenArchivedEventHandler(notifier, signalRWebsocket);
         }
 
         public PlayListHasBeenRenamedEventHandler PlayListHasBeenRenamed() {
-            var notifier = new PlayListSpotifyApiAdapter();
-            return new PlayListHasBeenRenamedEventHandler(notifier, signalRWebsocketAdapter);
+            var notifier = new PlayListSpotifyApi();
+            return new PlayListHasBeenRenamedEventHandler(notifier, signalRWebsocket);
         }
 
         public PlayListHasImageUrlHasChangedEventHandler PlayListImageUrlHasChanged() {
-            var notifier = new PlayListSpotifyApiAdapter();
-            return new PlayListHasImageUrlHasChangedEventHandler(notifier, signalRWebsocketAdapter);
+            var notifier = new PlayListSpotifyApi();
+            return new PlayListHasImageUrlHasChangedEventHandler(notifier, signalRWebsocket);
         }
     }
 }

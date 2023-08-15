@@ -1,4 +1,4 @@
-using MyMusic.Shared.Commands;
+using MyMusic.Shared;
 
 namespace MyMusic.Tracks.Features.RemoveTrackFromPlayList {
     public class RemoveTrackFromPlayList : Command {

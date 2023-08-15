@@ -1,14 +1,14 @@
 using System.Linq;
 using LanguageExt;
 using MyMusic.PlayLists.Features.GetPlayListQuery;
-using MyMusic.Shared.Queries.Errors;
+using MyMusic.Shared;
 
 namespace MyMusic.PlayLists.Features.GetAllPlayListQuery {
 
     public class GetAllPlayListQuery {
-        private readonly PlayListQueryPort playListQuery;
+        private readonly PlayListQuery playListQuery;
         
-        public GetAllPlayListQuery(PlayListQueryPort playListQuery) {
+        public GetAllPlayListQuery(PlayListQuery playListQuery) {
             this.playListQuery = playListQuery;
         }
 

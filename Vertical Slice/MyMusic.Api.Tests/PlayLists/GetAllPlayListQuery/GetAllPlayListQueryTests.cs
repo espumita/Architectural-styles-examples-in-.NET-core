@@ -11,11 +11,11 @@ namespace MyMusic.Api.Tests.PlayLists.GetAllPlayListQuery {
 
     public class GetAllPlayListQueryTests {
         private MyMusic.PlayLists.Features.GetAllPlayListQuery.GetAllPlayListQuery getAllPlayListQuery;
-        private PlayListQueryPort playListQuery;
+        private PlayListQuery playListQuery;
 
         [SetUp]
         public void SetUp() {
-            playListQuery = Substitute.For<PlayListQueryPort>();
+            playListQuery = Substitute.For<PlayListQuery>();
             getAllPlayListQuery = new MyMusic.PlayLists.Features.GetAllPlayListQuery.GetAllPlayListQuery(playListQuery);
         }
 

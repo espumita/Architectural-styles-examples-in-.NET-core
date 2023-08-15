@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using MyMusic.Shared.Ports;
 
 namespace MyMusic.Shared.Infrastructure {
 
-    public class EventPublisherInMemoryAdapter : EventPublisherPort {
+    public class EventPublisherInMemory : EventPublisher {
         
         private Dictionary<Type, List<Action<Event>>> eventConsumers = new Dictionary<Type, List<Action<Event>>>();
         

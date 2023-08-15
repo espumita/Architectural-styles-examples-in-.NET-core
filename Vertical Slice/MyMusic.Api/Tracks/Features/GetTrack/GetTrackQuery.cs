@@ -1,13 +1,13 @@
 using LanguageExt;
 using MyMusic.PlayLists.Features.GetPlayListQuery;
-using MyMusic.Shared.Queries.Errors;
+using MyMusic.Shared;
 
 namespace MyMusic.Tracks.Features.GetTrack {
     public class GetTrackQuery {
         
-        private readonly TracksQueryPort tracksQuery;
+        private readonly TracksQuery tracksQuery;
 
-        public GetTrackQuery(TracksQueryPort tracksQuery) {
+        public GetTrackQuery(TracksQuery tracksQuery) {
             this.tracksQuery = tracksQuery;
         }
 

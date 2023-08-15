@@ -1,6 +1,5 @@
 using LanguageExt;
 using Microsoft.AspNetCore.Mvc;
-using MyMusic.Shared.Queries.Errors;
 
 namespace MyMusic.Shared {
 

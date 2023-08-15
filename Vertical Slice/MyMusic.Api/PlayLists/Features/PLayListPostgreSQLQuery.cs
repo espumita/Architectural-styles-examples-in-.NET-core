@@ -3,7 +3,7 @@ using MyMusic.PlayLists.Features.GetPlayListQuery;
 
 namespace MyMusic.PlayLists.Features {
 
-    public class PLayListPostgreSQLQueryAdapter : PlayListQueryPort {
+    public class PLayListPostgreSQLQuery : PlayListQuery {
         public PlayList GetPlayList(string playlistId) {
             //This should be read from PostgreSQL DB
             var trackList = new List<Track> {

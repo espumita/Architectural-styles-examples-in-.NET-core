@@ -6,7 +6,7 @@ using MyMusic.PlayLists.Domain;
 using MyMusic.PlayLists.Domain.Error;
 using MyMusic.PlayLists.Features;
 using MyMusic.Shared;
-using MyMusic.Shared.Ports;
+using MyMusic.Shared.Infrastructure;
 using MyMusic.Tracks.Features.RemoveTrackFromPlayList;
 using NSubstitute;
 using NUnit.Framework;
@@ -16,13 +16,13 @@ namespace MyMusic.Api.Tests.Tracks.RemoveTrackFromPlayList {
     public class RemoveTrackFromPLayListCommandHandlerTests : CommandHandlerTest {
         
         private RemoveTrackFromPLayListCommandHandler removeTrackFromPLayListCommandHandler;
-        private PlayListPersistencePort playListPersistence;
-        private EventPublisherPort eventPublisher;
+        private PlayListPersistence playListPersistence;
+        private EventPublisher eventPublisher;
         
         [SetUp]
         public void SetUp() {
-            playListPersistence = Substitute.For<PlayListPersistencePort>();
-            eventPublisher = Substitute.For<EventPublisherPort>();
+            playListPersistence = Substitute.For<PlayListPersistence>();
+            eventPublisher = Substitute.For<EventPublisher>();
             removeTrackFromPLayListCommandHandler = new RemoveTrackFromPLayListCommandHandler(playListPersistence, eventPublisher);
         }
         

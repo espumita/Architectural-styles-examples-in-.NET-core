@@ -1,19 +1,20 @@
 using System.Threading.Tasks;
 using MyMusic.PlayLists.Features;
+using MyMusic.Shared.Infrastructure;
 
 namespace MyMusic.Tracks.Features.AddTrackToPLayList {
     public class TrackHasBeenAddedToPlayListEventHandler {
-        private readonly TracksNotifierPort tracksNotifier;
-        private readonly WebsocketPort websocketPort;
+        private readonly TracksNotifier tracksNotifier;
+        private readonly Websocket websocket;
 
-        public TrackHasBeenAddedToPlayListEventHandler(TracksNotifierPort tracksNotifier, WebsocketPort websocketPort) {
+        public TrackHasBeenAddedToPlayListEventHandler(TracksNotifier tracksNotifier, Websocket websocket) {
             this.tracksNotifier = tracksNotifier;
-            this.websocketPort = websocketPort;
+            this.websocket = websocket;
         }
 
         public async Task Handle(TrackHasBeenAddedToPlayList @event) {
             tracksNotifier.NotifyTrackHasBeenAddedToPlayList(@event.TrackId, @event.PlayListId);
-            await websocketPort.PushMessageWithEventToAll(@event);
+            await websocket.PushMessageWithEventToAll(@event);
         }
     }
 }

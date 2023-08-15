@@ -1,5 +1,5 @@
 namespace MyMusic.Tracks.Features {
-    public interface TracksNotifierPort {
+    public interface TracksNotifier {
         
         void NotifyTrackHasBeenAddedToPlayList(string trackId, string playlistId);
         void NotifyTrackHasRemovedFromPlayList(string trackId, string playlistId);

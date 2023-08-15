@@ -6,16 +6,16 @@ using MyMusic.PlayLists.Features.GetAllPlayListQuery;
 using MyMusic.PlayLists.Features.GetPlayListQuery;
 using MyMusic.PlayLists.Features.RenamePlaylist;
 using MyMusic.Shared;
-using MyMusic.Shared.Ports;
+using MyMusic.Shared.Infrastructure;
 
 namespace MyMusic.PlayLists {
 
     [Route("playlists")]
     public class PlaylistsController: Controller {
         private readonly PlayListQueryCreator playListQueryCreator;
-        private readonly CommandQueuePort commandQueue;
+        private readonly CommandQueue commandQueue;
 
-        public PlaylistsController(CommandQueuePort commandQueue, PlayListQueryCreator playListQueryCreator) {
+        public PlaylistsController(CommandQueue commandQueue, PlayListQueryCreator playListQueryCreator) {
             this.commandQueue = commandQueue;
             this.playListQueryCreator = playListQueryCreator;
         }

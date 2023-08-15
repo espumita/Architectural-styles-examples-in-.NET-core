@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using MyMusic.Api.Tests.Shared.builders;
 using MyMusic.PlayLists.Features;
 using MyMusic.PlayLists.Features.ChangePlayListImageUrl;
+using MyMusic.Shared.Infrastructure;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -9,15 +10,15 @@ namespace MyMusic.Api.Tests.PlayLists.ChangePlayListImageUrl {
 
     public class PlayListHasImageUrlHasChangedEventHandlerTests {
         private PlayListHasImageUrlHasChangedEventHandler playListHasImageUrlHasChanged;
-        private PlayListNotifierPort playListNotifier;
-        private WebsocketPort websocketPort;
+        private PlayListNotifier playListNotifier;
+        private Websocket websocket;
 
 
         [SetUp]
         public void SetUp() {
-            playListNotifier = Substitute.For<PlayListNotifierPort>();
-            websocketPort = Substitute.For<WebsocketPort>();
-            playListHasImageUrlHasChanged = new PlayListHasImageUrlHasChangedEventHandler(playListNotifier, websocketPort);
+            playListNotifier = Substitute.For<PlayListNotifier>();
+            websocket = Substitute.For<Websocket>();
+            playListHasImageUrlHasChanged = new PlayListHasImageUrlHasChangedEventHandler(playListNotifier, websocket);
         }
 
         [Test]

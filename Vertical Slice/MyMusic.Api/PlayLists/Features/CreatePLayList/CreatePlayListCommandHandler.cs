@@ -1,16 +1,16 @@
 using LanguageExt;
 using MyMusic.PlayLists.Domain.Error;
-using MyMusic.Shared.Commands.Successes;
-using MyMusic.Shared.Ports;
+using MyMusic.Shared;
+using MyMusic.Shared.Infrastructure;
 
 namespace MyMusic.PlayLists.Features.CreatePLayList {
     public class CreatePlayListCommandHandler {
         
-        private readonly UniqueIdentifiersPort uniqueIdentifiers;
-        private readonly PlayListPersistencePort playListPersistence;
-        private readonly EventPublisherPort eventPublisher;
+        private readonly UniqueIdentifiers uniqueIdentifiers;
+        private readonly PlayListPersistence playListPersistence;
+        private readonly EventPublisher eventPublisher;
 
-        public CreatePlayListCommandHandler(UniqueIdentifiersPort uniqueIdentifiers, PlayListPersistencePort playListPersistence, EventPublisherPort eventPublisher) {
+        public CreatePlayListCommandHandler(UniqueIdentifiers uniqueIdentifiers, PlayListPersistence playListPersistence, EventPublisher eventPublisher) {
             this.uniqueIdentifiers = uniqueIdentifiers;
             this.playListPersistence = playListPersistence;
             this.eventPublisher = eventPublisher;

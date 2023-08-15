@@ -1,4 +1,4 @@
-namespace MyMusic.Shared.Queries.Errors {
+namespace MyMusic.Shared {
 
     public class QueryError {
         

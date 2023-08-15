@@ -1,10 +1,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using MyMusic.PlayLists.Features;
-using MyMusic.Shared.Commands;
 
-namespace MyMusic.Shared.Websockets {
-    public class SignalRWebsocketAdapter : Hub, WebsocketPort {
+namespace MyMusic.Shared.Infrastructure {
+    public class SignalRWebsocket : Hub, Websocket {
         
         public async  Task PushMessageWithEventToAll(Event @event) {
             if (Clients != null){

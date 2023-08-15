@@ -1,4 +1,4 @@
-using MyMusic.Shared.Commands;
+using MyMusic.Shared;
 
 namespace MyMusic.PlayLists.Features.CreatePLayList {
     public class CreatePLayList : Command {

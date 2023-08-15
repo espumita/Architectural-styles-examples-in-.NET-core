@@ -1,6 +1,6 @@
 namespace MyMusic.Tracks.Features {
 
-    public class TraksSpotifyApiAdapter : TracksNotifierPort {
+    public class TraksSpotifyApi : TracksNotifier {
         
         public void NotifyTrackHasBeenAddedToPlayList(string trackId, string playlistId) {
             //This should Notify to Spotify Api

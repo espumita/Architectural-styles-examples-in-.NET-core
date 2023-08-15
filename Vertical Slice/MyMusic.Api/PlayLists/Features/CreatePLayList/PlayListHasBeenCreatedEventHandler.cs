@@ -1,11 +1,12 @@
 ﻿using System.Threading.Tasks;
+using MyMusic.Shared.Infrastructure;
 
 namespace MyMusic.PlayLists.Features.CreatePLayList {
     public class PlayListHasBeenCreatedEventHandler {
-        private readonly PlayListNotifierPort playListNotifier;
-        private readonly WebsocketPort websocket;
+        private readonly PlayListNotifier playListNotifier;
+        private readonly Websocket websocket;
 
-        public PlayListHasBeenCreatedEventHandler(PlayListNotifierPort playListNotifier, WebsocketPort websocket) {
+        public PlayListHasBeenCreatedEventHandler(PlayListNotifier playListNotifier, Websocket websocket) {
             this.playListNotifier = playListNotifier;
             this.websocket = websocket;
         }

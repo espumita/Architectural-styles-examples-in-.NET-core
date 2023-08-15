@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using MyMusic.Api.Tests.Shared.builders;
 using MyMusic.PlayLists.Features;
 using MyMusic.PlayLists.Features.CreatePLayList;
+using MyMusic.Shared.Infrastructure;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -9,14 +10,14 @@ namespace MyMusic.Api.Tests.PlayLists.CreatePLayList {
 
     public class PlayListHasBeenCreatedEventHandlerTests {
         private PlayListHasBeenCreatedEventHandler playListHasBeenCreated;
-        private PlayListNotifierPort playListNotifier;
-        private WebsocketPort websocket;
+        private PlayListNotifier playListNotifier;
+        private Websocket websocket;
 
 
         [SetUp]
         public void SetUp() {
-            playListNotifier = Substitute.For<PlayListNotifierPort>();
-            websocket = Substitute.For<WebsocketPort>();
+            playListNotifier = Substitute.For<PlayListNotifier>();
+            websocket = Substitute.For<Websocket>();
             playListHasBeenCreated = new PlayListHasBeenCreatedEventHandler(playListNotifier, websocket);
         }
 

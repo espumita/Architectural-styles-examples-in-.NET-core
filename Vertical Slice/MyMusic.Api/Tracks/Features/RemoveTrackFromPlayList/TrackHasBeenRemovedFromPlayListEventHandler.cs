@@ -1,19 +1,20 @@
 using System.Threading.Tasks;
 using MyMusic.PlayLists.Features;
+using MyMusic.Shared.Infrastructure;
 
 namespace MyMusic.Tracks.Features.RemoveTrackFromPlayList {
     public class TrackHasBeenRemovedFromPlayListEventHandler {
-        private readonly TracksNotifierPort tracksNotifier;
-        private readonly WebsocketPort websocketPort;
+        private readonly TracksNotifier tracksNotifier;
+        private readonly Websocket websocket;
 
-        public TrackHasBeenRemovedFromPlayListEventHandler(TracksNotifierPort tracksNotifier, WebsocketPort websocketPort) {
+        public TrackHasBeenRemovedFromPlayListEventHandler(TracksNotifier tracksNotifier, Websocket websocket) {
             this.tracksNotifier = tracksNotifier;
-            this.websocketPort = websocketPort;
+            this.websocket = websocket;
         }
 
         public async Task Handle(TrackHasBeenRemovedFromPlayList @event) {
             tracksNotifier.NotifyTrackHasRemovedFromPlayList(@event.TrackId, @event.PlayListId);
-            await websocketPort.PushMessageWithEventToAll(@event);
+            await websocket.PushMessageWithEventToAll(@event);
         }
     }
 }

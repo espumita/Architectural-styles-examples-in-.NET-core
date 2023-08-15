@@ -1,5 +1,5 @@
 namespace MyMusic.PlayLists.Features {
-    public interface PlayListPersistencePort {
+    public interface PlayListPersistence {
         
         Domain.PlayList GetPlayList(string playlistId);
         

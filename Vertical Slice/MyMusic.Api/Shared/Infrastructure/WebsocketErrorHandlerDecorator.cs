@@ -1,15 +1,12 @@
 using System;
 using LanguageExt;
 using MyMusic.PlayLists.Domain.Error;
-using MyMusic.Shared.Commands;
-using MyMusic.Shared.Commands.Successes;
-using MyMusic.Shared.Ports;
 
-namespace MyMusic.Shared.Websockets {
-    public class WebsocketErrorHandlerDecorator: ErrorHandlerDecoratorPort {
-        private readonly SignalRWebsocketAdapter websocket;
+namespace MyMusic.Shared.Infrastructure {
+    public class WebsocketErrorHandlerDecorator: ErrorHandlerDecorator {
+        private readonly SignalRWebsocket websocket;
 
-        public WebsocketErrorHandlerDecorator(SignalRWebsocketAdapter websocket) {
+        public WebsocketErrorHandlerDecorator(SignalRWebsocket websocket) {
             this.websocket = websocket;
         }
 

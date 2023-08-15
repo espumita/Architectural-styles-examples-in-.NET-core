@@ -1,10 +1,8 @@
 using System.Threading.Tasks;
-using MyMusic.Shared;
-using MyMusic.Shared.Commands;
 
-namespace MyMusic.PlayLists.Features {
+namespace MyMusic.Shared.Infrastructure {
 
-    public interface WebsocketPort {
+    public interface Websocket {
         Task PushMessageWithEventToAll(Event @event);
         Task PushMessageWithErrorToAll(string error, Command command);
     }

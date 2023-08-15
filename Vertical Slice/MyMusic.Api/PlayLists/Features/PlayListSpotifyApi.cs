@@ -1,6 +1,6 @@
 namespace MyMusic.PlayLists.Features {
 
-    public class PlayListSpotifyApiAdapter : PlayListNotifierPort {
+    public class PlayListSpotifyApi : PlayListNotifier {
         
         public void NotifyPlayListHasBeenCreated(string playListId, string playListName) {
             //This should Notify to Spotify Api

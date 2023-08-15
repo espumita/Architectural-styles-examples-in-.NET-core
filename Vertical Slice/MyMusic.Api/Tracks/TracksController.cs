@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyMusic.PlayLists.Features.GetPlayListQuery;
 using MyMusic.Shared;
-using MyMusic.Shared.Ports;
+using MyMusic.Shared.Infrastructure;
 using MyMusic.Tracks.Features;
 using MyMusic.Tracks.Features.AddTrackToPLayList;
 using MyMusic.Tracks.Features.GetTrack;
@@ -11,10 +11,10 @@ namespace MyMusic.Tracks {
     
     public class TracksController : Controller {
         
-        private readonly CommandQueuePort commandQueue;
+        private readonly CommandQueue commandQueue;
         private readonly TracksQueryCreator tracksQueryCreator;
 
-        public TracksController(CommandQueuePort commandQueue, TracksQueryCreator tracksQueryCreator) {
+        public TracksController(CommandQueue commandQueue, TracksQueryCreator tracksQueryCreator) {
             this.commandQueue = commandQueue;
             this.tracksQueryCreator = tracksQueryCreator;
         }

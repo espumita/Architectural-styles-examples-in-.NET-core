@@ -7,7 +7,7 @@ using MyMusic.PlayLists.Domain;
 using MyMusic.PlayLists.Domain.Error;
 using MyMusic.PlayLists.Features;
 using MyMusic.Shared;
-using MyMusic.Shared.Ports;
+using MyMusic.Shared.Infrastructure;
 using MyMusic.Tracks.Features.AddTrackToPLayList;
 using NSubstitute;
 using NUnit.Framework;
@@ -17,13 +17,13 @@ namespace MyMusic.Api.Tests.Tracks.AddTrackToPLayList {
     public class AddTrackToPLayListCommandHandlerTests : CommandHandlerTest {
         
         private AddTrackToPlayListCommandHandler addTrackToPlayListCommandHandler;
-        private PlayListPersistencePort playListPersistence;
-        private EventPublisherPort eventPublisher;
+        private PlayListPersistence playListPersistence;
+        private EventPublisher eventPublisher;
 
         [SetUp]
         public void SetUp() {
-            playListPersistence = Substitute.For<PlayListPersistencePort>();
-            eventPublisher = Substitute.For<EventPublisherPort>();
+            playListPersistence = Substitute.For<PlayListPersistence>();
+            eventPublisher = Substitute.For<EventPublisher>();
             addTrackToPlayListCommandHandler = new AddTrackToPlayListCommandHandler(playListPersistence, eventPublisher);
         }
         

@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using MyMusic.Api.Tests.Shared.builders;
 using MyMusic.PlayLists.Features;
+using MyMusic.Shared.Infrastructure;
 using MyMusic.Tracks.Features;
 using MyMusic.Tracks.Features.RemoveTrackFromPlayList;
 using NSubstitute;
@@ -10,15 +11,15 @@ namespace MyMusic.Api.Tests.Tracks.RemoveTrackFromPlayList {
 
     public class TrackHasBeenRemovedFromPlayListEventHandlerTests {
         private TrackHasBeenRemovedFromPlayListEventHandler trackHasBeenRemovedFromPlayList;
-        private TracksNotifierPort tracksNotifier;
-        private WebsocketPort websocketPort;
+        private TracksNotifier tracksNotifier;
+        private Websocket websocket;
 
 
         [SetUp]
         public void SetUp() {
-            tracksNotifier = Substitute.For<TracksNotifierPort>();
-            websocketPort = Substitute.For<WebsocketPort>();
-            trackHasBeenRemovedFromPlayList = new TrackHasBeenRemovedFromPlayListEventHandler(tracksNotifier, websocketPort);
+            tracksNotifier = Substitute.For<TracksNotifier>();
+            websocket = Substitute.For<Websocket>();
+            trackHasBeenRemovedFromPlayList = new TrackHasBeenRemovedFromPlayListEventHandler(tracksNotifier, websocket);
         }
 
         [Test]
@@ -30,7 +31,7 @@ namespace MyMusic.Api.Tests.Tracks.RemoveTrackFromPlayList {
             await trackHasBeenRemovedFromPlayList.Handle(@event);
             
             tracksNotifier.Received().NotifyTrackHasRemovedFromPlayList(aTrackId, aPlaylistId);
-            await websocketPort.Received().PushMessageWithEventToAll(@event);
+            await websocket.Received().PushMessageWithEventToAll(@event);
         }
     }
 }

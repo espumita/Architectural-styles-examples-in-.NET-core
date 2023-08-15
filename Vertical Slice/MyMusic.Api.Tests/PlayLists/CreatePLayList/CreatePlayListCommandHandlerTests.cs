@@ -4,7 +4,7 @@ using MyMusic.Api.Tests.Shared.builders;
 using MyMusic.PlayLists.Domain;
 using MyMusic.PlayLists.Features;
 using MyMusic.PlayLists.Features.CreatePLayList;
-using MyMusic.Shared.Ports;
+using MyMusic.Shared.Infrastructure;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -13,15 +13,15 @@ namespace MyMusic.Api.Tests.PlayLists.CreatePLayList {
     public class CreatePlayListCommandHandlerTests : CommandHandlerTest {
      
         private CreatePlayListCommandHandler createPlayListCommandHandler;
-        private PlayListPersistencePort playListPersistence;
-        private UniqueIdentifiersPort uniqueIdentifiers;
-        private EventPublisherPort eventPublisher;
+        private PlayListPersistence playListPersistence;
+        private UniqueIdentifiers uniqueIdentifiers;
+        private EventPublisher eventPublisher;
 
         [SetUp]
         public void SetUp() {
-            playListPersistence = Substitute.For<PlayListPersistencePort>();
-            uniqueIdentifiers = Substitute.For<UniqueIdentifiersPort>();
-            eventPublisher = Substitute.For<EventPublisherPort>();
+            playListPersistence = Substitute.For<PlayListPersistence>();
+            uniqueIdentifiers = Substitute.For<UniqueIdentifiers>();
+            eventPublisher = Substitute.For<EventPublisher>();
             createPlayListCommandHandler = new CreatePlayListCommandHandler(uniqueIdentifiers, playListPersistence, eventPublisher);
         }
         

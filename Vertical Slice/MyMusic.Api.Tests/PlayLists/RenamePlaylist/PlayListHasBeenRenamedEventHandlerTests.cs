@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using MyMusic.Api.Tests.Shared.builders;
 using MyMusic.PlayLists.Features;
 using MyMusic.PlayLists.Features.RenamePlaylist;
+using MyMusic.Shared.Infrastructure;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -9,15 +10,15 @@ namespace MyMusic.Api.Tests.PlayLists.RenamePlaylist {
 
     public class PlayListHasBeenRenamedEventHandlerTests {
         private PlayListHasBeenRenamedEventHandler playListHasBeenRenamed;
-        private PlayListNotifierPort playListNotifier;
-        private WebsocketPort websocketPort;
+        private PlayListNotifier playListNotifier;
+        private Websocket websocket;
 
 
         [SetUp]
         public void SetUp() {
-            playListNotifier = Substitute.For<PlayListNotifierPort>();
-            websocketPort = Substitute.For<WebsocketPort>();
-            playListHasBeenRenamed = new PlayListHasBeenRenamedEventHandler(playListNotifier, websocketPort);
+            playListNotifier = Substitute.For<PlayListNotifier>();
+            websocket = Substitute.For<Websocket>();
+            playListHasBeenRenamed = new PlayListHasBeenRenamedEventHandler(playListNotifier, websocket);
         }
 
         [Test]
@@ -29,7 +30,7 @@ namespace MyMusic.Api.Tests.PlayLists.RenamePlaylist {
             await playListHasBeenRenamed.Handle(@event);
             
             playListNotifier.Received().NotifyPlayListHasBeenRenamed(aPlaylistId, aNewPlaylistName);
-            await websocketPort.Received().PushMessageWithEventToAll(@event);
+            await websocket.Received().PushMessageWithEventToAll(@event);
         }
     }
 }

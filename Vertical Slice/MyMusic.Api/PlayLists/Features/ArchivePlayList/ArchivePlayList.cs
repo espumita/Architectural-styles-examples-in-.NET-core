@@ -1,4 +1,4 @@
-using MyMusic.Shared.Commands;
+using MyMusic.Shared;
 
 namespace MyMusic.PlayLists.Features.ArchivePlayList {
     public class ArchivePlayList : Command {

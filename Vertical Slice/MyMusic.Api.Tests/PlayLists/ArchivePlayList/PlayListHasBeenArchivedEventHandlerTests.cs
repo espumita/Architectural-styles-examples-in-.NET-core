@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using MyMusic.Api.Tests.Shared.builders;
 using MyMusic.PlayLists.Features;
 using MyMusic.PlayLists.Features.ArchivePlayList;
+using MyMusic.Shared.Infrastructure;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -9,14 +10,14 @@ namespace MyMusic.Api.Tests.PlayLists.ArchivePlayList {
 
     public class PlayListHasBeenArchivedEventHandlerTests {
         private PlayListHasBeenArchivedEventHandler playListHasBeenArchived;
-        private PlayListNotifierPort playListNotifier;
-        private WebsocketPort websocket;
+        private PlayListNotifier playListNotifier;
+        private Websocket websocket;
 
 
         [SetUp]
         public void SetUp() {
-            playListNotifier = Substitute.For<PlayListNotifierPort>();
-            websocket = Substitute.For<WebsocketPort>();
+            playListNotifier = Substitute.For<PlayListNotifier>();
+            websocket = Substitute.For<Websocket>();
             playListHasBeenArchived = new PlayListHasBeenArchivedEventHandler(playListNotifier, websocket);
         }
 

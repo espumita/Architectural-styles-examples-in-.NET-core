@@ -1,12 +1,12 @@
 using LanguageExt;
-using MyMusic.Shared.Queries.Errors;
+using MyMusic.Shared;
 
 namespace MyMusic.PlayLists.Features.GetPlayListQuery {
     public class GetPlayListQuery {
         
-        private readonly PlayListQueryPort playListQuery;
+        private readonly PlayListQuery playListQuery;
         
-        public GetPlayListQuery(PlayListQueryPort playListQuery) {
+        public GetPlayListQuery(PlayListQuery playListQuery) {
             this.playListQuery = playListQuery;
         }
 

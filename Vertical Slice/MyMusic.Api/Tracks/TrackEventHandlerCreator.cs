@@ -1,24 +1,24 @@
-using MyMusic.Shared.Websockets;
+using MyMusic.Shared.Infrastructure;
 using MyMusic.Tracks.Features;
 using MyMusic.Tracks.Features.AddTrackToPLayList;
 using MyMusic.Tracks.Features.RemoveTrackFromPlayList;
 
 namespace MyMusic.Tracks {
     public class TrackEventHandlerCreator {
-        private readonly SignalRWebsocketAdapter signalRWebsocketAdapter;
+        private readonly SignalRWebsocket signalRWebsocket;
 
-        public TrackEventHandlerCreator(SignalRWebsocketAdapter signalRWebsocketAdapter) {
-            this.signalRWebsocketAdapter = signalRWebsocketAdapter;
+        public TrackEventHandlerCreator(SignalRWebsocket signalRWebsocket) {
+            this.signalRWebsocket = signalRWebsocket;
         }
 
         public TrackHasBeenAddedToPlayListEventHandler TrackHasBeenAddedToPlayList() {
-            var notifier = new TraksSpotifyApiAdapter();
-            return new TrackHasBeenAddedToPlayListEventHandler(notifier, signalRWebsocketAdapter);
+            var notifier = new TraksSpotifyApi();
+            return new TrackHasBeenAddedToPlayListEventHandler(notifier, signalRWebsocket);
         }
 
         public TrackHasBeenRemovedFromPlayListEventHandler TrackHasBeenRemovedFromToPlayList() {
-            var notifier = new TraksSpotifyApiAdapter();
-            return new TrackHasBeenRemovedFromPlayListEventHandler(notifier, signalRWebsocketAdapter);
+            var notifier = new TraksSpotifyApi();
+            return new TrackHasBeenRemovedFromPlayListEventHandler(notifier, signalRWebsocket);
         }
     }
 }

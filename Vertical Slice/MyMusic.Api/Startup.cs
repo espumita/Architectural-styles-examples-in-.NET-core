@@ -7,8 +7,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MyMusic.ApiConfiguration;
 using MyMusic.Shared.Infrastructure;
-using MyMusic.Shared.Ports;
-using MyMusic.Shared.Websockets;
 
 namespace MyMusic {
     public class Startup {
@@ -38,22 +36,22 @@ namespace MyMusic {
 
         private static void ConfigureEvents(IServiceCollection services) {
             EventHandlersConfiguration.Configure(services);
-            var eventPublisher = new EventPublisherInMemoryAdapter();
+            var eventPublisher = new EventPublisherInMemory();
             EventConsumersConfiguration.Configure(services, eventPublisher);
-            services.AddSingleton<EventPublisherPort>(eventPublisher);
+            services.AddSingleton<EventPublisher>(eventPublisher);
         }
 
         private static void ConfigureCommands(IServiceCollection services) {
             CommandHandlersConfiguration.Configure(services);
             var commandQueue = ConfigureCommandQueue(services);
             CommandProcessorsConfiguration.Configure(services, commandQueue);
-            services.AddSingleton<CommandQueuePort>(commandQueue);
+            services.AddSingleton<CommandQueue>(commandQueue);
         }
 
-        private static AsynchronousCommandQueueInMemoryAdapter ConfigureCommandQueue(IServiceCollection services) {
+        private static AsynchronousCommandQueueInMemory ConfigureCommandQueue(IServiceCollection services) {
             services.AddSingleton<WebsocketErrorHandlerDecorator>();
             var errorHandlerDecorator = services.BuildServiceProvider().GetService<WebsocketErrorHandlerDecorator>();
-            return new AsynchronousCommandQueueInMemoryAdapter(errorHandlerDecorator);
+            return new AsynchronousCommandQueueInMemory(errorHandlerDecorator);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
@@ -74,7 +72,7 @@ namespace MyMusic {
             app.UseAuthorization();
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
-                endpoints.MapHub<SignalRWebsocketAdapter>("/MyMusicHub", options => {
+                endpoints.MapHub<SignalRWebsocket>("/MyMusicHub", options => {
                     options.Transports = HttpTransportType.WebSockets;
                 });
             });

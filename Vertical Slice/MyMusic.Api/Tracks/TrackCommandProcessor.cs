@@ -1,17 +1,17 @@
 using LanguageExt;
 using MyMusic.PlayLists.Domain.Error;
-using MyMusic.Shared.Commands.Successes;
-using MyMusic.Shared.Websockets;
+using MyMusic.Shared;
+using MyMusic.Shared.Infrastructure;
 
 namespace MyMusic.Tracks {
 
     public class TrackCommandProcessor {
         private readonly TracksCommandHandlerCreator tracksCommandHandlerCreator;
-        private readonly SignalRWebsocketAdapter signalRWebsocketAdapter;
+        private readonly SignalRWebsocket signalRWebsocket;
 
-        public TrackCommandProcessor(TracksCommandHandlerCreator tracksCommandHandlerCreator, SignalRWebsocketAdapter signalRWebsocketAdapter) {
+        public TrackCommandProcessor(TracksCommandHandlerCreator tracksCommandHandlerCreator, SignalRWebsocket signalRWebsocket) {
             this.tracksCommandHandlerCreator = tracksCommandHandlerCreator;
-            this.signalRWebsocketAdapter = signalRWebsocketAdapter;
+            this.signalRWebsocket = signalRWebsocket;
         }
         
         public Either<DomainError, CommandResult> Process(Features.AddTrackToPLayList.AddTrackToPLayList command) {

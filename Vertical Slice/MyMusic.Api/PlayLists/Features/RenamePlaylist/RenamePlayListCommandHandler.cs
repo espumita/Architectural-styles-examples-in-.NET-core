@@ -1,15 +1,15 @@
 using LanguageExt;
 using MyMusic.PlayLists.Domain.Error;
-using MyMusic.Shared.Commands.Successes;
-using MyMusic.Shared.Ports;
+using MyMusic.Shared;
+using MyMusic.Shared.Infrastructure;
 
 namespace MyMusic.PlayLists.Features.RenamePlaylist {
     public class RenamePlayListCommandHandler {
         
-        private readonly PlayListPersistencePort playListPersistence;
-        private readonly EventPublisherPort eventPublisher;
+        private readonly PlayListPersistence playListPersistence;
+        private readonly EventPublisher eventPublisher;
 
-        public RenamePlayListCommandHandler(PlayListPersistencePort playListPersistence, EventPublisherPort eventPublisher) {
+        public RenamePlayListCommandHandler(PlayListPersistence playListPersistence, EventPublisher eventPublisher) {
             this.playListPersistence = playListPersistence;
             this.eventPublisher = eventPublisher;
         }

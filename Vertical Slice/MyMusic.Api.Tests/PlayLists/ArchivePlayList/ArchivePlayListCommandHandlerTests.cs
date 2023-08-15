@@ -4,7 +4,7 @@ using MyMusic.Api.Tests.Shared.builders;
 using MyMusic.PlayLists.Domain;
 using MyMusic.PlayLists.Features;
 using MyMusic.PlayLists.Features.ArchivePlayList;
-using MyMusic.Shared.Ports;
+using MyMusic.Shared.Infrastructure;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -13,13 +13,13 @@ namespace MyMusic.Api.Tests.PlayLists.ArchivePlayList {
     public class ArchivePlayListCommandHandlerTests : CommandHandlerTest {
         
         private ArchivePlayListCommandHandler archivePlayListCommandHandler;
-        private PlayListPersistencePort playListPersistence;
-        private EventPublisherPort eventPublisher;
+        private PlayListPersistence playListPersistence;
+        private EventPublisher eventPublisher;
 
         [SetUp]
         public void SetUp() {
-            playListPersistence = Substitute.For<PlayListPersistencePort>();
-            eventPublisher = Substitute.For<EventPublisherPort>();
+            playListPersistence = Substitute.For<PlayListPersistence>();
+            eventPublisher = Substitute.For<EventPublisher>();
             archivePlayListCommandHandler = new ArchivePlayListCommandHandler(playListPersistence, eventPublisher);
         }
 

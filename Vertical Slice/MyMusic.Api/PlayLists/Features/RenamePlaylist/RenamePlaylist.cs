@@ -1,4 +1,4 @@
-using MyMusic.Shared.Commands;
+using MyMusic.Shared;
 
 namespace MyMusic.PlayLists.Features.RenamePlaylist {
     public class RenamePlaylist: Command{

@@ -5,7 +5,7 @@ namespace MyMusic.Tracks {
     public class TracksQueryCreator {
         
         public GetTrackQuery CreateGetTrackQuery() {
-            var tracksDatabaseAdapter = new TracksPostgreSQLQueriesAdapter();
+            var tracksDatabaseAdapter = new TracksPostgreSQLQueries();
             return new GetTrackQuery(tracksDatabaseAdapter);
         }
     }

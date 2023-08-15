@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using LanguageExt;
 using MyMusic.PlayLists.Domain.Error;
-using MyMusic.Shared.Commands;
-using MyMusic.Shared.Commands.Successes;
-using MyMusic.Shared.Ports;
 
 namespace MyMusic.Shared.Infrastructure {
-    public class AsynchronousCommandQueueInMemoryAdapter : CommandQueuePort {
-        private readonly ErrorHandlerDecoratorPort errorHandlerDecorator;
+    public class AsynchronousCommandQueueInMemory : CommandQueue {
+        private readonly ErrorHandlerDecorator errorHandlerDecorator;
 
-        public AsynchronousCommandQueueInMemoryAdapter(ErrorHandlerDecoratorPort errorHandlerDecorator) {
+        public AsynchronousCommandQueueInMemory(ErrorHandlerDecorator errorHandlerDecorator) {
             this.errorHandlerDecorator = errorHandlerDecorator;
         }
 
