@@ -1,9 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-    </PropertyGroup>
-
     <ItemGroup>
       <ProjectReference Include="..\MyMusic.Application.Ports\MyMusic.Application.Ports.csproj" />
       <ProjectReference Include="..\MyMusic.Domain\MyMusic.Domain.csproj" />
