@@ -5,7 +5,7 @@ using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Persistence;
 using MyMusic.Domain;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.CommandHandlers.Tests {
 
@@ -15,14 +15,13 @@ namespace MyMusic.Application.CommandHandlers.Tests {
         private PlayListPersistencePort playListPersistence;
         private EventPublisherPort eventPublisher;
 
-        [SetUp]
-        public void SetUp() {
+        public RenamePlayListCommandHandlerTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             eventPublisher = Substitute.For<EventPublisherPort>();
             renamePlayListCommandHandler = new RenamePlayListCommandHandler(playListPersistence, eventPublisher);
         }
 
-        [Test]
+        [Fact]
         public void change_play_list_name() {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;

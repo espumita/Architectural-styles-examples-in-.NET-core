@@ -4,7 +4,7 @@ using MyMusic.Shared.Infrastructure;
 using MyMusic.Tracks.Features;
 using MyMusic.Tracks.Features.AddTrackToPLayList;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Api.Tests.Tracks.AddTrackToPLayList {
 
@@ -14,14 +14,13 @@ namespace MyMusic.Api.Tests.Tracks.AddTrackToPLayList {
         private Websocket websocket;
 
 
-        [SetUp]
-        public void SetUp() {
+        public TrackHasBeenAddedToPlayListEventHandlerTests() {
             tracksNotifier = Substitute.For<TracksNotifier>();
             websocket = Substitute.For<Websocket>();
             trackHasBeenAddedToPlayList = new TrackHasBeenAddedToPlayListEventHandler(tracksNotifier, websocket);
         }
 
-        [Test]
+        [Fact]
         public async Task notify_track_has_been_added_to_play_list_and_send_to_websocket() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;

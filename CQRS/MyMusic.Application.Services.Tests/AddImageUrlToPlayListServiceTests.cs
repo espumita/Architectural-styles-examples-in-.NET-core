@@ -4,7 +4,7 @@ using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Tests.builders;
 using MyMusic.Domain;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.Services.Tests {
 
@@ -14,14 +14,13 @@ namespace MyMusic.Application.Services.Tests {
         private PlayListPersistencePort playListPersistence;
         private PlayListNotifierPort playListNotifier;
 
-        [SetUp]
-        public void SetUp() {
+        public AddImageUrlToPlayListServiceTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             playListNotifier = Substitute.For<PlayListNotifierPort>();
             addImageUrlToPlayListService = new AddImageUrlToPlayListService(playListPersistence, playListNotifier);
         }
 
-        [Test]
+        [Fact]
         public void add_an_image_url_to_a_play_list() {
             var aPlaylistId = APlaylist.Id;
             var aPlayList = new PlayListBuilder()

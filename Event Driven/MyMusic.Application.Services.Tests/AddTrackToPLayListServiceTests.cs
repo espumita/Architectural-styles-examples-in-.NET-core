@@ -8,7 +8,7 @@ using MyMusic.Domain;
 using MyMusic.Domain.Error;
 using MyMusic.Domain.Events;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.Services.Tests {
 
@@ -18,14 +18,13 @@ namespace MyMusic.Application.Services.Tests {
         private PlayListPersistencePort playListPersistence;
         private EventPublisherPort eventPublisher;
 
-        [SetUp]
-        public void SetUp() {
+        public AddTrackToPLayListServiceTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             eventPublisher = Substitute.For<EventPublisherPort>();
             addTrackToPlayListService = new AddTrackToPlayListService(playListPersistence, eventPublisher);
         }
         
-        [Test]
+        [Fact]
         public void add_a_track_to_a_play_list() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;
@@ -41,7 +40,7 @@ namespace MyMusic.Application.Services.Tests {
             VerifyEventHasBeenRaised(new TrackHasBeenAddedToPlayList(aTrackId, aPlaylistId), eventPublisher);
         }
 
-        [Test]
+        [Fact]
         public void do_not_add_a_track_twice() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;

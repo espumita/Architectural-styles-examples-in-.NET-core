@@ -3,7 +3,7 @@ using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Websockets;
 using MyMusic.Domain.Events;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.EventHandlers.Tests {
 
@@ -13,14 +13,13 @@ namespace MyMusic.Application.EventHandlers.Tests {
         private WebsocketPort websocket;
 
 
-        [SetUp]
-        public void SetUp() {
+        public PlayListHasBeenCreatedEventHandlerTests() {
             playListNotifier = Substitute.For<PlayListNotifierPort>();
             websocket = Substitute.For<WebsocketPort>();
             playListHasBeenCreated = new PlayListHasBeenCreatedEventHandler(playListNotifier, websocket);
         }
 
-        [Test]
+        [Fact]
         public async Task notify_play_list_has_been_created_and_send_to_websocket() {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;

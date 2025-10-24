@@ -9,7 +9,7 @@ using MyMusic.Domain;
 using MyMusic.Domain.Error;
 using MyMusic.Domain.Events;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.CommandHandlers.Tests {
 
@@ -19,14 +19,13 @@ namespace MyMusic.Application.CommandHandlers.Tests {
         private PlayListPersistencePort playListPersistence;
         private EventPublisherPort eventPublisher;
 
-        [SetUp]
-        public void SetUp() {
+        public AddTrackToPLayListCommandHandlerTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             eventPublisher = Substitute.For<EventPublisherPort>();
             addTrackToPlayListCommandHandler = new AddTrackToPlayListCommandHandler(playListPersistence, eventPublisher);
         }
         
-        [Test]
+        [Fact]
         public void add_a_track_to_a_play_list() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;
@@ -43,7 +42,7 @@ namespace MyMusic.Application.CommandHandlers.Tests {
             VerifyEventHasBeenRaised(new TrackHasBeenAddedToPlayList(aTrackId, aPlaylistId), eventPublisher);
         }
 
-        [Test]
+        [Fact]
         public void do_not_add_a_track_twice() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;

@@ -4,7 +4,7 @@ using MyMusic.PlayLists.Features;
 using MyMusic.PlayLists.Features.ChangePlayListImageUrl;
 using MyMusic.Shared.Infrastructure;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Api.Tests.PlayLists.ChangePlayListImageUrl {
 
@@ -14,14 +14,13 @@ namespace MyMusic.Api.Tests.PlayLists.ChangePlayListImageUrl {
         private Websocket websocket;
 
 
-        [SetUp]
-        public void SetUp() {
+        public PlayListHasImageUrlHasChangedEventHandlerTests() {
             playListNotifier = Substitute.For<PlayListNotifier>();
             websocket = Substitute.For<Websocket>();
             playListHasImageUrlHasChanged = new PlayListHasImageUrlHasChangedEventHandler(playListNotifier, websocket);
         }
 
-        [Test]
+        [Fact]
         public async Task notify_play_list_image_url_has_changed_and_send_to_websocket() {
             var aPlaylistId = APlaylist.Id;
             var aNewPlayListImageUrl = APlaylist.ImageUrl;

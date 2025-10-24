@@ -5,7 +5,7 @@ using MyMusic.Application.Services.Tests.builders;
 using MyMusic.Domain;
 using MyMusic.Domain.Events;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.Services.Tests {
 
@@ -16,15 +16,14 @@ namespace MyMusic.Application.Services.Tests {
         private UniqueIdentifiersPort uniqueIdentifiers;
         private EventPublisherPort eventPublisher;
 
-        [SetUp]
-        public void SetUp() {
+        public CreatePlayListServiceTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             uniqueIdentifiers = Substitute.For<UniqueIdentifiersPort>();
             eventPublisher = Substitute.For<EventPublisherPort>();
             createPlayListService = new CreatePlayListService(uniqueIdentifiers, playListPersistence, eventPublisher);
         }
         
-        [Test]
+        [Fact]
         public void create_a_play_list() {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;

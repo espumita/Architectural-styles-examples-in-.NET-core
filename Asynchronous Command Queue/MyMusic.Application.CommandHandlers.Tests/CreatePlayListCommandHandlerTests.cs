@@ -6,7 +6,7 @@ using MyMusic.Application.Ports.Persistence;
 using MyMusic.Domain;
 using MyMusic.Domain.Events;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.CommandHandlers.Tests {
 
@@ -17,15 +17,14 @@ namespace MyMusic.Application.CommandHandlers.Tests {
         private UniqueIdentifiersPort uniqueIdentifiers;
         private EventPublisherPort eventPublisher;
 
-        [SetUp]
-        public void SetUp() {
+        public CreatePlayListCommandHandlerTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             uniqueIdentifiers = Substitute.For<UniqueIdentifiersPort>();
             eventPublisher = Substitute.For<EventPublisherPort>();
             createPlayListCommandHandler = new CreatePlayListCommandHandler(uniqueIdentifiers, playListPersistence, eventPublisher);
         }
         
-        [Test]
+        [Fact]
         public void create_a_play_list() {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;

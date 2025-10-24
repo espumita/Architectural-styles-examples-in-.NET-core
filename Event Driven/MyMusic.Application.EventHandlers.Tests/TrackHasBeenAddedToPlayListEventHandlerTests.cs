@@ -1,7 +1,7 @@
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Domain.Events;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.EventHandlers.Tests {
 
@@ -10,13 +10,12 @@ namespace MyMusic.Application.EventHandlers.Tests {
         private TracksNotifierPort tracksNotifier;
 
 
-        [SetUp]
-        public void SetUp() {
+        public TrackHasBeenAddedToPlayListEventHandlerTests() {
             tracksNotifier = Substitute.For<TracksNotifierPort>();
             trackHasBeenAddedToPlayList = new TrackHasBeenAddedToPlayListEventHandler(tracksNotifier);
         }
 
-        [Test]
+        [Fact]
         public void notify_track_has_been_added_to_play_list() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;

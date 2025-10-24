@@ -5,7 +5,7 @@ using MyMusic.Application.Ports.Persistence;
 using MyMusic.Application.Services.Tests.builders;
 using MyMusic.Domain;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.Services.Tests {
 
@@ -13,13 +13,12 @@ namespace MyMusic.Application.Services.Tests {
         private GetAllPlayListService getAllPlayListService;
         private PlayListPersistencePort playListPersistence;
 
-        [SetUp]
-        public void SetUp() {
+        public GetAllPlayListServiceTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             getAllPlayListService = new GetAllPlayListService(playListPersistence);
         }
 
-        [Test]
+        [Fact]
         public void get_active_play_lists() {
             var aPlayListId = APlaylist.Id;
             var aPlayListName = APlaylist.Name;

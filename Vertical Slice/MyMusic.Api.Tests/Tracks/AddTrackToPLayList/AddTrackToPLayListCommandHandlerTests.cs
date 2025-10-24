@@ -10,7 +10,7 @@ using MyMusic.Shared.Infrastructure;
 using MyMusic.Shared.Persistence;
 using MyMusic.Tracks.Features.AddTrackToPLayList;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Api.Tests.Tracks.AddTrackToPLayList {
 
@@ -20,14 +20,13 @@ namespace MyMusic.Api.Tests.Tracks.AddTrackToPLayList {
         private PlayListPersistence playListPersistence;
         private EventPublisher eventPublisher;
 
-        [SetUp]
-        public void SetUp() {
+        public AddTrackToPLayListCommandHandlerTests() {
             playListPersistence = Substitute.For<PlayListPersistence>();
             eventPublisher = Substitute.For<EventPublisher>();
             addTrackToPlayListCommandHandler = new AddTrackToPlayListCommandHandler(playListPersistence, eventPublisher);
         }
         
-        [Test]
+        [Fact]
         public void add_a_track_to_a_play_list() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;
@@ -44,7 +43,7 @@ namespace MyMusic.Api.Tests.Tracks.AddTrackToPLayList {
             VerifyEventHasBeenRaised(new TrackHasBeenAddedToPlayList(aTrackId, aPlaylistId), eventPublisher);
         }
 
-        [Test]
+        [Fact]
         public void do_not_add_a_track_twice() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;

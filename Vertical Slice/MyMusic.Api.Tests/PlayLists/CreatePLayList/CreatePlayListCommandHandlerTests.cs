@@ -6,7 +6,7 @@ using MyMusic.Shared.Domain;
 using MyMusic.Shared.Infrastructure;
 using MyMusic.Shared.Persistence;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Api.Tests.PlayLists.CreatePLayList {
 
@@ -17,15 +17,14 @@ namespace MyMusic.Api.Tests.PlayLists.CreatePLayList {
         private UniqueIdentifiers uniqueIdentifiers;
         private EventPublisher eventPublisher;
 
-        [SetUp]
-        public void SetUp() {
+        public CreatePlayListCommandHandlerTests() {
             playListPersistence = Substitute.For<PlayListPersistence>();
             uniqueIdentifiers = Substitute.For<UniqueIdentifiers>();
             eventPublisher = Substitute.For<EventPublisher>();
             createPlayListCommandHandler = new CreatePlayListCommandHandler(uniqueIdentifiers, playListPersistence, eventPublisher);
         }
         
-        [Test]
+        [Fact]
         public void create_a_play_list() {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;

@@ -3,7 +3,7 @@ using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Websockets;
 using MyMusic.Domain.Events;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.EventHandlers.Tests {
 
@@ -13,14 +13,13 @@ namespace MyMusic.Application.EventHandlers.Tests {
         private WebsocketPort websocketPort;
 
 
-        [SetUp]
-        public void SetUp() {
+        public TrackHasBeenRemovedFromPlayListEventHandlerTests() {
             tracksNotifier = Substitute.For<TracksNotifierPort>();
             websocketPort = Substitute.For<WebsocketPort>();
             trackHasBeenRemovedFromPlayList = new TrackHasBeenRemovedFromPlayListEventHandler(tracksNotifier, websocketPort);
         }
 
-        [Test]
+        [Fact]
         public async Task notify_track_has_removed_added_to_play_list_and_send_to_websocket() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;

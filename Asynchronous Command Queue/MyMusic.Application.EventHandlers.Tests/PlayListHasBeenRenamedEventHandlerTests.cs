@@ -3,7 +3,7 @@ using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Websockets;
 using MyMusic.Domain.Events;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.EventHandlers.Tests {
 
@@ -13,14 +13,13 @@ namespace MyMusic.Application.EventHandlers.Tests {
         private WebsocketPort websocketPort;
 
 
-        [SetUp]
-        public void SetUp() {
+        public PlayListHasBeenRenamedEventHandlerTests() {
             playListNotifier = Substitute.For<PlayListNotifierPort>();
             websocketPort = Substitute.For<WebsocketPort>();
             playListHasBeenRenamed = new PlayListHasBeenRenamedEventHandler(playListNotifier, websocketPort);
         }
 
-        [Test]
+        [Fact]
         public async Task notify_play_list_has_been_renamed_and_send_to_websocket() {
             var aPlaylistId = APlaylist.Id;
             var aNewPlaylistName = APlaylist.Name;

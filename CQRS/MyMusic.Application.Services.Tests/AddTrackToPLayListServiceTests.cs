@@ -6,7 +6,7 @@ using MyMusic.Application.Services.Tests.builders;
 using MyMusic.Domain;
 using MyMusic.Domain.Errors;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.Services.Tests {
 
@@ -16,14 +16,13 @@ namespace MyMusic.Application.Services.Tests {
         private PlayListPersistencePort playListPersistence;
         private TracksNotifierPort tracksNotifier;
 
-        [SetUp]
-        public void SetUp() {
+        public AddTrackToPLayListServiceTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             tracksNotifier = Substitute.For<TracksNotifierPort>();
             addTrackToPlayListService = new AddTrackToPlayListService(playListPersistence, tracksNotifier);
         }
         
-        [Test]
+        [Fact]
         public void add_a_track_to_a_play_list() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;
@@ -39,7 +38,7 @@ namespace MyMusic.Application.Services.Tests {
             tracksNotifier.Received().NotifyTrackHasBeenAddedToPlayList(aTrackId, aPlaylistId);
         }
 
-        [Test]
+        [Fact]
         public void do_not_add_a_track_twice() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;

@@ -8,7 +8,7 @@ using MyMusic.Domain;
 using MyMusic.Domain.Error;
 using MyMusic.Domain.Events;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.CommandHandlers.Tests {
 
@@ -18,14 +18,13 @@ namespace MyMusic.Application.CommandHandlers.Tests {
         private PlayListPersistencePort playListPersistence;
         private EventPublisherPort eventPublisher;
         
-        [SetUp]
-        public void SetUp() {
+        public RemoveTrackFromPLayListCommandHandlerTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             eventPublisher = Substitute.For<EventPublisherPort>();
             removeTrackFromPLayListCommandHandler = new RemoveTrackFromPLayListCommandHandler(playListPersistence, eventPublisher);
         }
         
-        [Test]
+        [Fact]
         public void remove_an_existing_track_from_a_play_list() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;
@@ -45,7 +44,7 @@ namespace MyMusic.Application.CommandHandlers.Tests {
             VerifyEventHasBeenRaised(new TrackHasBeenRemovedFromPlayList(aTrackId, aPlaylistId), eventPublisher);
         }
 
-        [Test]
+        [Fact]
         public void do_not_remove_a_track_when_it_is_not_already_in_the_play_list() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;

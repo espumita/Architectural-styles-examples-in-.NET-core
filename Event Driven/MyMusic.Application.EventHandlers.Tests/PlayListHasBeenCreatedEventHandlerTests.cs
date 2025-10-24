@@ -1,7 +1,7 @@
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Domain.Events;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.EventHandlers.Tests {
 
@@ -10,13 +10,12 @@ namespace MyMusic.Application.EventHandlers.Tests {
         private PlayListNotifierPort playListNotifier;
 
 
-        [SetUp]
-        public void SetUp() {
+        public PlayListHasBeenCreatedEventHandlerTests() {
             playListNotifier = Substitute.For<PlayListNotifierPort>();
             playListHasBeenCreated = new PlayListHasBeenCreatedEventHandler(playListNotifier);
         }
 
-        [Test]
+        [Fact]
         public void notify_play_list_has_been_created() {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;

@@ -5,7 +5,7 @@ using MyMusic.Application.Services.Tests.builders;
 using MyMusic.Domain;
 using MyMusic.Domain.Errors;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.Services.Tests {
 
@@ -15,14 +15,13 @@ namespace MyMusic.Application.Services.Tests {
         private PlayListPersistencePort playListPersistence;
         private TracksNotifierPort tracksNotifier;
         
-        [SetUp]
-        public void SetUp() {
+        public RemoveTrackFromPLayListServiceTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             tracksNotifier = Substitute.For<TracksNotifierPort>();
             removeTrackFromPLayListService = new RemoveTrackFromPLayListService(playListPersistence, tracksNotifier);
         }
         
-        [Test]
+        [Fact]
         public void remove_an_existing_track_from_a_play_list() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;
@@ -41,7 +40,7 @@ namespace MyMusic.Application.Services.Tests {
             tracksNotifier.Received().NotifyTrackHasRemovedFromPlayList(aTrackId, aPlaylistId);
         }
 
-        [Test]
+        [Fact]
         public void do_not_remove_a_track_when_it_is_not_already_in_the_play_list() {
             var aTrackId = ATrack.Id;
             var aPlaylistId = APlaylist.Id;

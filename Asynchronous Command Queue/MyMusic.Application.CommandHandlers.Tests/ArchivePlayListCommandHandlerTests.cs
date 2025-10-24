@@ -6,7 +6,7 @@ using MyMusic.Application.Ports.Persistence;
 using MyMusic.Domain;
 using MyMusic.Domain.Events;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.CommandHandlers.Tests {
 
@@ -16,14 +16,13 @@ namespace MyMusic.Application.CommandHandlers.Tests {
         private PlayListPersistencePort playListPersistence;
         private EventPublisherPort eventPublisher;
 
-        [SetUp]
-        public void SetUp() {
+        public ArchivePlayListCommandHandlerTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             eventPublisher = Substitute.For<EventPublisherPort>();
             archivePlayListCommandHandler = new ArchivePlayListCommandHandler(playListPersistence, eventPublisher);
         }
 
-        [Test]
+        [Fact]
         public void archive_a_play_list() {
             var aPlaylistId = APlaylist.Id;
             var aPlayList = new PlayListBuilder()

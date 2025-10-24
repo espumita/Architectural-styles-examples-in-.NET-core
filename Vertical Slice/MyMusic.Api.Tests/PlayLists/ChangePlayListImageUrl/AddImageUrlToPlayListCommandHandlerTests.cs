@@ -6,7 +6,7 @@ using MyMusic.Shared.Domain;
 using MyMusic.Shared.Infrastructure;
 using MyMusic.Shared.Persistence;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Api.Tests.PlayLists.ChangePlayListImageUrl {
 
@@ -16,14 +16,13 @@ namespace MyMusic.Api.Tests.PlayLists.ChangePlayListImageUrl {
         private PlayListPersistence playListPersistence;
         private EventPublisher eventPublisher;
 
-        [SetUp]
-        public void SetUp() {
+        public AddImageUrlToPlayListCommandHandlerTests() {
             playListPersistence = Substitute.For<PlayListPersistence>();
             eventPublisher = Substitute.For<EventPublisher>();
             addImageUrlToPlayListCommandHandler = new AddImageUrlToPlayListCommandHandler(playListPersistence, eventPublisher);
         }
 
-        [Test]
+        [Fact]
         public void add_an_image_url_to_a_play_list() {
             var aPlaylistId = APlaylist.Id;
             var aPlayList = new PlayListBuilder()

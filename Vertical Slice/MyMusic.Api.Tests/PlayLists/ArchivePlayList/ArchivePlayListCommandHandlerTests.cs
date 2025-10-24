@@ -6,7 +6,7 @@ using MyMusic.Shared.Domain;
 using MyMusic.Shared.Infrastructure;
 using MyMusic.Shared.Persistence;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Api.Tests.PlayLists.ArchivePlayList {
 
@@ -16,14 +16,13 @@ namespace MyMusic.Api.Tests.PlayLists.ArchivePlayList {
         private PlayListPersistence playListPersistence;
         private EventPublisher eventPublisher;
 
-        [SetUp]
-        public void SetUp() {
+        public ArchivePlayListCommandHandlerTests() {
             playListPersistence = Substitute.For<PlayListPersistence>();
             eventPublisher = Substitute.For<EventPublisher>();
             archivePlayListCommandHandler = new ArchivePlayListCommandHandler(playListPersistence, eventPublisher);
         }
 
-        [Test]
+        [Fact]
         public void archive_a_play_list() {
             var aPlaylistId = APlaylist.Id;
             var aPlayList = new PlayListBuilder()

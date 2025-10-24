@@ -5,7 +5,7 @@ using MyMusic.Application.Queries.Tests.builders;
 using MyMusic.Application.Read.Model;
 using MyMusic.Application.Read.Ports;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.Queries.Tests {
 
@@ -13,13 +13,12 @@ namespace MyMusic.Application.Queries.Tests {
         private GetAllPlayListQuery getAllPlayListQuery;
         private PlayListQueryPort playListQuery;
 
-        [SetUp]
-        public void SetUp() {
+        public GetAllPlayListQueryTests() {
             playListQuery = Substitute.For<PlayListQueryPort>();
             getAllPlayListQuery = new GetAllPlayListQuery(playListQuery);
         }
 
-        [Test]
+        [Fact]
         public void get_active_play_lists() {
             var aPlayListId = APlaylist.Id;
             var aPlayListName = APlaylist.Name;

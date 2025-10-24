@@ -5,7 +5,7 @@ using MyMusic.PlayLists.Features;
 using MyMusic.PlayLists.Features.GetAllPlayListQuery;
 using MyMusic.PlayLists.Features.GetPlayListQuery;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Api.Tests.PlayLists.GetAllPlayListQuery {
 
@@ -13,13 +13,12 @@ namespace MyMusic.Api.Tests.PlayLists.GetAllPlayListQuery {
         private MyMusic.PlayLists.Features.GetAllPlayListQuery.GetAllPlayListQuery getAllPlayListQuery;
         private PlayListQuery playListQuery;
 
-        [SetUp]
-        public void SetUp() {
+        public GetAllPlayListQueryTests() {
             playListQuery = Substitute.For<PlayListQuery>();
             getAllPlayListQuery = new MyMusic.PlayLists.Features.GetAllPlayListQuery.GetAllPlayListQuery(playListQuery);
         }
 
-        [Test]
+        [Fact]
         public void get_active_play_lists() {
             var aPlayListId = APlaylist.Id;
             var aPlayListName = APlaylist.Name;

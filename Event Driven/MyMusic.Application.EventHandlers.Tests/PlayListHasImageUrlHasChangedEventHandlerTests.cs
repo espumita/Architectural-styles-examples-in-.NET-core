@@ -1,7 +1,7 @@
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Domain.Events;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Application.EventHandlers.Tests {
 
@@ -10,13 +10,12 @@ namespace MyMusic.Application.EventHandlers.Tests {
         private PlayListNotifierPort playListNotifier;
 
 
-        [SetUp]
-        public void SetUp() {
+        public PlayListHasImageUrlHasChangedEventHandlerTests() {
             playListNotifier = Substitute.For<PlayListNotifierPort>();
             playListHasImageUrlHasChanged = new PlayListHasImageUrlHasChangedEventHandler(playListNotifier);
         }
 
-        [Test]
+        [Fact]
         public void notify_play_list_image_url_has_changed() {
             var aPlaylistId = APlaylist.Id;
             var aNewPlayListImageUrl = APlaylist.ImageUrl;

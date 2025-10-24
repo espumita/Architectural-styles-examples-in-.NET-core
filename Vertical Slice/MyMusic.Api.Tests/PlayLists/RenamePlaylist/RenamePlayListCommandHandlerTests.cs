@@ -5,7 +5,7 @@ using MyMusic.Shared.Domain;
 using MyMusic.Shared.Infrastructure;
 using MyMusic.Shared.Persistence;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace MyMusic.Api.Tests.PlayLists.RenamePlaylist {
 
@@ -15,14 +15,13 @@ namespace MyMusic.Api.Tests.PlayLists.RenamePlaylist {
         private PlayListPersistence playListPersistence;
         private EventPublisher eventPublisher;
 
-        [SetUp]
-        public void SetUp() {
+        public RenamePlayListCommandHandlerTests() {
             playListPersistence = Substitute.For<PlayListPersistence>();
             eventPublisher = Substitute.For<EventPublisher>();
             renamePlayListCommandHandler = new RenamePlayListCommandHandler(playListPersistence, eventPublisher);
         }
 
-        [Test]
+        [Fact]
         public void change_play_list_name() {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;
