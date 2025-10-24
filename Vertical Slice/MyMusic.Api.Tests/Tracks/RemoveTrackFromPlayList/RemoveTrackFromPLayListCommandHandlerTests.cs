@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using FluentAssertions;
+using AwesomeAssertions;
 using MyMusic.Api.Tests.Shared;
 using MyMusic.Api.Tests.Shared.builders;
 using MyMusic.Shared;

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using MyMusic.Application.Services;
 using MyMusic.Domain;
 using MyMusic.Requests;

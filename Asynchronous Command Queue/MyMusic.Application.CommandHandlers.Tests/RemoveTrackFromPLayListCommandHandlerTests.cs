@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using FluentAssertions;
+using AwesomeAssertions;
 using MyMusic.Application.CommandHandlers.Tests.builders;
 using MyMusic.Application.Commands;
 using MyMusic.Application.Ports;

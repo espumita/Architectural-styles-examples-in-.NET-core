@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using MyMusic.Shared.Infrastructure;
 
 namespace MyMusic.PlayLists.Features.CreatePLayList {

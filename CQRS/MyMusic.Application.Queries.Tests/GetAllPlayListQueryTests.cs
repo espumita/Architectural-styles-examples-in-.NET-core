@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using MyMusic.Application.Queries.Tests.builders;
 using MyMusic.Application.Read.Model;
 using MyMusic.Application.Read.Ports;

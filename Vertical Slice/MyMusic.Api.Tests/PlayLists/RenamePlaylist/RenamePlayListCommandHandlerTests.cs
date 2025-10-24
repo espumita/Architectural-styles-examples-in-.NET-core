@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using MyMusic.Api.Tests.Shared.builders;
 using MyMusic.PlayLists.Features.RenamePlaylist;
 using MyMusic.Shared.Domain;

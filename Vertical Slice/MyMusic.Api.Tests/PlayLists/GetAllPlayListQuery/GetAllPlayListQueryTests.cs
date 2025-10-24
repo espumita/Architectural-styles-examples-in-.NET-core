@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using MyMusic.PlayLists.Features;
 using MyMusic.PlayLists.Features.GetAllPlayListQuery;
 using MyMusic.PlayLists.Features.GetPlayListQuery;

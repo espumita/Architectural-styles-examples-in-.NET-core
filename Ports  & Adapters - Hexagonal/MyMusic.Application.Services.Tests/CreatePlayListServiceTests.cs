@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using MyMusic.Application.Ports;
 using MyMusic.Application.Ports.Notifications;
 using MyMusic.Application.Ports.Persistence;

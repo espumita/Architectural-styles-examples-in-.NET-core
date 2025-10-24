@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using MyMusic.Application.Queries;
 using MyMusic.Application.Read.Model;
 using MyMusic.QueryCreators;
