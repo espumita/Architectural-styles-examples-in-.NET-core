@@ -9,7 +9,7 @@
         <PackageReference Include="FluentAssertions"  />
         <PackageReference Include="LanguageExt.Core"  />
         <PackageReference Include="NSubstitute"  />
-        <PackageReference Include="nunit"  />
+        <PackageReference Include="NUnit"  />
         <PackageReference Include="NUnit3TestAdapter"  />
         <PackageReference Include="Microsoft.NET.Test.Sdk"  />
     </ItemGroup>
