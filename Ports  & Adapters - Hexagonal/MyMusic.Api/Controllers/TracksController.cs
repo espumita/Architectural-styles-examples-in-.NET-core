@@ -5,6 +5,7 @@ using MyMusic.ServiceCreators;
 
 namespace MyMusic.Controllers {
     
+    [ApiController]
     public class TracksController : Controller {
         
         private readonly TracksServiceCreator tracksServiceCreator;

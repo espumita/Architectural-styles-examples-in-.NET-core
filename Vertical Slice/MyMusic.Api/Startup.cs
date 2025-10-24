@@ -1,10 +1,4 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Connections;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using MyMusic.ApiConfiguration;
 using MyMusic.Shared.Infrastructure;
 
@@ -21,9 +15,7 @@ namespace MyMusic {
             services.AddCors();
             services.AddControllers();
             ConfigureDependencyInjector(services);
-            services.AddSwaggerGen(options => {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-            });
+            services.AddOpenApi();
             services.AddSignalR();
         }
 
@@ -64,19 +56,19 @@ namespace MyMusic {
                 .AllowAnyHeader()
                 .AllowCredentials());
             app.UseHttpsRedirection();
-            app.UseSwagger();
-            app.UseSwaggerUI(options => {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
             app.UseRouting();
+            app.UseSwaggerUI(options => {
+                options.SwaggerEndpoint("/openapi/v1.json", "My API V1");
+            });
             app.UseAuthorization();
             app.UseEndpoints(endpoints => {
+                endpoints.MapOpenApi();
                 endpoints.MapControllers();
                 endpoints.MapHub<SignalRWebsocket>("/MyMusicHub", options => {
                     options.Transports = HttpTransportType.WebSockets;
                 });
             });
-            
+
         }
     }
 }

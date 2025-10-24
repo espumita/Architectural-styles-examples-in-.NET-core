@@ -8,6 +8,7 @@ using MyMusic.Tracks.Features.RemoveTrackFromPlayList;
 
 namespace MyMusic.Tracks {
     
+    [ApiController]
     public class TracksController : Controller {
         
         private readonly CommandQueue commandQueue;

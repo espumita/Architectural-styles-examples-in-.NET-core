@@ -11,6 +11,7 @@ using MyMusic.Responses;
 
 namespace MyMusic.Controllers {
 
+    [ApiController]
     [Route("playlists")]
     public class PlaylistsController: Controller {
         private readonly PlayListQueryCreator playListQueryCreator;

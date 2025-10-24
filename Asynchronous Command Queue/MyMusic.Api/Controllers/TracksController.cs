@@ -7,6 +7,7 @@ using MyMusic.Responses;
 
 namespace MyMusic.Controllers {
     
+    [ApiController]
     public class TracksController : Controller {
         
         private readonly CommandQueuePort commandQueue;

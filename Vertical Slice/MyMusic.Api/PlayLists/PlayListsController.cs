@@ -10,6 +10,7 @@ using MyMusic.Shared.Infrastructure;
 
 namespace MyMusic.PlayLists {
 
+    [ApiController]
     [Route("playlists")]
     public class PlaylistsController: Controller {
         private readonly PlayListQueryCreator playListQueryCreator;

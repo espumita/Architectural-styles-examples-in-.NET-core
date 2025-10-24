@@ -8,6 +8,7 @@ using MyMusic.ServiceCreators;
 
 namespace MyMusic.Controllers {
 
+    [ApiController]
     [Route("playlists")]
     public class PlaylistsController: Controller {
         private readonly PlayListServiceCreator playListServiceCreator;

@@ -1,9 +1,3 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using MyMusic.Application.Ports;
 using MyMusic.Configuration;
 using MyMusic.Infrastructure.Adapters;
@@ -20,9 +14,7 @@ namespace MyMusic {
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers();
             ConfigureDependencyInjector(services);
-            services.AddSwaggerGen(options => {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-            });
+            services.AddOpenApi();
         }
 
         private static void ConfigureDependencyInjector(IServiceCollection services) {
@@ -43,13 +35,15 @@ namespace MyMusic {
                 app.UseDeveloperExceptionPage();
             }
             app.UseHttpsRedirection();
-            app.UseSwagger();
-            app.UseSwaggerUI(options => {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
             app.UseRouting();
+            app.UseSwaggerUI(options => {
+                options.SwaggerEndpoint("/openapi/v1.json", "My API V1");
+            });
             app.UseAuthorization();
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints => {
+                endpoints.MapOpenApi();
+                endpoints.MapControllers();
+            });
         }
     }
 }

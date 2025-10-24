@@ -5,7 +5,8 @@
   
   <ItemGroup>
     <!-- API and Web Frameworks -->
-    <PackageVersion Include="Swashbuckle.AspNetCore" Version="9.0.6" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="9.0.10" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.6" />
     
     <!-- Functional Programming -->
     <PackageVersion Include="LanguageExt.Core" Version="4.4.9" />
