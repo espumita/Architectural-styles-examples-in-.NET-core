@@ -8,19 +8,19 @@ using MyMusic.Shared.Domain;
 using MyMusic.Shared.Domain.Error;
 using MyMusic.Shared.Infrastructure;
 using MyMusic.Shared.Persistence;
-using MyMusic.Tracks.Features.AddTrackToPLayList;
+using MyMusic.Tracks.Features.AddTrackToPlayList;
 using NSubstitute;
 using Xunit;
 
-namespace MyMusic.Api.Tests.Tracks.AddTrackToPLayList {
+namespace MyMusic.Api.Tests.Tracks.AddTrackToPlayList {
 
-    public class AddTrackToPLayListCommandHandlerTests : CommandHandlerTest {
+    public class AddTrackToPlayListCommandHandlerTests : CommandHandlerTest {
         
         private AddTrackToPlayListCommandHandler addTrackToPlayListCommandHandler;
         private PlayListPersistence playListPersistence;
         private EventPublisher eventPublisher;
 
-        public AddTrackToPLayListCommandHandlerTests() {
+        public AddTrackToPlayListCommandHandlerTests() {
             playListPersistence = Substitute.For<PlayListPersistence>();
             eventPublisher = Substitute.For<EventPublisher>();
             addTrackToPlayListCommandHandler = new AddTrackToPlayListCommandHandler(playListPersistence, eventPublisher);
@@ -34,7 +34,7 @@ namespace MyMusic.Api.Tests.Tracks.AddTrackToPLayList {
                 .WithId(aPlaylistId)
                 .Build();
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
-            var command = new MyMusic.Tracks.Features.AddTrackToPLayList.AddTrackToPLayList(aTrackId, aPlaylistId);
+            var command = new MyMusic.Tracks.Features.AddTrackToPlayList.AddTrackToPlayList(aTrackId, aPlaylistId);
 
             var result = addTrackToPlayListCommandHandler.Handle(command);
 
@@ -54,7 +54,7 @@ namespace MyMusic.Api.Tests.Tracks.AddTrackToPLayList {
                     .Build())
                 .Build();
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
-            var command = new MyMusic.Tracks.Features.AddTrackToPLayList.AddTrackToPLayList(aTrackId, aPlaylistId);
+            var command = new MyMusic.Tracks.Features.AddTrackToPlayList.AddTrackToPlayList(aTrackId, aPlaylistId);
 
             var result = addTrackToPlayListCommandHandler.Handle(command);
 

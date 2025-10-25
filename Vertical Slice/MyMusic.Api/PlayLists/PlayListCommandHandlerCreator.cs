@@ -1,6 +1,6 @@
 using MyMusic.PlayLists.Features.ArchivePlayList;
 using MyMusic.PlayLists.Features.ChangePlayListImageUrl;
-using MyMusic.PlayLists.Features.CreatePLayList;
+using MyMusic.PlayLists.Features.CreatePlayList;
 using MyMusic.PlayLists.Features.RenamePlaylist;
 using MyMusic.Shared.Infrastructure;
 using MyMusic.Shared.Persistence;
@@ -15,24 +15,24 @@ namespace MyMusic.PlayLists {
         }
 
         public CreatePlayListCommandHandler CreateCreatePlayListCommandHandler() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistence();
+            var playListDatabaseAdapter = new PlayListPostgreSQLPersistence();
             var uniqueIdentifiersInMemoryAdapter = new UniqueIdentifiersInMemory();
-            return new CreatePlayListCommandHandler(uniqueIdentifiersInMemoryAdapter, pLayListDatabaseAdapter, eventPublisher);
+            return new CreatePlayListCommandHandler(uniqueIdentifiersInMemoryAdapter, playListDatabaseAdapter, eventPublisher);
         }
 
         public RenamePlayListCommandHandler CreateRenamePlayListCommandHandler() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistence();
-            return new RenamePlayListCommandHandler(pLayListDatabaseAdapter, eventPublisher);
+            var playListDatabaseAdapter = new PlayListPostgreSQLPersistence();
+            return new RenamePlayListCommandHandler(playListDatabaseAdapter, eventPublisher);
         }
 
         public ArchivePlayListCommandHandler CreateArchivePlayListCommandHandler() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistence();
-            return new ArchivePlayListCommandHandler(pLayListDatabaseAdapter, eventPublisher);
+            var playListDatabaseAdapter = new PlayListPostgreSQLPersistence();
+            return new ArchivePlayListCommandHandler(playListDatabaseAdapter, eventPublisher);
         }
 
         public AddImageUrlToPlayListCommandHandler CreateAddImageUrlPlayListCommandHandler() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistence();
-            return new AddImageUrlToPlayListCommandHandler(pLayListDatabaseAdapter, eventPublisher);
+            var playListDatabaseAdapter = new PlayListPostgreSQLPersistence();
+            return new AddImageUrlToPlayListCommandHandler(playListDatabaseAdapter, eventPublisher);
         }
     }
 }

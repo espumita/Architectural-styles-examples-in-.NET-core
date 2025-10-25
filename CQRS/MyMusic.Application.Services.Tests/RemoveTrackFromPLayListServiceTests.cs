@@ -9,16 +9,16 @@ using Xunit;
 
 namespace MyMusic.Application.Services.Tests {
 
-    public class RemoveTrackFromPLayListServiceTests {
+    public class RemoveTrackFromPlayListServiceTests {
         
-        private RemoveTrackFromPLayListService removeTrackFromPLayListService;
+        private RemoveTrackFromPlayListService removeTrackFromPlayListService;
         private PlayListPersistencePort playListPersistence;
         private TracksNotifierPort tracksNotifier;
         
-        public RemoveTrackFromPLayListServiceTests() {
+        public RemoveTrackFromPlayListServiceTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             tracksNotifier = Substitute.For<TracksNotifierPort>();
-            removeTrackFromPLayListService = new RemoveTrackFromPLayListService(playListPersistence, tracksNotifier);
+            removeTrackFromPlayListService = new RemoveTrackFromPlayListService(playListPersistence, tracksNotifier);
         }
         
         [Fact]
@@ -33,7 +33,7 @@ namespace MyMusic.Application.Services.Tests {
                 .Build();
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
 
-            var result = removeTrackFromPLayListService.Execute(aTrackId, aPlaylistId);
+            var result = removeTrackFromPlayListService.Execute(aTrackId, aPlaylistId);
 
             result.IsRight.Should().BeTrue();
             VerifyAnEmptyPlayListHasBeenPersistedWith(aPlaylistId);
@@ -49,7 +49,7 @@ namespace MyMusic.Application.Services.Tests {
                 .Build();
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
 
-            var result = removeTrackFromPLayListService.Execute(aTrackId, aPlaylistId);
+            var result = removeTrackFromPlayListService.Execute(aTrackId, aPlaylistId);
 
             result.IsLeft.Should().BeTrue();
             result.IfLeft(error => error.Should().Be(DomainError.TrackIsNotInThePlayList));

@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using MyMusic.Shared.Infrastructure;
 
-namespace MyMusic.Tracks.Features.AddTrackToPLayList {
+namespace MyMusic.Tracks.Features.AddTrackToPlayList {
     public class TrackHasBeenAddedToPlayListEventHandler {
         private readonly TracksNotifier tracksNotifier;
         private readonly Websocket websocket;

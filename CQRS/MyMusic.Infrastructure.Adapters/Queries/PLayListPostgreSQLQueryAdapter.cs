@@ -4,7 +4,7 @@ using MyMusic.Application.Read.Ports;
 
 namespace MyMusic.Infrastructure.Adapters.Queries {
 
-    public class PLayListPostgreSQLQueryAdapter : PlayListQueryPort {
+    public class PlayListPostgreSQLQueryAdapter : PlayListQueryPort {
         public PlayList GetPlayList(string playlistId) {
             //This should be read from PostgreSQL DB
             var trackList = new List<Track> {

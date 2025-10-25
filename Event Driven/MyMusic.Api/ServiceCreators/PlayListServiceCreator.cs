@@ -13,23 +13,23 @@ namespace MyMusic.ServiceCreators {
         }
 
         public CreatePlayListService CreateCreatePlayListService() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
+            var pLayListDatabaseAdapter = new PlayListPostgreSQLPersistenceAdapter();
             var uniqueIdentifiersInMemoryAdapter = new UniqueIdentifiersInMemoryAdapter();
             return new CreatePlayListService(uniqueIdentifiersInMemoryAdapter, pLayListDatabaseAdapter, eventPublisher);
         }
 
         public RenamePlayListService CreateRenamePlayListService() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
+            var pLayListDatabaseAdapter = new PlayListPostgreSQLPersistenceAdapter();
             return new RenamePlayListService(pLayListDatabaseAdapter, eventPublisher);
         }
 
         public ArchivePlayListService CreateArchivePlayListService() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
+            var pLayListDatabaseAdapter = new PlayListPostgreSQLPersistenceAdapter();
             return new ArchivePlayListService(pLayListDatabaseAdapter, eventPublisher);
         }
 
         public AddImageUrlToPlayListService CreateAddImageUrlPlayListService() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
+            var pLayListDatabaseAdapter = new PlayListPostgreSQLPersistenceAdapter();
             return new AddImageUrlToPlayListService(pLayListDatabaseAdapter, eventPublisher);
         }
     }

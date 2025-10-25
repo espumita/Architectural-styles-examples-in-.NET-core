@@ -13,13 +13,13 @@ using Xunit;
 
 namespace MyMusic.Application.CommandHandlers.Tests {
 
-    public class AddTrackToPLayListCommandHandlerTests : CommandHandlerTest {
+    public class AddTrackToPlayListCommandHandlerTests : CommandHandlerTest {
         
         private AddTrackToPlayListCommandHandler addTrackToPlayListCommandHandler;
         private PlayListPersistencePort playListPersistence;
         private EventPublisherPort eventPublisher;
 
-        public AddTrackToPLayListCommandHandlerTests() {
+        public AddTrackToPlayListCommandHandlerTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             eventPublisher = Substitute.For<EventPublisherPort>();
             addTrackToPlayListCommandHandler = new AddTrackToPlayListCommandHandler(playListPersistence, eventPublisher);
@@ -33,7 +33,7 @@ namespace MyMusic.Application.CommandHandlers.Tests {
                 .WithId(aPlaylistId)
                 .Build();
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
-            var command = new AddTrackToPLayList(aTrackId, aPlaylistId);
+            var command = new AddTrackToPlayList(aTrackId, aPlaylistId);
 
             var result = addTrackToPlayListCommandHandler.Handle(command);
 
@@ -53,7 +53,7 @@ namespace MyMusic.Application.CommandHandlers.Tests {
                     .Build())
                 .Build();
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
-            var command = new AddTrackToPLayList(aTrackId, aPlaylistId);
+            var command = new AddTrackToPlayList(aTrackId, aPlaylistId);
 
             var result = addTrackToPlayListCommandHandler.Handle(command);
 

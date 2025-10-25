@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using MyMusic.Shared.Domain;
 
 namespace MyMusic.Shared.Persistence {
-    public class PLayListPostgreSQLPersistence : PlayListPersistence {
+    public class PlayListPostgreSQLPersistence : PlayListPersistence {
         
         public PlayList GetPlayList(string playlistId) {
             //This should be read from PostgreSQL DB

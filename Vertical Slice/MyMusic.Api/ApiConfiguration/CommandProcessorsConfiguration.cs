@@ -2,11 +2,11 @@ using Microsoft.Extensions.DependencyInjection;
 using MyMusic.PlayLists;
 using MyMusic.PlayLists.Features.ArchivePlayList;
 using MyMusic.PlayLists.Features.ChangePlayListImageUrl;
-using MyMusic.PlayLists.Features.CreatePLayList;
+using MyMusic.PlayLists.Features.CreatePlayList;
 using MyMusic.PlayLists.Features.RenamePlaylist;
 using MyMusic.Shared.Infrastructure;
 using MyMusic.Tracks;
-using MyMusic.Tracks.Features.AddTrackToPLayList;
+using MyMusic.Tracks.Features.AddTrackToPlayList;
 using MyMusic.Tracks.Features.RemoveTrackFromPlayList;
 
 namespace MyMusic.ApiConfiguration {
@@ -24,7 +24,7 @@ namespace MyMusic.ApiConfiguration {
         }
 
         private static void RegisterPlayListCommandProcessorsInTo(CommandQueue commandQueue, PlayListCommandProcessor playListCommandProcessor) {
-            commandQueue.SetQueueSingleConsumer<CreatePLayList>(playListCommandProcessor.Process);
+            commandQueue.SetQueueSingleConsumer<CreatePlayList>(playListCommandProcessor.Process);
             commandQueue.SetQueueSingleConsumer<RenamePlaylist>(playListCommandProcessor.Process);
             commandQueue.SetQueueSingleConsumer<ChangePlayListImageUrl>(playListCommandProcessor.Process);
             commandQueue.SetQueueSingleConsumer<ArchivePlayList>(playListCommandProcessor.Process);
@@ -37,7 +37,7 @@ namespace MyMusic.ApiConfiguration {
         }
 
         private static void RegisterTrackCommandProcessorsInTo(CommandQueue commandQueue, TrackCommandProcessor trackCommandProcessor) {
-            commandQueue.SetQueueSingleConsumer<AddTrackToPLayList>(trackCommandProcessor.Process);
+            commandQueue.SetQueueSingleConsumer<AddTrackToPlayList>(trackCommandProcessor.Process);
             commandQueue.SetQueueSingleConsumer<RemoveTrackFromPlayList>(trackCommandProcessor.Process);
 
         }

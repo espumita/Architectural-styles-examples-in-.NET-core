@@ -1,7 +1,7 @@
 using System;
 using MyMusic.Shared;
 
-namespace MyMusic.PlayLists.Features.CreatePLayList {
+namespace MyMusic.PlayLists.Features.CreatePlayList {
     public class PlayListHasBeenCreated : Event {
         public string PlayListId { get; }
         public string PlayListName { get; }

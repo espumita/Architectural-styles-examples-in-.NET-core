@@ -8,36 +8,36 @@ namespace MyMusic.ServiceCreators {
     public class PlayListServiceCreator {
         
         public GetAllPlayListService CreateGetAllPlayListService() {
-            var playListDatabaseAdapter = new PLayListPostgreSQLAdapter();
+            var playListDatabaseAdapter = new PlayListPostgreSQLAdapter();
             return new GetAllPlayListService(playListDatabaseAdapter);
         }
         
         public GetPlayListService CreateGetPlayListService() {
-            var playListDatabaseAdapter = new PLayListPostgreSQLAdapter();
+            var playListDatabaseAdapter = new PlayListPostgreSQLAdapter();
             return new GetPlayListService(playListDatabaseAdapter);
         }
 
         public CreatePlayListService CreateCreatePlayListService() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLAdapter();
+            var pLayListDatabaseAdapter = new PlayListPostgreSQLAdapter();
             var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
             var uniqueIdentifiersInMemoryAdapter = new UniqueIdentifiersInMemoryAdapter();
             return new CreatePlayListService(uniqueIdentifiersInMemoryAdapter, pLayListDatabaseAdapter, musicCloudApiHttpAdapter);
         }
 
         public RenamePlayListService CreateRenamePlayListService() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLAdapter();
+            var pLayListDatabaseAdapter = new PlayListPostgreSQLAdapter();
             var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
             return new RenamePlayListService(pLayListDatabaseAdapter, musicCloudApiHttpAdapter);
         }
 
         public ArchivePlayListService CreateArchivePlayListService() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLAdapter();
+            var pLayListDatabaseAdapter = new PlayListPostgreSQLAdapter();
             var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
             return new ArchivePlayListService(pLayListDatabaseAdapter, musicCloudApiHttpAdapter);
         }
 
         public AddImageUrlToPlayListService CreateAddImageUrlPlayListService() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLAdapter();
+            var pLayListDatabaseAdapter = new PlayListPostgreSQLAdapter();
             var musicCloudApiHttpAdapter = new PlayListSpotifyApiAdapter();
             return new AddImageUrlToPlayListService(pLayListDatabaseAdapter, musicCloudApiHttpAdapter);
         }

@@ -19,7 +19,7 @@ namespace MyMusic.Application.CommandHandlers {
             this.eventPublisher = eventPublisher;
         }
 
-        public Either<DomainError, CommandResult> Handle(CreatePLayList command) {
+        public Either<DomainError, CommandResult> Handle(CreatePlayList command) {
             var newPlayListId = uniqueIdentifiers.GetNewUniqueIdentifier();
             var playList = PlayList.Create(newPlayListId, command.PlayListName);
             

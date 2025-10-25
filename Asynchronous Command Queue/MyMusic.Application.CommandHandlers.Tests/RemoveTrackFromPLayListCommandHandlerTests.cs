@@ -12,16 +12,16 @@ using Xunit;
 
 namespace MyMusic.Application.CommandHandlers.Tests {
 
-    public class RemoveTrackFromPLayListCommandHandlerTests : CommandHandlerTest {
+    public class RemoveTrackFromPlayListCommandHandlerTests : CommandHandlerTest {
         
-        private RemoveTrackFromPLayListCommandHandler removeTrackFromPLayListCommandHandler;
+        private RemoveTrackFromPlayListCommandHandler removeTrackFromPlayListCommandHandler;
         private PlayListPersistencePort playListPersistence;
         private EventPublisherPort eventPublisher;
         
-        public RemoveTrackFromPLayListCommandHandlerTests() {
+        public RemoveTrackFromPlayListCommandHandlerTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             eventPublisher = Substitute.For<EventPublisherPort>();
-            removeTrackFromPLayListCommandHandler = new RemoveTrackFromPLayListCommandHandler(playListPersistence, eventPublisher);
+            removeTrackFromPlayListCommandHandler = new RemoveTrackFromPlayListCommandHandler(playListPersistence, eventPublisher);
         }
         
         [Fact]
@@ -37,7 +37,7 @@ namespace MyMusic.Application.CommandHandlers.Tests {
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
             var command = new RemoveTrackFromPlayList(aTrackId, aPlaylistId);
 
-            var result = removeTrackFromPLayListCommandHandler.Handle(command);
+            var result = removeTrackFromPlayListCommandHandler.Handle(command);
 
             result.IsRight.Should().BeTrue();
             VerifyAnEmptyPlayListHasBeenPersistedWith(aPlaylistId);
@@ -54,7 +54,7 @@ namespace MyMusic.Application.CommandHandlers.Tests {
             playListPersistence.GetPlayList(aPlaylistId).Returns(aPlayList);
             var command = new RemoveTrackFromPlayList(aTrackId, aPlaylistId);
             
-            var result = removeTrackFromPLayListCommandHandler.Handle(command);
+            var result = removeTrackFromPlayListCommandHandler.Handle(command);
 
             result.IsLeft.Should().BeTrue();
             result.IfLeft(error => error.Should().Be(DomainError.TrackIsNotInThePlayList));

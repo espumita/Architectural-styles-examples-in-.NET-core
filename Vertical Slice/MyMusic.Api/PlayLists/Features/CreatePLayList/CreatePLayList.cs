@@ -1,10 +1,10 @@
 using MyMusic.Shared;
 
-namespace MyMusic.PlayLists.Features.CreatePLayList {
-    public class CreatePLayList : Command {
+namespace MyMusic.PlayLists.Features.CreatePlayList {
+    public class CreatePlayList : Command {
         public string PlayListName { get; }
 
-        public CreatePLayList(string playListName) {
+        public CreatePlayList(string playListName) {
             PlayListName = playListName;
         }
     }

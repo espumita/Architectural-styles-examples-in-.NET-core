@@ -10,13 +10,13 @@ using Xunit;
 
 namespace MyMusic.Application.Services.Tests {
 
-    public class AddTrackToPLayListServiceTests {
+    public class AddTrackToPlayListServiceTests {
         
         private AddTrackToPlayListService addTrackToPlayListService;
         private PlayListPersistencePort playListPersistence;
         private TracksNotifierPort tracksNotifier;
 
-        public AddTrackToPLayListServiceTests() {
+        public AddTrackToPlayListServiceTests() {
             playListPersistence = Substitute.For<PlayListPersistencePort>();
             tracksNotifier = Substitute.For<TracksNotifierPort>();
             addTrackToPlayListService = new AddTrackToPlayListService(playListPersistence, tracksNotifier);

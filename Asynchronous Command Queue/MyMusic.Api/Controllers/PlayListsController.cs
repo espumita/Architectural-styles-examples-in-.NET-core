@@ -38,7 +38,7 @@ namespace MyMusic.Controllers {
 
         [HttpPost]
         public ActionResult CreatePlayList([FromBody]CreatePlayListRequest request) {
-            commandQueue.Queue(new CreatePLayList(request.PlayListName));
+            commandQueue.Queue(new CreatePlayList(request.PlayListName));
             return Ok();
         }
                 

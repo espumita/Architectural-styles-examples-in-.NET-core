@@ -1,4 +1,4 @@
-using MyMusic.Tracks.Features.AddTrackToPLayList;
+using MyMusic.Tracks.Features.AddTrackToPlayList;
 using MyMusic.Tracks.Features.RemoveTrackFromPlayList;
 
 namespace MyMusic.Tracks {

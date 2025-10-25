@@ -26,8 +26,8 @@ namespace MyMusic.Controllers {
         }
         
         [HttpPost("playlists/{playlistId}/tracks/{trackId}")]
-        public ActionResult AddTrackToPLayList(string playlistId, string trackId) {
-            commandQueue.Queue(new AddTrackToPLayList(trackId, playlistId));
+        public ActionResult AddTrackToPlayList(string playlistId, string trackId) {
+            commandQueue.Queue(new AddTrackToPlayList(trackId, playlistId));
             return Ok();
         }
 

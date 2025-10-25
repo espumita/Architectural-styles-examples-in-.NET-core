@@ -5,7 +5,7 @@ using MyMusic.Shared.Domain.Error;
 using MyMusic.Shared.Infrastructure;
 using MyMusic.Shared.Persistence;
 
-namespace MyMusic.PlayLists.Features.CreatePLayList {
+namespace MyMusic.PlayLists.Features.CreatePlayList {
     public class CreatePlayListCommandHandler {
         
         private readonly UniqueIdentifiers uniqueIdentifiers;
@@ -18,7 +18,7 @@ namespace MyMusic.PlayLists.Features.CreatePLayList {
             this.eventPublisher = eventPublisher;
         }
 
-        public Either<DomainError, CommandResult> Handle(Features.CreatePLayList.CreatePLayList command) {
+        public Either<DomainError, CommandResult> Handle(Features.CreatePlayList.CreatePlayList command) {
             var newPlayListId = uniqueIdentifiers.GetNewUniqueIdentifier();
             var playList = PlayList.Create(newPlayListId, command.PlayListName);
             

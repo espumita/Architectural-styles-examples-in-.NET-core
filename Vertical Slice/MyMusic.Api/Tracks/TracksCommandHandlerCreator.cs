@@ -1,6 +1,6 @@
 using MyMusic.Shared.Infrastructure;
 using MyMusic.Shared.Persistence;
-using MyMusic.Tracks.Features.AddTrackToPLayList;
+using MyMusic.Tracks.Features.AddTrackToPlayList;
 using MyMusic.Tracks.Features.RemoveTrackFromPlayList;
 
 namespace MyMusic.Tracks {
@@ -13,13 +13,13 @@ namespace MyMusic.Tracks {
         }
 
         public AddTrackToPlayListCommandHandler CreateAddTrackToPlayListCommandHandler() {
-            var pLayListPostgreSqlAdapter = new PLayListPostgreSQLPersistence();
-            return new AddTrackToPlayListCommandHandler(pLayListPostgreSqlAdapter, eventPublisher);
+            var playListPostgreSqlAdapter = new PlayListPostgreSQLPersistence();
+            return new AddTrackToPlayListCommandHandler(playListPostgreSqlAdapter, eventPublisher);
         }
         
-        public RemoveTrackFromPLayListCommandHandler CreateRemoveTrackFromPLayListCommandHandler() {
-            var pLayListPostgreSqlAdapter = new PLayListPostgreSQLPersistence();
-            return new RemoveTrackFromPLayListCommandHandler(pLayListPostgreSqlAdapter, eventPublisher);
+        public RemoveTrackFromPlayListCommandHandler CreateRemoveTrackFromPlayListCommandHandler() {
+            var playListPostgreSqlAdapter = new PlayListPostgreSQLPersistence();
+            return new RemoveTrackFromPlayListCommandHandler(playListPostgreSqlAdapter, eventPublisher);
         }
     }
 }

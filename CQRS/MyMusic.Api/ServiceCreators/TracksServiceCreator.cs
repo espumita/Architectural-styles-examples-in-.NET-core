@@ -7,15 +7,15 @@ namespace MyMusic.ServiceCreators {
     public class TracksServiceCreator {
         
         public AddTrackToPlayListService CreateAddTrackToPlayListService() {
-            var pLayListPostgreSqlAdapter = new PLayListPostgreSQLPersistenceAdapter();
+            var pLayListPostgreSqlAdapter = new PlayListPostgreSQLPersistenceAdapter();
             var tracksNotifierAdapter = new TraksSpotifyApiAdapter();
             return new AddTrackToPlayListService(pLayListPostgreSqlAdapter, tracksNotifierAdapter);
         }
         
-        public RemoveTrackFromPLayListService CreateRemoveTrackFromPLayListService() {
-            var pLayListPostgreSqlAdapter = new PLayListPostgreSQLPersistenceAdapter();
+        public RemoveTrackFromPlayListService CreateRemoveTrackFromPlayListService() {
+            var pLayListPostgreSqlAdapter = new PlayListPostgreSQLPersistenceAdapter();
             var tracksNotifierAdapter = new TraksSpotifyApiAdapter();
-            return new RemoveTrackFromPLayListService(pLayListPostgreSqlAdapter, tracksNotifierAdapter);
+            return new RemoveTrackFromPlayListService(pLayListPostgreSqlAdapter, tracksNotifierAdapter);
         }
     }
 }

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyMusic.PlayLists.Features.ArchivePlayList;
 using MyMusic.PlayLists.Features.ChangePlayListImageUrl;
-using MyMusic.PlayLists.Features.CreatePLayList;
+using MyMusic.PlayLists.Features.CreatePlayList;
 using MyMusic.PlayLists.Features.GetAllPlayListQuery;
 using MyMusic.PlayLists.Features.GetPlayListQuery;
 using MyMusic.PlayLists.Features.RenamePlaylist;
@@ -37,7 +37,7 @@ namespace MyMusic.PlayLists {
 
         [HttpPost]
         public ActionResult CreatePlayList([FromBody]CreatePlayListRequest request) {
-            commandQueue.Queue(new CreatePLayList(request.PlayListName));
+            commandQueue.Queue(new CreatePlayList(request.PlayListName));
             return Ok();
         }
                 

@@ -13,23 +13,23 @@ namespace MyMusic.CommandHandlerCreators {
         }
 
         public CreatePlayListCommandHandler CreateCreatePlayListCommandHandler() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
+            var pLayListDatabaseAdapter = new PlayListPostgreSQLPersistenceAdapter();
             var uniqueIdentifiersInMemoryAdapter = new UniqueIdentifiersInMemoryAdapter();
             return new CreatePlayListCommandHandler(uniqueIdentifiersInMemoryAdapter, pLayListDatabaseAdapter, eventPublisher);
         }
 
         public RenamePlayListCommandHandler CreateRenamePlayListCommandHandler() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
+            var pLayListDatabaseAdapter = new PlayListPostgreSQLPersistenceAdapter();
             return new RenamePlayListCommandHandler(pLayListDatabaseAdapter, eventPublisher);
         }
 
         public ArchivePlayListCommandHandler CreateArchivePlayListCommandHandler() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
+            var pLayListDatabaseAdapter = new PlayListPostgreSQLPersistenceAdapter();
             return new ArchivePlayListCommandHandler(pLayListDatabaseAdapter, eventPublisher);
         }
 
         public AddImageUrlToPlayListCommandHandler CreateAddImageUrlPlayListCommandHandler() {
-            var pLayListDatabaseAdapter = new PLayListPostgreSQLPersistenceAdapter();
+            var pLayListDatabaseAdapter = new PlayListPostgreSQLPersistenceAdapter();
             return new AddImageUrlToPlayListCommandHandler(pLayListDatabaseAdapter, eventPublisher);
         }
     }

@@ -1,7 +1,7 @@
 using System;
 using MyMusic.Shared;
 
-namespace MyMusic.Tracks.Features.AddTrackToPLayList {
+namespace MyMusic.Tracks.Features.AddTrackToPlayList {
 
     public class TrackHasBeenAddedToPlayList : Event {
         public string TrackId { get; }

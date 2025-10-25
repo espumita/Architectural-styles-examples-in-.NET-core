@@ -14,13 +14,13 @@ namespace MyMusic.Tracks {
             this.signalRWebsocket = signalRWebsocket;
         }
         
-        public Either<DomainError, CommandResult> Process(Features.AddTrackToPLayList.AddTrackToPLayList command) {
+        public Either<DomainError, CommandResult> Process(Features.AddTrackToPlayList.AddTrackToPlayList command) {
             var commandHandler = tracksCommandHandlerCreator.CreateAddTrackToPlayListCommandHandler();
             return commandHandler.Handle(command);
         }
 
         public Either<DomainError, CommandResult> Process(Features.RemoveTrackFromPlayList.RemoveTrackFromPlayList command) {
-            var service = tracksCommandHandlerCreator.CreateRemoveTrackFromPLayListCommandHandler();
+            var service = tracksCommandHandlerCreator.CreateRemoveTrackFromPlayListCommandHandler();
             return service.Handle(command);
         }
     }

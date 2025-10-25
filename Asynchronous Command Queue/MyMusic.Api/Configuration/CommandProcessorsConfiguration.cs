@@ -18,7 +18,7 @@ namespace MyMusic.Configuration {
         }
 
         private static void RegisterPlayListCommandProcessorsInTo(CommandQueuePort commandQueue, PlayListCommandProcessor playListCommandProcessor) {
-            commandQueue.SetQueueSingleConsumer<CreatePLayList>(playListCommandProcessor.Process);
+            commandQueue.SetQueueSingleConsumer<CreatePlayList>(playListCommandProcessor.Process);
             commandQueue.SetQueueSingleConsumer<RenamePlaylist>(playListCommandProcessor.Process);
             commandQueue.SetQueueSingleConsumer<ChangePlayListImageUrl>(playListCommandProcessor.Process);
             commandQueue.SetQueueSingleConsumer<ArchivePlayList>(playListCommandProcessor.Process);
@@ -31,7 +31,7 @@ namespace MyMusic.Configuration {
         }
 
         private static void RegisterTrackCommandProcessorsInTo(CommandQueuePort commandQueue, TrackCommandProcessor trackCommandProcessor) {
-            commandQueue.SetQueueSingleConsumer<AddTrackToPLayList>(trackCommandProcessor.Process);
+            commandQueue.SetQueueSingleConsumer<AddTrackToPlayList>(trackCommandProcessor.Process);
             commandQueue.SetQueueSingleConsumer<RemoveTrackFromPlayList>(trackCommandProcessor.Process);
 
         }

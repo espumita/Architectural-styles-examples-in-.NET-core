@@ -2,11 +2,11 @@ using Microsoft.Extensions.DependencyInjection;
 using MyMusic.PlayLists;
 using MyMusic.PlayLists.Features.ArchivePlayList;
 using MyMusic.PlayLists.Features.ChangePlayListImageUrl;
-using MyMusic.PlayLists.Features.CreatePLayList;
+using MyMusic.PlayLists.Features.CreatePlayList;
 using MyMusic.PlayLists.Features.RenamePlaylist;
 using MyMusic.Shared.Infrastructure;
 using MyMusic.Tracks;
-using MyMusic.Tracks.Features.AddTrackToPLayList;
+using MyMusic.Tracks.Features.AddTrackToPlayList;
 using MyMusic.Tracks.Features.RemoveTrackFromPlayList;
 
 namespace MyMusic.ApiConfiguration {

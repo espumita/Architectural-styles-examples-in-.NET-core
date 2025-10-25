@@ -22,7 +22,7 @@ namespace MyMusic.Controllers {
         }
         
         [HttpPost("playlists/{playlistId}/tracks/{trackId}")]
-        public ActionResult AddTrackToPLayList(string playlistId, string trackId) {
+        public ActionResult AddTrackToPlayList(string playlistId, string trackId) {
             var service = tracksServiceCreator.CreateAddTrackToPlayListService();
             var result = service.Execute(trackId, playlistId);
             return this.BuildResponseFrom(result);
@@ -30,7 +30,7 @@ namespace MyMusic.Controllers {
 
         [HttpDelete("playlists/{playlistId}/tracks/{trackId}")]
         public ActionResult RemoveTrackFromPlayList(string playlistId, string trackId) {
-            var service = tracksServiceCreator.CreateRemoveTrackFromPLayListService();
+            var service = tracksServiceCreator.CreateRemoveTrackFromPlayListService();
             var result = service.Execute(trackId, playlistId);
             return this.BuildResponseFrom(result);
         }

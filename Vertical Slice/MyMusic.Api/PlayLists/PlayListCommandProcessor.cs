@@ -11,7 +11,7 @@ namespace MyMusic.PlayLists {
             this.playListCommandHandlerCreator = playListCommandHandlerCreator;
         }
 
-        public Either<DomainError, CommandResult> Process(Features.CreatePLayList.CreatePLayList command) {
+        public Either<DomainError, CommandResult> Process(Features.CreatePlayList.CreatePlayList command) {
             var commandHandler = playListCommandHandlerCreator.CreateCreatePlayListCommandHandler();
             return commandHandler.Handle(command);
         }

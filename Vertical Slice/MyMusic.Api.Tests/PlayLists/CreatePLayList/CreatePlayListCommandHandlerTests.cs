@@ -1,14 +1,14 @@
 using AwesomeAssertions;
 using MyMusic.Api.Tests.Shared;
 using MyMusic.Api.Tests.Shared.builders;
-using MyMusic.PlayLists.Features.CreatePLayList;
+using MyMusic.PlayLists.Features.CreatePlayList;
 using MyMusic.Shared.Domain;
 using MyMusic.Shared.Infrastructure;
 using MyMusic.Shared.Persistence;
 using NSubstitute;
 using Xunit;
 
-namespace MyMusic.Api.Tests.PlayLists.CreatePLayList {
+namespace MyMusic.Api.Tests.PlayLists.CreatePlayList {
 
     public class CreatePlayListCommandHandlerTests : CommandHandlerTest {
      
@@ -29,7 +29,7 @@ namespace MyMusic.Api.Tests.PlayLists.CreatePLayList {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;
             uniqueIdentifiers.GetNewUniqueIdentifier().Returns(aPlaylistId);
-            var command = new MyMusic.PlayLists.Features.CreatePLayList.CreatePLayList(aPlaylistName);
+            var command = new MyMusic.PlayLists.Features.CreatePlayList.CreatePlayList(aPlaylistName);
 
             var result = createPlayListCommandHandler.Handle(command);
             

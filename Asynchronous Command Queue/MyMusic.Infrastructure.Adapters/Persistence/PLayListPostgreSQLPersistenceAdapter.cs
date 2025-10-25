@@ -3,7 +3,7 @@ using MyMusic.Application.Ports.Persistence;
 using MyMusic.Domain;
 
 namespace MyMusic.Infrastructure.Adapters.Persistence {
-    public class PLayListPostgreSQLPersistenceAdapter : PlayListPersistencePort {
+    public class PlayListPostgreSQLPersistenceAdapter : PlayListPersistencePort {
         
         public PlayList GetPlayList(string playlistId) {
             //This should be read from PostgreSQL DB

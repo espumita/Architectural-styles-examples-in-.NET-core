@@ -1,8 +1,8 @@
 namespace MyMusic.Application.Commands {
-    public class CreatePLayList : Command {
+    public class CreatePlayList : Command {
         public string PlayListName { get; }
 
-        public CreatePLayList(string playListName) {
+        public CreatePlayList(string playListName) {
             PlayListName = playListName;
         }
     }

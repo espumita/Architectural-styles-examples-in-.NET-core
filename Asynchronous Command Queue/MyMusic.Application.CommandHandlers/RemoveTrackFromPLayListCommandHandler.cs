@@ -7,12 +7,12 @@ using MyMusic.Application.Ports.Persistence;
 using MyMusic.Domain.Error;
 
 namespace MyMusic.Application.CommandHandlers {
-    public class RemoveTrackFromPLayListCommandHandler {
+    public class RemoveTrackFromPlayListCommandHandler {
         
         private readonly PlayListPersistencePort playListPersistence;
         private readonly EventPublisherPort eventPublisher;
         
-        public RemoveTrackFromPLayListCommandHandler(PlayListPersistencePort playListPersistence, EventPublisherPort eventPublisher) {
+        public RemoveTrackFromPlayListCommandHandler(PlayListPersistencePort playListPersistence, EventPublisherPort eventPublisher) {
             this.playListPersistence = playListPersistence;
             this.eventPublisher = eventPublisher;
         }

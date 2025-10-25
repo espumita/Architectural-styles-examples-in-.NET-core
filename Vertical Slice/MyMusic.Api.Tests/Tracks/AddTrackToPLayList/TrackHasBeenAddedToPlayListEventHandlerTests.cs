@@ -2,11 +2,11 @@ using System.Threading.Tasks;
 using MyMusic.Api.Tests.Shared.builders;
 using MyMusic.Shared.Infrastructure;
 using MyMusic.Tracks.Features;
-using MyMusic.Tracks.Features.AddTrackToPLayList;
+using MyMusic.Tracks.Features.AddTrackToPlayList;
 using NSubstitute;
 using Xunit;
 
-namespace MyMusic.Api.Tests.Tracks.AddTrackToPLayList {
+namespace MyMusic.Api.Tests.Tracks.AddTrackToPlayList {
 
     public class TrackHasBeenAddedToPlayListEventHandlerTests {
         private TrackHasBeenAddedToPlayListEventHandler trackHasBeenAddedToPlayList;

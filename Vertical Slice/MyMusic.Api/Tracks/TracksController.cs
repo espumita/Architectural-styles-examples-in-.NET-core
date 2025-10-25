@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyMusic.PlayLists.Features.GetPlayListQuery;
 using MyMusic.Shared;
 using MyMusic.Shared.Infrastructure;
-using MyMusic.Tracks.Features.AddTrackToPLayList;
+using MyMusic.Tracks.Features.AddTrackToPlayList;
 using MyMusic.Tracks.Features.GetTrack;
 using MyMusic.Tracks.Features.RemoveTrackFromPlayList;
 
@@ -27,8 +27,8 @@ namespace MyMusic.Tracks {
         }
         
         [HttpPost("playlists/{playlistId}/tracks/{trackId}")]
-        public ActionResult AddTrackToPLayList(string playlistId, string trackId) {
-            commandQueue.Queue(new AddTrackToPLayList(trackId, playlistId));
+        public ActionResult AddTrackToPlayList(string playlistId, string trackId) {
+            commandQueue.Queue(new AddTrackToPlayList(trackId, playlistId));
             return Ok();
         }
 

@@ -6,12 +6,12 @@ using MyMusic.Shared.Infrastructure;
 using MyMusic.Shared.Persistence;
 
 namespace MyMusic.Tracks.Features.RemoveTrackFromPlayList {
-    public class RemoveTrackFromPLayListCommandHandler {
+    public class RemoveTrackFromPlayListCommandHandler {
         
         private readonly PlayListPersistence playListPersistence;
         private readonly EventPublisher eventPublisher;
         
-        public RemoveTrackFromPLayListCommandHandler(PlayListPersistence playListPersistence, EventPublisher eventPublisher) {
+        public RemoveTrackFromPlayListCommandHandler(PlayListPersistence playListPersistence, EventPublisher eventPublisher) {
             this.playListPersistence = playListPersistence;
             this.eventPublisher = eventPublisher;
         }

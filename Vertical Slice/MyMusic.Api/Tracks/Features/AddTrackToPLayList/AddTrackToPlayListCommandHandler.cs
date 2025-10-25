@@ -7,7 +7,7 @@ using MyMusic.Shared.Domain.Error;
 using MyMusic.Shared.Infrastructure;
 using MyMusic.Shared.Persistence;
 
-namespace MyMusic.Tracks.Features.AddTrackToPLayList {
+namespace MyMusic.Tracks.Features.AddTrackToPlayList {
     public class AddTrackToPlayListCommandHandler {
         
         private readonly PlayListPersistence playListPersistence;
@@ -18,7 +18,7 @@ namespace MyMusic.Tracks.Features.AddTrackToPLayList {
             this.eventPublisher = eventPublisher;
         }
         
-        public Either<DomainError, CommandResult> Handle(Features.AddTrackToPLayList.AddTrackToPLayList command) {
+        public Either<DomainError, CommandResult> Handle(Features.AddTrackToPlayList.AddTrackToPlayList command) {
             var playList = playListPersistence.GetPlayList(command.PlaylistId);
             var error = playList.Add(Track.With(command.TrackId));
             if (error.IsSome) return error.ValueUnsafe();

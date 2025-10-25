@@ -1,7 +1,7 @@
 using MyMusic.PlayLists.Features;
 using MyMusic.PlayLists.Features.ArchivePlayList;
 using MyMusic.PlayLists.Features.ChangePlayListImageUrl;
-using MyMusic.PlayLists.Features.CreatePLayList;
+using MyMusic.PlayLists.Features.CreatePlayList;
 using MyMusic.PlayLists.Features.RenamePlaylist;
 using MyMusic.Shared.Infrastructure;
 

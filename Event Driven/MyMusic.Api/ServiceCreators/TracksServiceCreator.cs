@@ -12,13 +12,13 @@ namespace MyMusic.ServiceCreators {
         }
 
         public AddTrackToPlayListService CreateAddTrackToPlayListService() {
-            var pLayListPostgreSqlAdapter = new PLayListPostgreSQLPersistenceAdapter();
+            var pLayListPostgreSqlAdapter = new PlayListPostgreSQLPersistenceAdapter();
             return new AddTrackToPlayListService(pLayListPostgreSqlAdapter, eventPublisher);
         }
         
-        public RemoveTrackFromPLayListService CreateRemoveTrackFromPLayListService() {
-            var pLayListPostgreSqlAdapter = new PLayListPostgreSQLPersistenceAdapter();
-            return new RemoveTrackFromPLayListService(pLayListPostgreSqlAdapter, eventPublisher);
+        public RemoveTrackFromPlayListService CreateRemoveTrackFromPlayListService() {
+            var pLayListPostgreSqlAdapter = new PlayListPostgreSQLPersistenceAdapter();
+            return new RemoveTrackFromPlayListService(pLayListPostgreSqlAdapter, eventPublisher);
         }
     }
 }

@@ -12,13 +12,13 @@ namespace MyMusic.CommandHandlerCreators {
         }
 
         public AddTrackToPlayListCommandHandler CreateAddTrackToPlayListCommandHandler() {
-            var pLayListPostgreSqlAdapter = new PLayListPostgreSQLPersistenceAdapter();
+            var pLayListPostgreSqlAdapter = new PlayListPostgreSQLPersistenceAdapter();
             return new AddTrackToPlayListCommandHandler(pLayListPostgreSqlAdapter, eventPublisher);
         }
         
-        public RemoveTrackFromPLayListCommandHandler CreateRemoveTrackFromPLayListCommandHandler() {
-            var pLayListPostgreSqlAdapter = new PLayListPostgreSQLPersistenceAdapter();
-            return new RemoveTrackFromPLayListCommandHandler(pLayListPostgreSqlAdapter, eventPublisher);
+        public RemoveTrackFromPlayListCommandHandler CreateRemoveTrackFromPlayListCommandHandler() {
+            var pLayListPostgreSqlAdapter = new PlayListPostgreSQLPersistenceAdapter();
+            return new RemoveTrackFromPlayListCommandHandler(pLayListPostgreSqlAdapter, eventPublisher);
         }
     }
 }

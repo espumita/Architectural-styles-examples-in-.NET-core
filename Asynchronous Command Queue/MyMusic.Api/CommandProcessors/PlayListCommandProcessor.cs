@@ -13,7 +13,7 @@ namespace MyMusic.CommandProcessors {
             this.playListCommandHandlerCreator = playListCommandHandlerCreator;
         }
 
-        public Either<DomainError, CommandResult> Process(CreatePLayList command) {
+        public Either<DomainError, CommandResult> Process(CreatePlayList command) {
             var commandHandler = playListCommandHandlerCreator.CreateCreatePlayListCommandHandler();
             return commandHandler.Handle(command);
         }

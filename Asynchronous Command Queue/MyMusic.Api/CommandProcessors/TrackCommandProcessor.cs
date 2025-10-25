@@ -16,13 +16,13 @@ namespace MyMusic.CommandProcessors {
             this.signalRWebsocketAdapter = signalRWebsocketAdapter;
         }
         
-        public Either<DomainError, CommandResult> Process(AddTrackToPLayList command) {
+        public Either<DomainError, CommandResult> Process(AddTrackToPlayList command) {
             var commandHandler = tracksCommandHandlerCreator.CreateAddTrackToPlayListCommandHandler();
             return commandHandler.Handle(command);
         }
 
         public Either<DomainError, CommandResult> Process(RemoveTrackFromPlayList command) {
-            var service = tracksCommandHandlerCreator.CreateRemoveTrackFromPLayListCommandHandler();
+            var service = tracksCommandHandlerCreator.CreateRemoveTrackFromPlayListCommandHandler();
             return service.Handle(command);
         }
     }

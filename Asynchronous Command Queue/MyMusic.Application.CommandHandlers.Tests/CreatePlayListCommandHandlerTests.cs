@@ -29,7 +29,7 @@ namespace MyMusic.Application.CommandHandlers.Tests {
             var aPlaylistId = APlaylist.Id;
             var aPlaylistName = APlaylist.Name;
             uniqueIdentifiers.GetNewUniqueIdentifier().Returns(aPlaylistId);
-            var command = new CreatePLayList(aPlaylistName);
+            var command = new CreatePlayList(aPlaylistName);
 
             var result = createPlayListCommandHandler.Handle(command);
             

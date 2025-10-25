@@ -18,7 +18,7 @@ namespace MyMusic.Application.CommandHandlers {
             this.eventPublisher = eventPublisher;
         }
         
-        public Either<DomainError, CommandResult> Handle(AddTrackToPLayList command) {
+        public Either<DomainError, CommandResult> Handle(AddTrackToPlayList command) {
             var playList = playListPersistence.GetPlayList(command.PlaylistId);
             var error = playList.Add(Track.With(command.TrackId));
             if (error.IsSome) return error.ValueUnsafe();

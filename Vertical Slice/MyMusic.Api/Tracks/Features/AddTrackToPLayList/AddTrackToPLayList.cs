@@ -1,11 +1,11 @@
 using MyMusic.Shared;
 
-namespace MyMusic.Tracks.Features.AddTrackToPLayList {
-    public class AddTrackToPLayList : Command {
+namespace MyMusic.Tracks.Features.AddTrackToPlayList {
+    public class AddTrackToPlayList : Command {
         public string PlaylistId { get; }
         public string TrackId { get; }
 
-        public AddTrackToPLayList(string trackId, string playlistId) {
+        public AddTrackToPlayList(string trackId, string playlistId) {
             PlaylistId = playlistId;
             TrackId = trackId;
         }

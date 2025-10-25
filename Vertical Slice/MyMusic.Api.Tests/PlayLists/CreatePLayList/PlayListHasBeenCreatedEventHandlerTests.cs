@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
 using MyMusic.Api.Tests.Shared.builders;
 using MyMusic.PlayLists.Features;
-using MyMusic.PlayLists.Features.CreatePLayList;
+using MyMusic.PlayLists.Features.CreatePlayList;
 using MyMusic.Shared.Infrastructure;
 using NSubstitute;
 using Xunit;
 
-namespace MyMusic.Api.Tests.PlayLists.CreatePLayList {
+namespace MyMusic.Api.Tests.PlayLists.CreatePlayList {
 
     public class PlayListHasBeenCreatedEventHandlerTests {
         private PlayListHasBeenCreatedEventHandler playListHasBeenCreated;

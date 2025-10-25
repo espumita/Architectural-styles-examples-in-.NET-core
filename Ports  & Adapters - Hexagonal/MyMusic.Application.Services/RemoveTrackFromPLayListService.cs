@@ -6,12 +6,12 @@ using MyMusic.Application.Services.Successes;
 using MyMusic.Domain.Errors;
 
 namespace MyMusic.Application.Services {
-    public class RemoveTrackFromPLayListService {
+    public class RemoveTrackFromPlayListService {
         
         private readonly PlayListPersistencePort playListPersistence;
         private readonly TracksNotifierPort tracksNotifier;
         
-        public RemoveTrackFromPLayListService(PlayListPersistencePort playListPersistence, TracksNotifierPort tracksNotifier) {
+        public RemoveTrackFromPlayListService(PlayListPersistencePort playListPersistence, TracksNotifierPort tracksNotifier) {
             this.playListPersistence = playListPersistence;
             this.tracksNotifier = tracksNotifier;
         }
